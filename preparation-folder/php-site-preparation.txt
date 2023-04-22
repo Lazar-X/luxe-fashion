@@ -1,0 +1,180 @@
+Osnovno:
+-Naziv: Luxe Fashion
+
+-Tema: Fashion, prodaja odece, obuce
+
+-Dizajn: 
+
+-Stranice: Home, About, Shop, Contact, Author
+
+-Boje: 
+
+Stranice i fajlovi:
+-Index
+Glavna stranica sa glavnim sadrzajem na sajtu
+
+-Proizvodi
+Stranica sa proizvodima, dinamicki ispisanim, sa filter, sort, pretragom, stranicenjem
+
+-Proizvod
+Stranica za pojedinacni proizvod, sa njegovim detaljnim opisom
+
+-Kontakt
+Stranica za kontaktiranje, tj. slanje poruke adminu
+
+-Logovanje
+Stranica za logovanje, sa proverom
+
+-Registracija
+Stranica za registraciju, sa proverom
+
+-Konekcija
+Fajl za konekciju sa bazom
+
+-Autor
+Slika o autoru, opis o autoru, link ka github
+
+-Dokumentacija
+Potpuna dokumentacija o sajtu
+
+-Sitemap
+Mapa celog sajta
+
+----------
+
+Priprema:
+-Nabolje bi bilo da se radi neka prodavnica
+
+-Navigacija i footer trebaju da budu dinamicki ispisani i da se pozivaju na svakoj stranici
+
+-Postoji logovanje i registracija, potrebna validacija podataka
+Kod registracije obavezno i slanje aktivacionog linka na email
+
+-Postoji i contact, gde korisnik salje naslov i poruku
+To je potrebno sacuvati u bazi, a zatim ispisati na admin panelu
+
+-Postoje korisnici i admini
+Mogu imati svoje profile, menjati sliku, i informacije, prilikom registracije moguce automatsko dodavanje neke slike, pa da je korisnik menja
+Korisnik moze dodavati proizvode u korpu, izbacivati iz korpe, vrsiti kupovinu itd..
+Admin ima admin panel, gde moze dodavati, menjati, brisati proizvode
+
+-Proizvodi 
+Svaki proizvod ce imati svoju sliku, naziv, cenu(staru, novu), plus klikom na proizvod otvara se nova stranica o tom proizvodu sa detaljnim opisom
+Moguce je dodavanje proizvoda u korpu
+Za sve proizvode je moguce izvrsiti filtriranje(u zavisnosti od teme) i sortiranje(podrazumevano, naziv, cena), kao i pretragu
+Potrebno je i stranicenje
+
+-Anketu je moguce popuniti samo jednom, svaka anketa ima dva ili vise ponudjenih odgovora
+Potrebno je obezbediti uvid u statistiku odgovora za svaku anketu
+
+-Dodatno:
+Potrebno je slati statusne kodove tamo gde se to zahteva
+Potrebno je obavestavati korisnika o greskama, neovlascenom pristupu i slicno
+
+
+Sajtovi:
+
+Link: https://picerijatanac.000webhostapp.com/index.php
+Tema: Picerija
+Opis: Picerija uz sendvice, palacinke, lep klasican dizajn
+Index: 12/20
+
+Link: https://carhunter02.000webhostapp.com/index.php
+Tema: Automobili
+Opis: Dobar klasican dizajn, dosta kategorija i filtera
+Index: 27/21
+
+Link: https://patike-rs.000webhostapp.com/index.php
+Tema: Patike
+Opis: Prodaja patika, lagan sajt, klasican dizajn
+Index: 91/18
+
+Link: https://itshopsite.000webhostapp.com/IT%20Shop/index.php
+Tema: Kompjuterska oprema
+Opis: Lep klasican dizajn, dosta kategorija, filtera, lepa animacija za background image
+Index: 41/21
+
+Link: https://versatile-amplitude.000webhostapp.com/index.php
+Tema: Naocare
+Opis: Prodaja naocara, klasican dizajn
+Index: 59/21
+
+
+
+Link: https://luka4.000webhostapp.com/index.php
+Tema: Turisticka agencija - putovanja
+Opis: Malo losiji dizajn i losiji sajt
+Index: 179/18
+
+Link: https://biteyblog.000webhostapp.com/index.php
+Tema: Recepti
+Opis: Klasican lep dizajn, recepti
+Index: 10/19
+
+Link: https://gr8.epizy.com/index.php
+Tema: Prodaja kompjutera i opreme
+Opis: Lep dizajn, dosta kategorija
+Index: 63/19
+
+
+
+Link: https://vestidanas.000webhostapp.com/index.php
+Tema: Vesti
+Opis: Klasican blog, vesti, losiji dizajn
+Index: 125/20
+
+Link: https://fruiktha.000webhostapp.com/index.php
+Tema: Voce
+Opis: Prodaja voca, predobar dizajn
+Index: 11/21
+
+Link: https://preteritive-songs.000webhostapp.com/index.php
+Tema: Blog
+Opis: Nejasna tema, klasican dizajn
+Index: 13/21
+
+Link: https://fonephoria.000webhostapp.com/index.php
+Tema: Telefoni
+Opis: Prodaja telefona, losiji dizajn
+Index: 15/21
+
+Link: https://unamusing-sports.000webhostapp.com/index.php
+Tema: Kosarkaski klub
+Opis: Bas los dizajn
+Index: 25/21
+
+
+
+Link: https://flexfashion.000webhostapp.com/index.php
+Tema: Odeca
+Opis: Prodaja odece, klasican dizajn
+Index: 28/21
+
+Link: https://xtwofacex.000webhostapp.com/index.php
+Tema: Videi
+Opis: Izarada profesionalnih videa, losiji dizajn
+Index: 31/21
+
+
+
+Link: https://vladimirovurosmalefashion.000webhostapp.com/Sajt%20PHP/index.php
+Tema: Odeca
+Opis: Prodaja odece, predobar klasican dizajn
+Index: 45/21
+
+Link: https://ilijaroyalcars.000webhostapp.com/index.php
+Tema: Rent a car
+Opis: Agencija za rent a car, lep dizajn
+Index: 48/21
+
+
+
+Link: https://pet-shop-ari.000webhostapp.com/index.php
+Tema: Pet shop
+Opis: Klasican lep dizajn
+Index: 110/21
+
+Link: https://foodsterblog.000webhostapp.com/index.php
+Tema: Recepti
+Opis: Klasican dizajn
+Index: 130/21
