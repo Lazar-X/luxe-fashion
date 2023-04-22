@@ -1,3 +1,14 @@
+Coding:
+
+Fonts: Montserrat, Oswald, Raleway
+
+Colors:
+Black - #111111 - for letters and footer background
+White - #FFFFFF - for letters and background
+Grey - #F3F2EE - for background instead white
+Red - #E53637 - for some small headings and details
+Pink - #F2DFDB - if needed for small background of products or something
+
 Osnovno:
 -Naziv: Luxe Fashion
 
@@ -6,8 +17,6 @@ Osnovno:
 -Dizajn: 
 
 -Stranice: Home, About, Shop, Contact, Author
-
--Boje: 
 
 Stranice i fajlovi:
 -Index
