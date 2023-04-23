@@ -1,6 +1,6 @@
 Coding:
 
-Fonts: Montserrat, Oswald, Raleway
+Fonts: Montserrat(headings), Oswald(subheadings/text), Raleway(small text)
 
 Colors:
 Black - #111111 - for letters and footer background
