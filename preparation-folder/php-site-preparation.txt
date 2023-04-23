@@ -9,6 +9,12 @@ Grey - #F3F2EE - for background instead white
 Red - #E53637 - for some small headings and details
 Pink - #F2DFDB - if needed for small background of products or something
 
+Structure:
+config - stvari vezane za baze
+include - stvari koje ce biti includovane na svakoj stranici, pojedine funkcionalnosti i slicno
+pages - tu ce biti smestene stranice
+css i js - za fajlove
+
 Osnovno:
 -Naziv: Luxe Fashion
 
