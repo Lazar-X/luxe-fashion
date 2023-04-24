@@ -1,7 +1,4 @@
-Nastaviti skidanje slika sa https://www.freepik.com/ ostalo jos skirts, shorts, sweatpants
-Skinuti jpg, convert u png, maknuti pozadinu
 
-Treba skinuti slike za background, about us na homepage i na about us stranici
 
 Index stranica struktura gotova
 Obratiti paznju na jos neke sitne detalje, npr na neki hover efekat, naslov span tag i slicno
