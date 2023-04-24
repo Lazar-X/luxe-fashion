@@ -2,5 +2,19 @@
     
 }
 @media screen and (max-width: 768px) {
-    
+    nav ul {
+        margin-bottom: 0px;
+    }
+    #toggle-button {
+        display: flex;
+    }
+    #toggle-button.active {
+        top: 10%;
+    }
+    #menu {
+        display: none;
+    }
+    #menu.active {
+        display: block;
+    }
 }
