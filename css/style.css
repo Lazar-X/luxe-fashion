@@ -113,12 +113,77 @@ nav h1 {
 .shop-now-link:hover {
     border-color: var(--color-red);
 }
-
-
-
-
-
-
+#products {
+    background-color: var(--color-white);
+}
+.price-text-old {
+    display: inline-block;
+    text-decoration: line-through;
+}
+.price-text-new {
+    display: inline-block;
+    font-weight: bold;
+}
+.stars i {
+    color: var(--color-pink);
+}
+.star-filled {
+    color: orange !important;
+}
+.product {
+    background-color: var(--color-white);
+}
+.product h3 {
+    font-size: var(--size-bigger-text);
+    font-weight: bold;
+}
+.product-image {
+    height: 250px;
+    background-image: url('../images/dress-01-original.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* transition: 0.5s all; */
+}
+.overlay-product-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 15px;
+    transition: 0.5s all;
+}
+.product-icons {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s all;
+}
+.product-icons a {
+    border: 1px solid var(--color-white);
+    padding: 10px;
+    color: var(--color-white);
+    transition: 0.3s all;
+}
+.product-icons a:hover {
+    padding: 12px;
+}
+.product-icons i {
+    font-size: var(--size-bigger-text);
+}
+.product:hover .product-icons, .product:hover .overlay-product-image {
+    visibility: visible;
+    opacity: 1;
+}
+.product:hover .overlay-product-image {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.product:hover .product-image {
+    background-size: cover;
+}
 
 
 
