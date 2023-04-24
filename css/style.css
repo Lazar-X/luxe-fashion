@@ -19,6 +19,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* ::-webkit-scrollbar {
+	width: 20px;
+}
+::-webkit-scrollbar-track {
+	background: var(--color-white);
+}
+::-webkit-scrollbar-thumb {
+	background: var(--color-pink);
+} */
 body {
     font-family: var(--font-text);
     color: var(--black);
@@ -89,10 +98,18 @@ nav h1 {
 }
 .shop-now-button {
     display: inline-block;
-    padding: 15px 40px;
-    background-color: var(--color-black);
+    padding: 12px 40px;
+    background-color: var(--color-black) !important;
     color: var(--color-white);
     text-transform: uppercase;
+    transition: 0.3s all;
+}
+.shop-now-button i {
+    color: var(--color-red);
+}
+.shop-now-button:hover {
+    color: var(--color-white);
+    padding: 15px 40px;
 }
 #filters {
     background-color: var(--color-white);
@@ -115,6 +132,9 @@ nav h1 {
 }
 #products {
     background-color: var(--color-white);
+}
+.product-text {
+    text-align: center;
 }
 .price-text-old {
     display: inline-block;
@@ -143,7 +163,6 @@ nav h1 {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    /* transition: 0.5s all; */
 }
 .overlay-product-image {
     position: relative;
@@ -184,14 +203,65 @@ nav h1 {
 .product:hover .product-image {
     background-size: cover;
 }
-
-
-
-
-
-
-
-
+#about-us {
+    width: 100%;
+    background-image: url('../images/bg-image-homepage.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.overlay {
+    height: inherit;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+#about-us p {
+    color: var(--color-white);
+}
+#services {
+    background-color: var(--color-grey);
+}
+.service p {
+    text-transform: uppercase;
+}
+.service i {
+    font-size: var(--size-big-heading);
+}
+footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    text-align: center;
+}
+footer .shop-now-link {
+    color: var(--color-white);
+}
+footer a {
+    color: var(--color-white);
+    transition: 0.3s all;
+}
+footer a:hover {
+    border-bottom: 1px solid var(--color-red);
+}
+footer h3 {
+    font-size: var(--size-normal-text);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.list-social li a {
+    border: 1px solid var(--color-white);
+    padding: 15px;
+    border-radius: 50%;
+    transition: 0.3s all;
+}
+.list-social i {
+    font-size: var(--size-bigger-text);
+}
+.list-social li:hover a {
+    border-color: var(--color-red);
+}
+.list-social li:hover {
+    border-color: var(--color-red);
+}
 
 
 

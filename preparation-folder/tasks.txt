@@ -1,18 +1,19 @@
 Nastaviti skidanje slika sa https://www.freepik.com/ ostalo jos skirts, shorts, sweatpants
 Skinuti jpg, convert u png, maknuti pozadinu
 
-Treba skinuti slike i za kategorije
-
 Treba skinuti slike za background, about us na homepage i na about us stranici
 
-FREE SHIPPING(kamion), FREE RETURNS(refresh strelica), CUSTOMER SUPPORT(znak pitanja), DELIVERY ON TIME(sat)
+Index stranica struktura gotova
+Obratiti paznju na jos neke sitne detalje, npr na neki hover efekat, naslov span tag i slicno
 
 
 
 
-Napraviti products sekciju
-Napraviti sekciju za proizvod koji je na popustu odredjeno vreme
-Napraviti sekciju za fast delivery i slicno
-Napraviti footer sekciju
+
+
+Treba promeniti background sliku za about us sekciju na homepage
 
 Mozda treba sve slike producta cropovati na odredjenu rezoluciju
+
+Ako ostane vremena:
+Napraviti sekciju za proizvod koji je na popustu odredjeno vreme
