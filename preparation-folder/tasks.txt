@@ -4,8 +4,6 @@ Index stranica struktura gotova
 Obratiti paznju na jos neke sitne detalje, npr na neki hover efekat, naslov span tag i slicno
 
 Napraviti shop stranicu
-Napraviti contact stranicu
-Napraviti author stranicu
 Napraviti single product stranicu
 
 

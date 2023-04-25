@@ -254,7 +254,6 @@ footer h3 {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--color-white);
-    /* padding: 15px; */
     border-radius: 50%;
     transition: 0.3s all;
 }
@@ -275,6 +274,22 @@ footer h3 {
 .about-us-link {
     border-bottom: 1px solid var(--color-red);
     font-weight: bold;
+}
+#message {
+    resize: none;
+}
+.button {
+    padding: 12px 40px;
+    background-color: var(--color-black) !important;
+    color: var(--color-white) !important;
+    text-transform: uppercase;
+}
+.button:hover {
+    transform: scale(0.98);
+}
+.address-holder h3 {
+    font-size: var(--size-normal-text);
+    text-transform: uppercase;
 }
 
 
