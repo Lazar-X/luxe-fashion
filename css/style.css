@@ -297,6 +297,57 @@ footer h3 {
     font-size: var(--size-normal-text);
     text-transform: uppercase;
 }
+.filter-group .btn:focus {
+    outline: 0 !important;
+    box-shadow: none;
+}
+.filter-group h6 {
+    font-weight: bold;
+}
+.size-label::after, .size-label::before {
+    display: none;
+}
+.size-label {
+    min-width: 70px;
+    padding: 5px 0px;
+    border: 1px solid var(--color-black);
+    cursor: pointer;
+    text-align: center;
+}
+.active-size {
+    border-width: 2px;
+    font-weight: bold;
+}
+.button-clear {
+    border: 1px solid var(--color-black);
+    transition: 0.3s all;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: var(--size-small-text);
+}
+.button-clear:hover {
+    border-color: var(--color-red);
+}
+.button-clear:focus {
+    outline: 0;
+    box-shadow: none;
+}
+.pagination-list a {
+    border: 1px solid var(--color-black);
+    font-weight: bold;
+}
+.pagination-list a:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+.pagination-active-link {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+input:focus, textarea:focus, select:focus {
+    border-color: var(--color-black) !important;
+    box-shadow: none !important;
+}
 
 
 
