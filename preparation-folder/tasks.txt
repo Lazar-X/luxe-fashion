@@ -3,7 +3,10 @@
 Index stranica struktura gotova
 Obratiti paznju na jos neke sitne detalje, npr na neki hover efekat, naslov span tag i slicno
 
-
+Napraviti shop stranicu
+Napraviti contact stranicu
+Napraviti author stranicu
+Napraviti single product stranicu
 
 
 
@@ -11,6 +14,8 @@ Obratiti paznju na jos neke sitne detalje, npr na neki hover efekat, naslov span
 Treba promeniti background sliku za about us sekciju na homepage
 
 Mozda treba sve slike producta cropovati na odredjenu rezoluciju
+
+Treba izvrsiti optimizaciju slika
 
 Ako ostane vremena:
 Napraviti sekciju za proizvod koji je na popustu odredjeno vreme
