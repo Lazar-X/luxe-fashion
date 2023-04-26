@@ -1,13 +1,14 @@
 window.onload = function() {
-    quantity();
     toggleMenu();
+    if(document.URL.includes('single-product.html')) {
+        quantity();
+    };
 }
 
 // Function for navigation
 function toggleMenu() {
     const toggle = document.querySelector('#toggle-button');
     const navbar = document.querySelector('#menu');
-    console.log(navbar);
 
     toggle.addEventListener('click', () => {
         navbar.classList.toggle('active');

@@ -4,7 +4,11 @@ Napraviti register stranicu
 Napraviti cart stranicu
 
 Mi sami trebamo da napravimo na click da se dodaje klasa active
-Treba da popravimo responsive navigaciju, uppercase, padding
+
+
+
+
+
 
 
 
@@ -20,3 +24,4 @@ Treba napisati dokumentaciju
 
 Ako ostane vremena:
 Napraviti sekciju za proizvod koji je na popustu odredjeno vreme
+Treba da popravimo responsive navigaciju, uppercase, padding (samo dodati padding za navbar u nasem css)
