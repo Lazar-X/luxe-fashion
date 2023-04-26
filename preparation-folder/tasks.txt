@@ -1,8 +1,11 @@
 
 
-Napraviti login stranicu
-Napraviti register stranicu
+Napraviti register stranicu, pogledati sta sve treba
 Napraviti cart stranicu
+
+Prebaciti stranice na php
+Izvrsiti validaciju podataka javascriptom i php
+Probati prvo contact formu, laksa je, pa posle ostale
 
 
 
