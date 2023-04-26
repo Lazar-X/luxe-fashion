@@ -2,7 +2,11 @@ window.onload = function() {
     toggleMenu();
     if(document.URL.includes('single-product.html')) {
         quantity();
-    };
+    }
+    if(document.URL.includes('shop.html')) {
+        console.log('u shop smo');
+        activeSize();
+    }
 }
 
 // Function for navigation
@@ -41,4 +45,18 @@ function quantity() {
             quantityMessage.textContent = "";
         }
     });
+}
+
+// Function for sizes on shop page
+function activeSize() {
+    const sizeDiv = document.querySelector('#div-sizes');
+    const sizes = sizeDiv.querySelectorAll('label');
+
+    sizes.forEach(size => {
+        size.addEventListener('click', () => {
+            size.classList.toggle('active-size');
+        });
+    });
+
+    //const labelElements = divElement.querySelectorAll('label');
 }
