@@ -1,11 +1,18 @@
 window.onload = function() {
+    // Global
     toggleMenu();
-    if(document.URL.includes('single-product.html')) {
-        quantity();
-    }
+    // Shop
     if(document.URL.includes('shop.html')) {
-        console.log('u shop smo');
-        activeSize();
+        const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
+        addActiveClass(sizes, 'active-size');
+    }
+    // Single product
+    if(document.URL.includes('single-product.html')) {
+        const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
+        const colors = document.querySelector("#div-colors").querySelectorAll('label');
+        addActiveClass(colors, 'active-color');
+        addActiveClass(sizes, 'active-size');
+        quantity();
     }
 }
 
@@ -47,16 +54,11 @@ function quantity() {
     });
 }
 
-// Function for sizes on shop page
-function activeSize() {
-    const sizeDiv = document.querySelector('#div-sizes');
-    const sizes = sizeDiv.querySelectorAll('label');
-
-    sizes.forEach(size => {
-        size.addEventListener('click', () => {
-            size.classList.toggle('active-size');
+// Function for adding active classes
+function addActiveClass(elements, className) {
+    elements.forEach(element => {
+        element.addEventListener('click', () => {
+            element.classList.toggle(className);
         });
     });
-
-    //const labelElements = divElement.querySelectorAll('label');
 }

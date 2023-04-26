@@ -1,23 +1,22 @@
-Napraviti single product stranicu
+
+
 Napraviti login stranicu
 Napraviti register stranicu
 Napraviti cart stranicu
 
-Mi sami trebamo da napravimo na click da se dodaje klasa active
 
 
-
-
-
-
-
-
-
-Treba promeniti background sliku za about us sekciju na homepage
-
-Mozda treba sve slike producta cropovati na odredjenu rezoluciju
 
 Treba izvrsiti optimizaciju slika
+Mozda treba sve slike producta cropovati na odredjenu rezoluciju
+Treba promeniti background sliku za about us sekciju na homepage
+
+
+
+
+
+
+
 Treba napraviti sitemap
 Treba proveriti sve linkove
 Treba napisati dokumentaciju
