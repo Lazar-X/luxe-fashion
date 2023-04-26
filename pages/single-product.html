@@ -58,6 +58,81 @@
             </div>
         </div>
     </nav>
+    <!-- Product section -->
+    <div id="single-product" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-12 single-product-background">
+                    <img src="../images/dress-01-original.png" alt="Single Product" />
+                </div>
+                <div class="col-md-8 col-12 mt-md-0 mt-3 border">
+                    <!-- Product heading -->
+                    <div class="product-heading">
+                        <h2 class="text-uppercase">Product Name</h2>
+                    </div>
+                    <!-- Product price -->
+                    <div class="product-price">
+                        <p class="price-text-old">$33.69</p>
+                        <p class="price-text-new">$22.99</p>
+                    </div>
+                    <!-- Product brand -->
+                    <div class="product-brand d-flex mb-2">
+                        <h3>Brand:</h3>
+                        <p class="ml-2">Brand-1</p>
+                    </div>
+                    <!-- Product description -->
+                    <div class="product-description">
+                        <h3>Description:</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis quaerat vitae praesentium, enim temporibus laboriosam facere autem ratione et sit. Tempora commodi voluptate, ad exercitationem sint omnis inventore tenetur consectetur a doloribus odio? Saepe dolor, voluptatibus sint amet quasi beatae.</p>
+                    </div>
+                    <!-- Product sizes -->
+                    <div class="product-sizes d-flex align-items-center mb-2">
+                        <h3>Sizes:</h3>
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input type" id="check-sizes-1" name="sizes" value="1" autocomplete="off">
+                            <label class="custom-control-label size-label active-size" for="check-sizes-1">S</label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input type" id="check-sizes-2" name="sizes" value="2" autocomplete="off">
+                            <label class="custom-control-label size-label" for="check-sizes-2">M</label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input type" id="check-sizes-3" name="sizes" value="3" autocomplete="off">
+                            <label class="custom-control-label size-label" for="check-sizes-3">L</label>
+                        </div>
+                    </div>
+                    <!-- Product colors -->
+                    <div class="product-colors d-flex align-items-center mb-2">
+                        <h3>Colors:</h3>
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input type" id="check-colors-1" name="colors" value="1" autocomplete="off">
+                            <label class="custom-control-label size-label active-color color-black" for="check-colors-1"></label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input type" id="check-colors-2" name="colors" value="2" autocomplete="off">
+                            <label class="custom-control-label size-label color-white" for="check-colors-2"></label>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input type" id="check-colors-3" name="colors" value="3" autocomplete="off">
+                            <label class="custom-control-label size-label color-blue" for="check-colors-3"></label>
+                        </div>
+                    </div>
+                    <!-- Product Quantity -->
+                    <div class="product-quantity d-flex align-items-center mb-2">
+                        <h3>Quantity:</h3>
+                        <span id="button-operator-minus" class="button-operator ml-2">-</span>
+                        <input type="text" id="button-operator-result" class="button-quantity" value="1" />
+                        <span id="button-operator-plus" class="button-operator">+</span>
+                        <small id="quantity-help" class="form-text text-muted ml-2"></small>
+                    </div>
+                    <!-- Product Add to Cart -->
+                    <div class="product-add-to-cart">
+                        <button class="btn" type="submit">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="pt-5">
         <div class="container">

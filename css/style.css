@@ -351,7 +351,7 @@ footer h3 {
     text-align: center;
 }
 .active-size {
-    border-width: 2px;
+    border-width: 3px;
     font-weight: bold;
 }
 .button-clear {
@@ -383,8 +383,73 @@ footer h3 {
 #contact label {
     font-weight: bold;
 }
-
-
+.single-product-background {
+    background-color: var(--color-grey);
+}
+#single-product h3 {
+    font-size: var(--size-bigger-text);
+    font-weight: bold;
+}
+#single-product p {
+    font-size: var(--size-normal-text);
+    text-transform: uppercase;
+}
+.product-colors label {
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 50%;
+}
+.active-color {
+    min-width:  40px !important;
+    min-height: 40px !important;
+    border: 3px solid var(--color-red);
+}
+.color-black {
+    background-color: black;
+}
+.color-white {
+    background-color: white;
+}
+.color-blue {
+    background-color: blue;
+}
+.color-yellow {
+    background-color: yellow;
+}
+.color-green {
+    background-color: green;
+}
+.button-operator, .button-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+}
+.button-operator {
+    width: 20px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    cursor: pointer;
+}
+.button-quantity {
+    width: 40px;
+    border: 1px solid var(--color-black);
+}
+#quantity-help {
+    color: var(--color-red) !important;
+}
+.product-add-to-cart button {
+    width: 100%;
+    border: 1px solid var(--color-black);
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s all;
+}
+.product-add-to-cart button:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
 
 
 /* .test {
