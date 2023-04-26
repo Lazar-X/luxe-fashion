@@ -231,13 +231,19 @@ nav a i {
     opacity: 0;
     transition: 0.5s all;
 }
-.product-icons a {
+.product-icons a, .product-icons button {
     border: 1px solid var(--color-white);
     padding: 10px;
     color: var(--color-white);
+    font-size: var(--size-normal-text) !important;
     transition: 0.3s all;
 }
-.product-icons a:hover {
+.product-icons button {
+    background-color: transparent;
+    width: 46.5px !important;
+    height: 41px;
+}
+.product-icons a:hover, .product-icons button:hover {
     padding: 12px;
 }
 .product-icons i {
@@ -439,16 +445,23 @@ footer h3 {
 #quantity-help {
     color: var(--color-red) !important;
 }
-.product-add-to-cart button {
+.product-add-to-cart button, .go-to-cart {
     width: 100%;
     border: 1px solid var(--color-black);
     text-transform: uppercase;
     font-weight: bold;
     transition: 0.3s all;
 }
-.product-add-to-cart button:hover {
+.product-add-to-cart button:hover, .go-to-cart:hover {
     background-color: var(--color-black);
     color: var(--color-white);
+}
+.button-close-modal {
+    width: 30px !important;
+    height: 30px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

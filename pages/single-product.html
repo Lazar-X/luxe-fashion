@@ -127,7 +127,30 @@
                     </div>
                     <!-- Product Add to Cart -->
                     <div class="product-add-to-cart">
-                        <button class="btn" type="submit">Add To Cart</button>
+                        <!-- Adding product to Cart Modal with Button -->
+                        <button type="button" class="btn" data-toggle="modal" data-target="#add-to-cart">
+                            Add To Cart
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="add-to-cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Notification</h5>
+                                        <button type="button" class="close button-close-modal" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Product added to cart successfully!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" data-dismiss="modal">Close</button>
+                                        <a href="cart.html" class="btn go-to-cart">Go To Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,7 +198,6 @@
     </footer>
     
     <!-- Help -->
-    
 
     <!-- Bootstrap include -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
