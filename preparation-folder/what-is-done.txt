@@ -1,8 +1,10 @@
+Celokupan sajt uradjen samostalno, responsive
 Pronadjeni fontovi sa google fonts
 Izabrana paleta boja
 Uradjen osnovni dizajn / skica u figmi, ali se malo razlikuje dizajn kasnije
 Uradjen logo na freelogodesign
-Slike preuzete sa unsplash, freepik
+Slike preuzete sa unsplash, za products sa freepik
+Izvrsena optimizacija slika
 Ikonice sa fontawesome
 Bootstrap za strukturu
 Koriscen chatgpt za sadrzaj na sajtu
@@ -13,3 +15,5 @@ Uradjen responsive meni
 Uradjen brojac za quantity
 Napravljena funkcija za dodavanje klasa active
 Funkcija za password show/hide
+
+Celokupan rad se moze videti na github

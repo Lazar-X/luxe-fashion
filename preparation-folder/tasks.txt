@@ -1,10 +1,21 @@
-Treba izvrsiti optimizaciju slika
-Mozda treba sve slike producta cropovati na odredjenu rezoluciju (testirati sa svim product slikama pa odluciti)
-Treba promeniti background sliku za about us sekciju na homepage
-
 Prebaciti stranice na php
+
 Izvrsiti validaciju podataka javascriptom i php
-Probati prvo contact formu, laksa je, pa posle ostale
+Prvo izvrsiti za contact formu
+Potom za login
+Na kraj za register
+
+Potrebno je napraviti bazu podataka
+
+Za registraciju potreban aktivacioni link ili na email ili neki specifican kod
+
+Realizovati korisnika i admina
+
+Nakon registracije i logovanja treba da se prikaze neka poruka da je uspesno, kao i redirekt
+Ukoliko se registrovao, onda ga prebacimo na login na primer
+Ukoliko se logovao onda na index, ali promenimo <header>
+
+Napraviti da user na vrhu umesto login/register ima profile/admin dashboard
 
 Napraviti user dashboard
 Da moze da menja podatke
