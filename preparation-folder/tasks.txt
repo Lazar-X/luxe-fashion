@@ -25,7 +25,37 @@ Probati prvo contact formu, laksa je, pa posle ostale
 
 
 
-
+<!-- Single Product in Cart -->
+                <div class="row d-flex align-items-center justify-content-between border-bottom single-product-cart py-2">
+                    <!-- Single Product Image -->
+                    <div class="col-1">
+                        <div class="cart-background-image">
+                        </div>
+                    </div>
+                    <!-- Single Product Name -->
+                    <div class="col-4">
+                        <h3>Product Name</h3>
+                    </div>
+                    <!-- Single Product Quantity -->
+                    <div class="col-4">
+                        <div class="product-quantity d-flex align-items-center mb-2">
+                            <span id="button-operator-minus" class="button-operator ml-2">-</span>
+                            <input type="text" id="button-operator-result" class="button-quantity" value="1" />
+                            <span id="button-operator-plus" class="button-operator">+</span>
+                            <small id="quantity-help" class="form-text text-muted ml-2"></small>
+                        </div>
+                    </div>
+                    <!-- Single Product Price -->
+                    <div class="col-2">
+                        <p class="price-text-new">$22.99</p>
+                    </div>
+                    <!-- Single Product Delete -->
+                    <div class="col-1">
+                        <button class="cart-button-delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
 
 
 

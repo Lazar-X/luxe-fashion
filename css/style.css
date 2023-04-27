@@ -442,7 +442,7 @@ footer h3 {
     width: 40px;
     border: 1px solid var(--color-black);
 }
-#quantity-help {
+.quantity-help {
     color: var(--color-red) !important;
 }
 .product-add-to-cart button, .go-to-cart {
@@ -479,6 +479,26 @@ footer h3 {
 }
 .active-show-password {
     text-decoration: none;
+}
+#cart-section h3 {
+    font-size: var(--size-normal-text);
+}
+.single-product-cart h3 {
+    font-weight: bold;
+}
+.cart-button-delete {
+    border: none;
+}
+.cart-button-delete:focus {
+    outline: 0;
+}
+.cart-background-image {
+    width: 100%;
+    height: 70px;
+    background-image: url('../images/dress-01-original.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 /* .test {

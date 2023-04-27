@@ -14,8 +14,13 @@ window.onload = function() {
         addActiveClass(sizes, 'active-size');
         quantity();
     }
+    // Register
     if(document.URL.includes('register.html')) {
         showPassword();
+    }
+    // Cart
+    if(document.URL.includes('cart.html')) {
+        quantity();
     }
 }
 
@@ -32,29 +37,52 @@ function toggleMenu() {
 
 // Function for quantity on single-product page
 function quantity() {
-    const buttonPlus = document.querySelector('#button-operator-plus');
-    const buttonMinus = document.querySelector('#button-operator-minus');
-    const buttonResult = document.querySelector('#button-operator-result');
-    const quantityMessage = document.querySelector('#quantity-help');
+    const buttonPlus = document.querySelectorAll('.button-operator-plus');
+    const buttonMinus = document.querySelectorAll('.button-operator-minus');
+    const buttonResult = document.querySelectorAll('.button-operator-result');
+    const quantityMessage = document.querySelectorAll('.quantity-help');
 
-    buttonPlus.addEventListener('click', () => {
-        if(buttonResult.value >= 1 && buttonResult.value < 10) {
-            buttonResult.value++;
-            quantityMessage.textContent = "";
-        }
-        if(buttonResult.value >= 10) {
-            quantityMessage.textContent = "Quantity cannot exceed 10. If you need to order more, please contact the administrator.";
-        }
-    });
-    buttonMinus.addEventListener('click', () => {
-        if(buttonResult.value <= 1) {
-            quantityMessage.textContent = "Quantity cannot be negative.";
-        }
-        if(buttonResult.value >= 2) {
-            buttonResult.value--;
-            quantityMessage.textContent = "";
-        }
-    });
+
+    for (let i = 0; i < buttonPlus.length; i++) {
+        buttonPlus[i].addEventListener('click', () => {
+            if(buttonResult[i].value >= 1 && buttonResult[i].value < 10) {
+                buttonResult[i].value++;
+                quantityMessage[i].textContent = "";
+            }
+            if(buttonResult[i].value >= 10) {
+                quantityMessage[i].textContent = "Quantity cannot exceed 10. If you need to order more, please contact the administrator.";
+            }
+        });
+
+        buttonMinus[i].addEventListener('click', () => {
+            if(buttonResult[i].value <= 1) {
+                quantityMessage[i].textContent = "Quantity cannot be negative.";
+            }
+            if(buttonResult[i].value >= 2) {
+                buttonResult[i].value--;
+                quantityMessage[i].textContent = "";
+            }
+        });
+    }
+
+    // buttonPlus.addEventListener('click', () => {
+    //     if(buttonResult.value >= 1 && buttonResult.value < 10) {
+    //         buttonResult.value++;
+    //         quantityMessage.textContent = "";
+    //     }
+    //     if(buttonResult.value >= 10) {
+    //         quantityMessage.textContent = "Quantity cannot exceed 10. If you need to order more, please contact the administrator.";
+    //     }
+    // });
+    // buttonMinus.addEventListener('click', () => {
+    //     if(buttonResult.value <= 1) {
+    //         quantityMessage.textContent = "Quantity cannot be negative.";
+    //     }
+    //     if(buttonResult.value >= 2) {
+    //         buttonResult.value--;
+    //         quantityMessage.textContent = "";
+    //     }
+    // });
 }
 
 // Function for adding active classes

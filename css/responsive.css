@@ -1,6 +1,11 @@
 @media screen and (max-width: 1024px) {
     
 }
+@media screen and (max-width: 992px) {
+    .cart-background-image {
+        height: 300px;
+    }
+}
 @media screen and (max-width: 768px) {
     nav ul {
         margin-bottom: 0px;
@@ -16,5 +21,8 @@
     }
     #menu.active {
         display: block;
+    }
+    .padding-150 {
+        padding: 50px 0px;
     }
 }
