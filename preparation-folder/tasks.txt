@@ -1,10 +1,10 @@
 
 
-Napraviti cart stranicu
-
 Napraviti checkout stranicu
 
 Napraviti poll stranicu za anketu
+
+Napraviti user dashboard
 
 Napraviti admin dashboard
 Za admina napraviti dodavanje proizvoda, kategorije, brandove, boje, velicine i sve ostalo sto cemo imati u bazi
