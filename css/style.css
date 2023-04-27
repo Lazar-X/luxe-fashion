@@ -466,7 +466,20 @@ footer h3 {
 .padding-150 {
     padding: 150px 0px;
 }
-
+.password-container {
+    position: relative;
+}
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 45px;
+    cursor: pointer;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+.active-show-password {
+    text-decoration: none;
+}
 
 /* .test {
     border: 1px solid black;

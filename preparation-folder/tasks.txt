@@ -1,7 +1,20 @@
 
 
-Napraviti register stranicu, pogledati sta sve treba
 Napraviti cart stranicu
+
+Napraviti checkout stranicu
+
+Napraviti poll stranicu za anketu
+
+Napraviti admin dashboard
+Za admina napraviti dodavanje proizvoda, kategorije, brandove, boje, velicine i sve ostalo sto cemo imati u bazi
+Napraviti uvid u korisnike
+Napraviti uvid u anketu
+Napraviti uvid u poruke sa contact stranice
+
+Treba izvrsiti optimizaciju slika
+Mozda treba sve slike producta cropovati na odredjenu rezoluciju
+Treba promeniti background sliku za about us sekciju na homepage
 
 Prebaciti stranice na php
 Izvrsiti validaciju podataka javascriptom i php
@@ -10,9 +23,7 @@ Probati prvo contact formu, laksa je, pa posle ostale
 
 
 
-Treba izvrsiti optimizaciju slika
-Mozda treba sve slike producta cropovati na odredjenu rezoluciju
-Treba promeniti background sliku za about us sekciju na homepage
+
 
 
 
