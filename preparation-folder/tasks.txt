@@ -1,62 +1,19 @@
-
-
-Napraviti checkout stranicu
-
-Napraviti poll stranicu za anketu
-
-Napraviti user dashboard
-
-Napraviti admin dashboard
-Za admina napraviti dodavanje proizvoda, kategorije, brandove, boje, velicine i sve ostalo sto cemo imati u bazi
-Napraviti uvid u korisnike
-Napraviti uvid u anketu
-Napraviti uvid u poruke sa contact stranice
-
 Treba izvrsiti optimizaciju slika
-Mozda treba sve slike producta cropovati na odredjenu rezoluciju
+Mozda treba sve slike producta cropovati na odredjenu rezoluciju (testirati sa svim product slikama pa odluciti)
 Treba promeniti background sliku za about us sekciju na homepage
 
 Prebaciti stranice na php
 Izvrsiti validaciju podataka javascriptom i php
 Probati prvo contact formu, laksa je, pa posle ostale
 
+Napraviti user dashboard
+Da moze da menja podatke
 
-
-
-
-
-<!-- Single Product in Cart -->
-                <div class="row d-flex align-items-center justify-content-between border-bottom single-product-cart py-2">
-                    <!-- Single Product Image -->
-                    <div class="col-1">
-                        <div class="cart-background-image">
-                        </div>
-                    </div>
-                    <!-- Single Product Name -->
-                    <div class="col-4">
-                        <h3>Product Name</h3>
-                    </div>
-                    <!-- Single Product Quantity -->
-                    <div class="col-4">
-                        <div class="product-quantity d-flex align-items-center mb-2">
-                            <span id="button-operator-minus" class="button-operator ml-2">-</span>
-                            <input type="text" id="button-operator-result" class="button-quantity" value="1" />
-                            <span id="button-operator-plus" class="button-operator">+</span>
-                            <small id="quantity-help" class="form-text text-muted ml-2"></small>
-                        </div>
-                    </div>
-                    <!-- Single Product Price -->
-                    <div class="col-2">
-                        <p class="price-text-new">$22.99</p>
-                    </div>
-                    <!-- Single Product Delete -->
-                    <div class="col-1">
-                        <button class="cart-button-delete">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-
+Napraviti admin dashboard
+Za admina napraviti dodavanje proizvoda, kategorije, brandove, boje, velicine i sve ostalo sto cemo imati u bazi
+Napraviti uvid u korisnike
+Napraviti uvid u anketu
+Napraviti uvid u poruke sa contact stranice
 
 
 
