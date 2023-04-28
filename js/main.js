@@ -104,62 +104,101 @@ function showPassword() {
     }
 }
 
+// Function to clear form elements when its done
+function clearFrom(arrayElements, formElement, messageElement, messageText) {
+    arrayElements.forEach(element => {
+        element.removeClass('border-success');
+    });
+    formElement[0].reset();
+    messageElement.text(messageText).fadeIn().delay(3000).fadeOut();
+}
+
 // Function to validate contact data
 function contactValidation() {
-    $(document).on('click', '#contactButton', function() {
-        let name = $('#nameContact');
-        let email = $('#emailContact');
-        let message = $('#messageContact');
+    let name = $('#nameContact');
+    let email = $('#emailContact');
+    let message = $('#messageContact');
 
-        let regexName = /^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/;
-        let regexEmail = /^([a-zA-Z0-9._%+-]{1,64})@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$/;
-        let regexMessage = /^[A-Z][\w\s\d.,!?-]{9,49}$/i;
+    let regexName = /^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/;
+    let regexEmail = /^([a-zA-Z0-9._%+-]{1,64})@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$/;
+    let regexMessage = /^[A-Z][\w\s\d.,!?-]{9,49}$/i;
 
-        let errorCounter = 0;
+    let errorCounter = 0;
 
-        if(!regexName.test($(name).value())) {
+    function checkContactName() {
+        if(!regexName.test($(name).val())) {
             errorCounter++;
             $('#nameHelp').addClass('text-danger');
+            $('#nameHelp').text('Not good!');
+            name.addClass('border-danger');
         }
         else {
             $('#nameHelp').removeClass('text-danger');
+            $('#nameHelp').text('');
+            name.removeClass('border-danger');
+            name.addClass('border-success');
         }
+    }
 
-        if(!regexEmail.test($(email).value())) {
+    function checkContactEmail() {
+        if(!regexEmail.test($(email).val())) {
             errorCounter++;
             $('#emailHelp').addClass('text-danger');
+            $('#emailHelp').text('Not good!');
+            email.addClass('border-danger');
         }
         else {
             $('#emailHelp').removeClass('text-danger');
+            $('#emailHelp').text('');
+            email.removeClass('border-danger');
+            email.addClass('border-success');
         }
+    }
 
-        if(!regexMessage.test($(message).value())) {
+    function checkContactMessage() {
+        if(!regexMessage.test($(message).val())) {
             errorCounter++;
-            $('#message').addClass('text-danger');
+            $('#messageHelp').addClass('text-danger');
+            $('#messageHelp').text('Not good!');
+            message.addClass('border-danger');
         }
         else {
-            $('#message').removeClass('text-danger');
+            $('#messageHelp').removeClass('text-danger');
+            $('#messageHelp').text('');
+            message.removeClass('border-danger');
+            message.addClass('border-success');
+        }
+    }
+
+    name.on('focusout', function() {
+        checkContactName();
+    });
+
+    email.on('focusout', function() {
+        checkContactEmail();
+    });
+
+    message.on('focusout', function() {
+        checkContactMessage();
+    });
+
+    $(document).on('click', '#contactButton', function() {
+        errorCounter = 0;
+        checkContactName();
+        checkContactEmail();
+        checkContactMessage();
+
+        if(errorCounter == 0) {
+            let arrayElements = [name, email, message];
+            let formElement = $('#contactForm');
+            let messageElement = $('#contactInformation');
+            let messageText = 'Your message has been sent!';
+            clearFrom(arrayElements, formElement, messageElement, messageText);
+
+            
+
         }
 
-        // if(errorCounter == 0) {
-        //     let contactData = [
-        //         'name': $(name).val(),
-        //         'email': $(email).val(),
-        //         'message': $(message).val()
-        //     ];
-
-        //     $.ajax({
-        //         url: 'contact_handler.php',
-        //         method: 'post',
-        //         dataType: 'json',
-        //         success: function(result) {
-        //             console.log(result);
-        //         },
-        //         error: function(xhr) {
-        //             console.log(xhr);
-        //         }
-        //     });
-        // }
-
+        errorCounter = 0;
     });
 }

@@ -451,7 +451,7 @@ footer h3 {
     transform: rotate(1deg);
 }
 .button:focus {
-    outline: 0;
+    outline: 0 !important;
 }
 .product-add-to-cart button, .go-to-cart, .button {
     width: 100%;
@@ -508,6 +508,9 @@ footer h3 {
     background-position: center;
     background-size: cover;
 }
+
+
+
 @media screen and (max-width: 992px) {
     .cart-background-image {
         height: 300px;
