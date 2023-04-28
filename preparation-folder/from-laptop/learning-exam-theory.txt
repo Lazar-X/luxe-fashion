@@ -1,0 +1,38 @@
+Zadaci:
+Provezbati regularne izraze za js
+Provezbati regularne izraze za php, pregledati slajdove, provezbati osnovne za email, ime, prezime, password, indeks..
+Provezbati slanje podataka php preko ajax
+Provezbati dohvatanje podataka direktno preko php
+Treba se podsetiti rada sa bazama podataka, ima poseban slajd
+Provezbati pravljenje forme u html, validaciju podataka u JS, prosledjivanje tih podataka ka php, validaciju podataka u php
+Provezbati konekciju sa bazom, pravljenje konstanti, pa konekcije
+Provezbati select, insert, delete, update sa bazom preko php
+Provezbati poslednji ID, transakcije, prepared statements sa insert
+
+*Pitanje za kolokvijum
+Kod dinamickog sajta uvek imamo jedan sajt, a sadrzaj se razlikuje
+Klijentu se uvek isporucuje html, css, javascript, xml odnosno samo klijentske jezike
+Uvek mozemo videti izvorni kod klijentskih jezika, ne moze se sakriti
+Suprotno od toga, serverski jezik / kod, nikad ne moze doci do klijenta, ne moze se videti (sem putem hakerskih alata), a mi samo vidimo rezultat rada serverskog jezika, opet u vidu klijentskih jezika
+
+----------
+
+*Pitanje za kolokvijum
+Celokupan statican sajt, mozemo pretvoriti u "dinamicki", tako sto samo dodamo ekstenziju php
+Kod nece da pukne, ima da se prevede, korisniku ce da se prikaze ekstenzija php, a korisnik nikada nije u mogucnosti da vidi izvorni php kod
+
+----------
+
+*Pitanje za kolokvijum
+Kada se izvrsi sortiranje, ono se vrsi u tzv. pomocni niz, tako da ukoliko su nam indeksi pocetnog niza bili 2, 1, 3, novi sortirani niz koji dobijemo sa sort() ili rsort(), sortirace ih po vrednosti, ali cemo imati indekse 0, 1, 2
+
+----------
+
+*Pitanje za kolokvijum
+$x = "Pera"
+function primer() { global $x; echo $x; $x = "Mika"; echo $x; }
+primer();
+echo $x;
+Ispisace se Pera, pa ce $x biti promenjeno na nivou cele stranice (zbog global), pa ce ispisati Mika, i jos jednom na kraju Mika
+
+----------

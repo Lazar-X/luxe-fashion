@@ -326,15 +326,6 @@ footer h3 {
 #message {
     resize: none;
 }
-.button {
-    padding: 12px 40px;
-    background-color: var(--color-black) !important;
-    color: var(--color-white) !important;
-    text-transform: uppercase;
-}
-.button:hover {
-    transform: scale(0.98);
-}
 .address-holder h3 {
     font-size: var(--size-normal-text);
     text-transform: uppercase;
@@ -449,14 +440,27 @@ footer h3 {
 .quantity-help {
     color: var(--color-red) !important;
 }
-.product-add-to-cart button, .go-to-cart {
+.button {
+    padding: 12px 40px;
+    background-color: var(--color-black) !important;
+    color: var(--color-white) !important;
+    text-transform: uppercase;
+    transition: 0.3s all;
+}
+.button:hover {
+    transform: rotate(1deg);
+}
+.button:focus {
+    outline: 0;
+}
+.product-add-to-cart button, .go-to-cart, .button {
     width: 100%;
     border: 1px solid var(--color-black);
     text-transform: uppercase;
     font-weight: bold;
     transition: 0.3s all;
 }
-.product-add-to-cart button:hover, .go-to-cart:hover {
+.product-add-to-cart button:hover, .go-to-cart:hover, .button {
     background-color: var(--color-black);
     color: var(--color-white);
 }

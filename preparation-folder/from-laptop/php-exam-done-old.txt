@@ -1,0 +1,264 @@
+HTML forma
+
+<html>
+    <head>
+        <script src="jquery.js"></script>
+        <script src="validacija.js"></script>
+    </head>
+    <body>
+        <form action="" method="POST" name="forma" id="forma">
+            <label for="ime">Unesite ime:</label>
+            <input type="text" name="ime" id="ime" placeholder="Unesite ime" />
+            <p id="pIme"></p>
+            <label for="mail">Unesite mail:</label>
+            <input type="text" name="mail" id="mail" placeholder="Unesite mail" />
+            <p id="pMail"></p>
+            <p id="pMail"></p>
+            <label for="pol">Izaberite pol:</label>
+            <input type="radio" name="pol" id="polM" value="m" />Muski
+            <input type="radio" name="pol" id="polZ" value="z" />Zenski
+            <p id="pPol"></p>
+            <label for="jezik">Izaberite jezik:</label>
+            <input type="checkbox" name="jezik" id="jezikS" value="srb" />Srpski
+            <input type="checkbox" name="jezik" id="jezikE" value="eng" />Engleski
+            <p id="pJezik"></p>
+            <label for="grad">Izaberite grad:</label>
+            <select name="grad" id="grad">
+                <option value="">Izaberite grad</option>
+                <option value="bg">Beograd</option>
+                <option value="kg">Kragujevac</option>
+            </select>
+            <p id="pGrad"></p>
+            <br />
+            <input type="button" name="taster" id="taster" />
+        </form>
+    </body>
+</html>
+
+----------
+
+JS validacija
+
+$(document).ready(function() {
+    $("#taster").click(function() {
+        let ime = document.querySelector("#ime").value;
+        let mail = document.querySelector("#mail").value;
+        let sviPolovi = document.querySelector("#forma").pol;
+        let sviJezici = document.querySelector("#forma").jezik;
+        let jezici = new Array();
+        let selektovaniGrad = document.querySelector("#grad").selectedIndex;
+
+        let regexIme = "/^[A-Z][a-z]{3, 10}$/";
+        let regexMail = "/^[A-Za-z0-9.!]{3,15}@[A-Za-z0-9]{2,6}.[a-z]{2,6}$/";
+
+        let nizGresaka = new Array();
+
+        if(ime == "") {
+            nizGresaka.push("Problem sa imenom - prazno");
+            document.querySelector("pIme").innerHTML = "Ime mora biti popunjeno.";
+        }
+        else if(!regexIme.test(ime)) {
+            nizGresaka.push("Problem sa imenom - nije dobar format");
+            document.querySelector("#pIme").innerHTML = "Ime mora poceti velikim slovom, sva ostala mala, u duzini od 3 do 10 karaktera. Primer: Lazar";
+        }
+        else {
+            document.querySelector("pIme").innerHTML = "";
+        }
+
+        if(mail == "") {
+            nizGresaka.push("Email prazan");
+        }
+        else if(!regexMail.test(mail)) {
+            nizGresaka.push("Email nije dobar format");
+        }
+        else {
+            // ispis korisniku
+        }
+
+        if(sviPolovi.count == 0) {
+            nizGresaka.push("nije selektovan pol");
+        }
+        else {
+            for(let i=0; i < sviPolovi.count; i++) {
+                if(sviPolovi[i].checked) {
+                    let pol = sviPolovi[i].value;
+                }
+            }
+        }
+
+        for(let i=0; i< sviJezici.length; i++) {
+            if(sviJezici[i].checked) {
+                jezik = sviJezici[i].value;
+                jezici.push(jezik);
+            }
+            else {
+                jezici.push("Nije selektovao jezik.");
+            }
+        }
+        
+        if(selektovaniGrad != 0) {
+            let grad = selektovaniGrad.value;
+        }
+        else {
+            nizGresaka.push("Mora se selektovati grad");
+        }
+
+        if(nizGresaka.length == 0) {
+            $.ajax({
+                url: "obrada.php",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    imeX: ime,
+                    mailX: mail,
+                    polX: pol,
+                    jeziciX: jezici,
+                    gradX: grad
+                },
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        }
+        else {
+            console.log(nizGresaka);
+        }
+
+    });
+});
+
+----------
+
+obrada.php
+
+<?php
+
+    $ime = $_POST["imeX"];
+    $mail = $_POST["mailX"];
+    $pol = $_POST["pol"];
+    $jezici = $_POST["jezici"];
+    $grad = $_POST["grad"];
+
+    $regexIme = "//";
+    $regexMail = "//";
+
+    $nizGresaka = array();
+
+    if(!preg_match($regexIme, $ime)) {
+        array_push($nizGresaka, "Greska ime");
+    }
+    
+    if(count($nizGresaka) == 0) {
+
+        require_once("konekcija.php");
+
+        if($db) {
+
+            $upit -> $db.prepare("inset into tabela (ime, mail, pol) values (:ime, :mail, :pol)");
+            $db -> bindParam(':ime', $ime);
+            $db -> bindParam(':mail', $mail);
+            $db -> bindParam(':pol', $pol);
+            $upit -> execute();
+
+            echo "Uspesna registracija";
+
+        }
+        else {
+            echo "Nije uspostavljena konekcija";
+        }
+
+    }
+    else {
+        echo "Postoje greske ispis kroz for petlju";
+    }
+
+?>
+
+----------
+
+konekcija.php
+
+<?php
+
+    include_once("podaci.ini");
+
+    // $konekcija = new PDO("myqsql: host=$putanja; dbname=$baza", $user, $pass);
+
+    $konekcija = DB_DRIVER . ":host = " . DB_HOST "; . dbname = " DB_NAME;
+
+    try {
+        $db = new PDO($konekcija, DB_LOGIN, DB_PASS);
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    }
+    catch(PDOException e) {
+        die ("Greska: " . e -> getMessage());
+    }
+
+?>
+
+----------
+
+podaci.ini
+
+const DB_DRIVER = "mysql";
+const DB_HOST = "localhost";
+const DB_NAME = "Baza";
+const DB_LOGIN = "root";
+const DB_PASS = "";
+
+----------
+
+logovanje.php
+
+<?php
+
+    $taster = $_POST['taster'];
+
+    if(isset($taster)) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        require_once("konekcija.php");
+
+        if($db) {
+            $upit = "select * from tabela where username = '" . $username . "' and password = '" . $password "'";
+            $rezultat = $db -> query($upit);
+
+            if($rezultat -> rowCount() == 1) {
+                echo "uspesno logovanje, uradi nesto";
+            }
+            else {
+                echo "Ne postoji taj korisnik";
+            }
+        }
+        else {
+            echo "neuspesna konekcija";
+        }
+    }
+
+?>
+
+----------
+
+navigacija.php
+
+<?php
+
+    require_once("konekcija.php");
+
+    if($db) {
+        $upit = "select * from navigacija";
+        $rezultat = $db -> query($upit);
+
+        foreach($rezultat as $stavka) {
+            echo ('<li><a href="' . $stavka["putanja"] . '">' . $stavka["naziv"] . '</a></li>');
+        }
+    }
+    else {
+        echo "neuspesna konekcija";
+    }
+
+?>
+
+u html unutar li taga include_once("navigacija.php");

@@ -1,0 +1,1498 @@
+-Obaveze:
+provezbati baze podataka
+
+1. Uvod u PHP
+
+-Obaveze na predmetu
+
+Predmet se polaze kroz:
+Predispitne obaveze - kolokvijum 30 bodova (min 15), dinamicki sajt 20 bodova (min 10)
+Pismeni deo ispita - 50 bodova, potrebna vezbanka
+
+Kolokvijum obuhvata php, ajax, bazu podataka
+Ispit obuhvata html, javascript, ajax, jquery, php, json, bazu podataka
+Sajt je potrebno hostovati
+
+PHP1 i Praktikum iz PHP su nekada bili spojeni, tako da je preporuka da se preslusaju oba
+
+-Materija predmeta
+
+klijent-server komunikacija
+osnove php
+lokalne, globalne i super globalne promenljive
+preuzimanje podataka iz forme
+serverski regularni izrazi
+rad sa datumom i vremenom
+phpmyadmin
+rad sa bazama podataka
+rad sa sesijama
+
+PHP kao jezik je prost, a dosta problema je u bazama podataka, potrebna je dobro dizajnirana baza kako bi upiti bili sto laksi
+Kod PHP ispit ce biti drugaciji nego kod ostalih predmeta, nece biti sablonski, vec se svaki ispit razlikuje
+
+Na predmetu PHP2, cela postavka ce biti samo u jednoj recenici, i to ce biti primer zahteva klijenta u pravom zivotu
+
+----------
+
+-Obnavljanje o web sajtu, komunikaciji, http
+
+Web sajt se nalazi na web serveru i prikazuje se u browseru
+Lokacija web sajta je definisana jedinstvenom URL adresom
+Komunikacija browsera i web servera se realizuje http protokolom
+
+Komunikacija - browser, internet provajder, internet, web server
+
+http - protokol koji prenosi samo tekst, predstavlja request-response protokol
+
+URL adresa - http (protokol), www.sajt.com (ime servera), folder/fajl.php (putanja i ime fajla na serveru kome se pristupa)
+DNS - sluzi za zamenu imena servera, a dobija se jedinstvena ip adresa
+
+Web server - konekcija se formira na portu 80, na njemu se nalazi sajt i ostali fajlovi
+
+Postupak komunikacije - browser salje http request i cookie (opciono) i trazi neki fajl, a server salje http response, koji se posle graficki interpretira u browseru
+
+Najpopularniji web serveri su Apache, NGINX, Microsoft Internet Information Services (IIS)
+
+Frontend - Backend - Server baze podataka
+
+Tipovi sajtova:
+staticki - nepromenljivi sajtovi, prikazuju se svakom isto, html, css
+dinamicki - promenljivi, svaki put imaju novi sadrzaj, svakom korisniku je razlicito, php
+interaktivni - mogu biti i staticki i dinamicki, dodaju se interaktivnosti, javascript
+
+*Pitanje za kolokvijum
+Kod dinamickog sajta uvek imamo jedan sajt, a sadrzaj se razlikuje
+Klijentu se uvek isporucuje html, css, javascript, xml odnosno samo klijentske jezike
+Uvek mozemo videti izvorni kod klijentskih jezika, ne moze se sakriti
+Suprotno od toga, serverski jezik / kod, nikad ne moze doci do klijenta, ne moze se videti (sem putem hakerskih alata), a mi samo vidimo rezultat rada serverskog jezika, opet u vidu klijentskih jezika
+
+----------
+
+-Editori
+
+Moze se koristiti bilo koji tekstualni editor (notepad++, vs code, atom, php storm)
+Za php se smatra da je najbolje koristiti php storm, zato sto ima dosta pomocnih stvari u smislu da kod svakog metoda tacno naglasava sta treba da se upise, koji su parametri, od koga se nasledjuje...
+Jedina mana php storma je sto se placa (sa skolskog maila postoji mogucnost free)
+
+-Cuvanje i pokretanje php koda
+
+Da bi se serverski kod mogao pokrenuti, morace se koristiti server, a to cemo uraditi pomocu naseg racunara i softverskog alata XAMPP
+Xampp je potrebno staviti na C particiji, pokrece se uvek xampp-control, i startovacemo Apache i opciono MySql
+Apache radi na portu 80 (443), a MySql 3306
+PHP moze raditi sa bilo kojom bazom podataka, ali najbolje radi sa MySql
+
+Za pokretanje php fajla, potrebni su server i php procesor
+Zato sve fajlove trebamo snimiti u folderu htdocs (u okviru xampp)
+
+Pokretanje php koda se vrsi tako sto pozivamo server, u nasem slucaju lokalni server sa naseg racunara
+To se radi sa pozivom 127.0.0.1 ili localhost koji predstavljaju root folder (htdocs), a zatim folder koji zelimo i fajl koji zelimo
+
+Kada samo dvokliknemo na fajl videcemo php kod izvorni, medjutim kada pristupimo fajlu preko servera, videcemo rezultat onoga sto je server vratio odnosno samo frontend kod (html, head, body)
+Sve to je rezultat php procesora, koji prevodi serverski jezik i daje rezultat u vidu frontend koda
+
+U okviru Inspect Element, pa u sekciji Network, mozemo videti sve requestove i informacije o tim requestovima kao i njihove rezultate
+
+-PHP programski jezik
+
+PHP je serverski jezik i njegova ekstenzija je .php i obavezna je ukoliko imamo samo jednu liniju koda php
+Ima slicnu sintaksu kao C jezik
+Ima dosta verzija, najbitnija je verzija 5 (tad postaje oop)
+Besplatan je, brz i siguran, ima podrsku za Sql i NoSql baze podataka
+Open source je, ne zavisi od verzije browsera, radi i na Windows i na Linux
+
+Kod se moze kombinovati, tj. moguce je kombinovati html kod sa php
+Php kod se pise unutar taga <?php ?>
+Znaci unutar php fajla mozemo imati h1 tag, pa zatim php, pa ponovo h2 tag...
+
+*Pitanje za kolokvijum
+Celokupan statican sajt, mozemo pretvoriti u "dinamicki", tako sto samo dodamo ekstenziju php
+Kod nece da pukne, ima da se prevede, korisniku ce da se prikaze ekstenzija php, a korisnik nikada nije u mogucnosti da vidi izvorni php kod
+
+Gde se sve php moze koristiti: pravljenje brojaca posetioca sajta, obrada web forma, slanje email, omogucavanje otpreme fajla na server korisnicima, pravljenje kalendara, pravljenje onlajn aukcija, pravljenje autorizacije, pravljenje registracije, sprovodjenje anketa, omogucavanje korisnicima da prave i uredjuju web strane...
+
+Neki od softvera koji su u stvari PHP: wordpress, drupal, joomla, moodle
+
+----------
+
+2. Osnove PHP
+
+Najbitniji izvor svih informacija je dokumentacija na sajtu php.net
+Pored sintakse, parametara i objasnjenja ima i dosta prakticnih primera
+
+Pocetna i krajnja oznaka php je <?php // kod ?>
+Van ovoga moze biti bilo koji kod, ali kod unutar ovih parametara je striktno proveren
+
+phpinfo(); - rezultat ovog metoda je fajl sa svim tehnickim stvarima kao sto su php verzija, http request, ogranicenja...
+
+echo(""); - ispisivanje, kroz echo se moze ispisati promenljiva, obican string, ali i html kod
+
+Kod moze biti interni ili eksterni
+Sto se internog dela tice, html kod se moze pisati u php kodu, ali i obrnuto se php kod moze pisati u html kodu
+
+Eksterni fajl, pise se kod u posebnoj stranici, pa se poziva tamo gde je potrebno
+
+include("primer.php"); - poziva se i postavlja se u stranicu gde je pozvan, ukoliko se naidje na gresku samo ce generisati upozorenje o gresci
+
+include_once(""); - isto kao i include, ucitavanje fajla samo jednom
+
+require(); - isto kao i include(), ali ukoliko se naidje na gresku, kod se zaustavlja
+
+require_once(); - isto kao i require, ucitavanje fajla samo jednom
+
+Konkatanacija stringova se vrsi sa tackom (za razliku od drugih prog. jezika sa +)
+echo("fajl".$broj.".txt"); 
+
+Template - cim se nesto kopira, tj. primenjuje na vise mesta, na vise stranica, to je template i samo ce se pozivati tamo gde treba
+
+Bazna stranica nece imati nikakvih promena, samo ce se menjati njen sadrzaj, tj. glavni deo
+
+Ukoliko u tekstu imamo potrebu da upisemo znakove navodnika, onda cemo ih ukrstati ili pre znakova navodnika da stavimo \ (obrnutu kosu crtu) na mestu pre navodnika
+
+echo('Ovo je "tekst" pod navodnicima');
+echo("Ovo je \"tekst\" pod navodnicima");
+
+Komentari
+// ili # - jednoredni
+/* */ - viseredni
+
+Karakteristicni simboli
+\n - novi red
+\r - tabulator
+\\ - obrnuta kosa crta
+\$ - dolar
+
+----------
+
+-Promenljive u Php
+
+Promenljive pocinju sa simbolom $ (dolar) nakon cega ide ime promenljive koja pocinje slovom ili _ (donjom crtom)
+U daljem sadrzaju imena promenljive moze biti a-Z, 0-9 i _
+Promenljive su case sensitive
+
+$prom = "promenljiva";
+
+U Php postoji mogucnost variable variable
+
+$proizvod = 200;
+
+$artikal = "proizvod";
+$$artikal = 200;
+
+Ovo nam daje mogucnost da napravimo novu promenljivu, proizvod i njoj dodelimo vrednost 200
+
+Prenosenje po vrednosti i referenci
+
+$a = 1; - a = 1
+$b = $a; - b = 1
+$a += 2; - a = 3
+$b = &$a; - b = 3, prenosenje po referenci, upucuje na lokaciju $a, i uvek ima poslednju vrednost od $a
+
+Konstante, samo se prave kada su vrednosti sigurno fiksne (%pdv, pi, 0stepeni zamrzavanje)
+
+define("brojPi", 3.14);
+
+Kod njenog pozivanja nema $
+echo(brojPi);
+
+-Tipovi podataka
+boolean
+integer
+float
+string
+array
+object
+resource
+null
+
+Za svaki od tipova podataka, postoje funkcije za proveru podataka
+is_int(), is_integer(), is_double(), is_float()
+is_string()
+is_array(), is_object()
+is_resource()
+is_null()
+is_callable() - da li je funkcija
+
+----------
+
+-String
+Cim se stave navodnici promenljiva automatski postaje string, bez obzira na sadrzaj
+$x = "200"
+Vazi konkatanacija, ali i stampanje promenljive kroz echo bez tacke
+echo("Cena proizvoda je ".$x); - Ispisace 200 za promenljivu
+echo("Cena proizvoda je $x"); - Ispisace 200 za promenljivu
+echo('Cena proizvoda je $x'); - Ispisace $x za promenljivu
+
+Funkcija za stringove
+strlen() - duzina stringa
+strpos() - pozicija stringa
+strtolower() - sva mala slova
+strtoupper() - sva velika slova
+strstr() - odsecanje stringa, zahteva dva parametra, string i karakter koji se odseca
+join() - pridruzuje niz elemenata u jedan string
+split() - preseca string u niz elemenata
+addslashes() - dodavanje kosih crta (\) gde god ima navodnika
+stripslashes() - uklanjanje kosih crta koji su postavljeni sa addslashes()
+md5() - kriptovanje stringa sa md5 enkripcijom
+
+addslashes() i stripslashes() nas stite od sql injectiona, gde ukoliko neko posalje neki maliciozan upit, mi cemo dobiti sa kosom crtom, i to baza nece uopste tumaciti
+
+substr() - odsecanje stringa, ima dva parametra, string i dva broja, jedan broj za duzinu od, drugi u duzini do koliko, a ukoliko nema drugog broja odseca se do kraja, pocinje sa 0
+
+$string = "String";
+substr($string, 1); - tring
+substr($string, 0, 4) - Stri
+substr($string, -1); - g
+substr($string, -3); - ing
+substr($string, -4, -3); - rin, kada su oba minusa onda je od do
+substr($string, -3, 2); - in
+
+----------
+
+-Integer
+
+$x = 55;
+
+Funkcije za rad sa brojevima
+floor() - vraca prvi manji integer
+ceil() - vraca prvi veci integer
+abs() - vraca apsolutnu vrednost
+sqrt() - racunanje kvadratnog korena
+max() - vraca maksimalnu vrednost
+min() - vraca minimalnu vrednost
+pi() - vrednost promenljive pi
+rand() - generisanje slucajnog broja
+rand(int $min, int $max) - generisanje slucajnog broja iz datog opsega
+round() - vraca zaokruzenu vrednost
+
+Proste matimaticke operacije
+sabrianje, oduzimanje, mnozenje, deljenje, moduo
+
+Operatori
++= -= *= /= ++ -- == != > < >= <= && || !
+
+Prioriteti redosleda operacija su definisani na stranici
+
+-Konverzije (automatska i eksplicitna)
+
+$x = 5; $y = -2.5; $a = "12P";
+
+$z = $x; - 5
+$z = $x * $y; - -12.5
+$z = $x * $a; - 60
+
+Implicitna konverzija
+
+$cena  = (double) $cena;
+
+gettype() - utvrdjuje tip promenljive
+settype() - menja tip promenljive
+
+$a = 12;
+gettype($a); - integer
+settype($a, "string");
+gettype($a); - string
+
+isset() - proverava se da li je promenljiva setovana i da nema vrednost null, vraca true ako promenljiva postoji, ima neku vrednost i razlicita je od null
+
+empty() - proverava da li je promenljiva prazna, ili da ne postoji ili ako je njena vrednost false ("", 0, 0.0, "0", null, false, array(), $var)
+
+unset() - oslobadja se prostor u memoriji za promenljivu sa tim imenom
+
+Funkcije promenljivih
+is_array() - da li je niz
+is_bool() - da li je bool
+is_float() - da li je float
+is_int() - da li je itn
+is_null() - da li je null
+is_numeric() - da li je broj
+is_string() - da li je string
+
+var_dump() - ispisuje naziv, tip i vrednost promenljive
+
+----------
+
+-Nizovi
+
+U php vrednosti niza ne moraju biti istog tipa, i svaki moguci tip podataka moze biti element niza (string, int, array)
+Elementima nizova se pristupa preko indeksa koji mogu biti numericki (numericki nizovi) ili string (asocijativni nizovi)
+Ne mora se definisati duzina niza
+
+Kreiranje niza
+
+$niz[0] = "Pera";
+$niz[1] = "Mika;
+
+$niz = array("Pera", "Mika", "Lazar"); - indeksi su od 0
+
+$niz = array(3 => "Pera", 4 => "Mika", 5 => "Laza"); - indeksi su 3, 4, 5, ostali su prazni
+
+$niz = array("ime1" => "Pera", "ime2" = "Mika"); - indeksi su sada ime1, ime2 (asocijativni)
+
+$niz = array(12 => 555, "ime" => "Lazar", true => 0, "jednostruko" => false); - ovaj primer je dat da bi se videlo da nemamo ogranicenja ni za tip indeksa, ni za tip podataka
+
+U php postoje tri vrste nizova
+numericki, asocijativni, multidimenzionalni (niz nizova)
+
+$niz = array("imena" => array("Pera", "Mika"), "godine" => array(20, 22)); - multidimenzionalni niz
+echo $niz["imena"][0]; - Pera
+
+Multidimenzionalni nizovi su identicne strukture kao tabele u bazi podataka
+Kada budemo nesto dobijali iz baze, to ce se ustv najlakse skladistiti u ovakav multidimenzionalni niz
+
+Nacini ispisivanja niza
+
+for($i = 0; $i < count($niz); $i++) { echo $niz[$i]; } -ispisace vrednost elemenata niza
+
+foreach($niz as $element) { echo $element; } - ispisace vrednost elemenata niza
+
+while($element=each($niz)) { echo "Indeks: $element['key'] - Vrednost: $element['value']"; }
+
+while(list($indeks, $vrednost)=each($niz)) { echo "Indeks: $indeks - Vrednost: $vrednost"; }
+
+Funkcija in_array()
+in_array("Mika", $niz) - da li je element u nizu, case sensitive
+
+Sortiranje nizova
+
+sort($niz) - sortira po sadrzaju promenljivih
+
+rsort($niz) - sortira po sadrzaju promenljivih unazad
+
+asort($niz) - sortira po sadrzaju promenljivih, ali zadrzava svoj indeks
+
+ksort($niz) - sortira elemente po indeksima
+
+*Pitanje za kolokvijum
+Kada se izvrsi sortiranje, ono se vrsi u tzv. pomocni niz, tako da ukoliko su nam indeksi pocetnog niza bili 2, 1, 3, novi sortirani niz koji dobijemo sa sort() ili rsort(), sortirace ih po vrednosti, ali cemo imati indekse 0, 1, 2
+
+Funkcije za rad sa nizovima
+count() - brojanje elemenata niza
+array_push() - ubacuje jedan ili vise elemenata na kraj niza (najcesce korisceno)
+array_pop() - izbacujemo element sa kraja niza
+array_shift() - ubacujemo element na pocetak niza, a ostale pomeramo za po 1 mesto
+array_unshift() - sklanjamo element sa pocetka niza
+in_array() - da li element postoji u nizu
+array_unique() - uklanja sve duplikate, tj. cinimo da nam svi elementi budu jedinstveni (npr. u realnoj primeni ukoliko zelimo da korisnik ima jedinstven email, broj telefona)
+array_sum() - sabira sve vrednosti elemenata niza (realan primer korpa za kupovinu)
+
+-Funkcije spajanja i ratvaljanja
+
+implode("separator", $niz); - od datog niza kreira string, tako sto redom uzima elemente niza i razdvaja ih sa separatorom
+
+explode("separator", $niz); - string deli u odnosu na separator i vraca niz
+
+Funkcija extract()
+Pomocu ove funkcije asocijativnom nizu se indeksi pretvaraju u promenljive
+Isto vazi i za multidimenzionalne nizove
+
+$niz = array("ime" => "Lazar", "prezime" => "Jankovic");
+
+echo "Ime: $niz["ime"] - Prezime: $niz["prezime"]"; - klasican pristup
+
+extract($niz);
+
+echo "Ime: $ime - Prezime: $prezime"; - posle primene extract() dobijamo promenljive
+
+-Prekid rada koda
+Nakon nekog zahteva za korisnika, npr. ukoliko nije uneo username i pasword, ukoliko nije uneo email, ukoliko hoce da uploaduje fajl a fajla nema...
+
+exit; - prekida izvrsavanje koda
+
+exit("nije moguce"); - prekida izvrsavanje koda, ali se ispisuje i greska
+
+die("nije moguce"); - vise je namenjeno korisniku, da mu se precizno objasni zasto nesto nije moguce, preporucuje se vise nego exit
+
+----------
+
+Autentifikacija - potvrda da je korisnik onaj koji jeste (logovanje)
+Autorizacija - definise dozvole za autentifikovanog korisnika
+
+Enkodovanje - proces koji vrsi promenu podataka, ali bez ikakve zastite, na izlazu dobijamo novi tekst (primer ascii tabela)
+Enkripcija - promena podataka, ali algoritam (kljuc) zna samo krajnji korisnik i samo on moze da dobije originalni tekst (dekrpicija)
+
+Argument - u pozivu funkcije dodeljujemo argument
+Parametar - tamo gde je funkcija deklarisana imamo parametre
+
+3. Variable scope
+
+Scope je prostor unutar koga je neka vidljiva (tj. moze da se koristi unutar njega)
+Scope je karakteristika svakog progrsamskog jezika
+
+U php postoje lokalne, staticke, globalne i superglobalne promenljive
+
+Lokalna promenljiva ima oblast delovanja u nekoj manjoj oblasti npr funkciji
+
+Staticka promenljiva zadrzava svoju vrednost i nakon realizacije koda
+static $x = 0; $x = $x + 1;
+Nakon ovakvog koda (u funkciji), $x ce zadrzati krajnju vrednost, nece ponovo biti 0
+
+Globalna promenljiva se vidi na nivou cele stranice, definise se u <?php ?>
+Ukoliko zelimo da promenljiva postane globalna i bude vidljiva i unutar nekog drugog local scope, onda ispred nje stavljamo rec global $prom (unutar tog local scope, tamo gde nam treba)
+
+Superglobalna promenljiva vazi na nivou celog sajta (na vise stranica), postoji ih 9
+$GLOBALS[""] - definisanje globalnih promenljivih
+
+$_SERVER[""] - dohvatanje serverskih parametara, protokola, podesavanja, ip adresa
+
+$_GET[""] - nacin kako da se preuzme podatak sa jedne stranice na drugu primenom GET metode
+U formu ce se staviti u action atributu npr obrada.php a method GET
+Sada na stranici obrada.php pisemo kod i sa $ime = $_GET["nameAtributInput"]; dohvatamo tu vrednost
+
+$_POST[""] - podaci se ne prenose preko url adrese, takodje imamo obrada.php, ali metod POST
+Sada cemo dohvatati sa $ime = $_POST["nameAtributInput"];
+
+$_REQUEST[""] - radi isto sto i $_POST ili $_GET, samo sto je REQUEST i bez obzira da li je u formi koriscen metod POST ili GET, on ce pirhvatiti podatak
+Preuzecemo podatak sa $ime = $_REQUEST["nameAtributInput"]; 
+Ovaj metod se moze mnogo zloupotrebiti, jer se takodje podaci mogu proslediti i kroz url adresu, tu validacije nema, a neko moze da ubaci SQLIncejtion
+
+$_COOKIE[""] - kreiraju se serverski kolacici, promenljiva koja se nalazi na serveru, tako da razlicite stranice naseg sajta imaju pristup drugim, primer ako se covek uloguje na pocetnoj stranici, zelimo da ostane ulogovan i na nekoj drugoj (pocetna, proizvodi, placanje, na sve zelimo da ostane ulogovan)
+
+$_SESSION[""] - slicno kao COOKIE, ali je mnogo vise zasticenija
+
+$_FILES[""] - za prenos fajlova
+
+$_ENV[""] - okruzenje, sluzi za dohvatanje mnogo podataka kao sto su ko je, sta radi, sa kojom tehnologijom, sa kojim parametrima...
+
+*Pitanje za kolokvijum
+$x = "Pera"
+function primer() { global $x; echo $x; $x = "Mika"; echo $x; }
+primer();
+echo $x;
+Ispisace se Pera, pa ce $x biti promenjeno na nivou cele stranice (zbog global), pa ce ispisati Mika, i jos jednom na kraju Mika
+
+-Funkcije
+
+function primer($x, $y) { return $x * $y; }
+
+Od php7 se mora proslediti tacan broj argumenata u funkciji
+
+----------
+
+-Preuzimanje podataka iz formulara
+
+Html forma - js kod / ajax - php
+
+Postman - desktop aplikacija, simulira rad browsera
+
+Do servera se pristupa preko html forme, preko postmana ili direktno preko url adrese
+To znaci da samo validacija html forme nije dovoljna i stavlja se veci stepen validacije i zastite na serveru
+
+Nacini prihvatanja podataka sa superglobalnim promenljivama:
+
+$_GET["ime"] - ukoliko je u formi koriscen metod get, podaci ce se videti kroz url adresu, i koristice se ova promenljiva
+$_POST["ime"] - ukoliko je u formi koriscen post metod, podaci se nece videti kroz url adresu, tj. oni se nalaze u telu http requesta
+$_REQUEST["ime"] - ova promenljiva moze prihvatiti podatke bez obzira na metod, ovo je olaksanje ali nije pametno
+
+Metod POST se uvek mora koristiti za poverljive podatke
+
+Kroz url adresu ukoliko se koristi get metod, moze se proslediti sql injection i tako se preuzeti kontrola nad bazom podataka, i tako se npr. moze prebaciti novac sa jednog korisnika na drugog
+
+Prvo se treba obratiti js i uraditi osnovnu validaciju podataka
+
+Kada se koristi taster submit, automatski se sve direktno salje na php stranicu
+Pre toga se treba obratiti js i zato se u tag form stavlja dogadjaj onSubmit koji vraca logicku promenljivu (true/false)
+Ako je validacija dobra, vrati se true, podaci ce se poslati dalje u php (stranicu definisanu u action atributu)
+
+Primer:
+<form name="form" method="post" action="obrada.php" onSubmit="return provera()></form>
+
+-Veza izmedju forme i php
+
+Obavezni su name atributi, da bi se podaci mogli proslediti na php stranicu
+
+<form action="obrada.php" method="get" name="form">
+	<input type="text" name="name-text" id="id-text" />
+	<input type="submit" value="Send" id="id-submit" name="name-submit" />
+</form>
+
+$name = $_GET["name-text"];
+$submit = $_GET["name-submit"];
+
+Ukoliko zelimo da zastitimo prenos podataka van forme moze se koristiti funkcija isset
+Funkcija isset vraca true/false
+Funkcija pita da li je setovana vrednost
+Funkcija empty pita da li je prazna i mi zelimo !empty
+
+if(isset($_POST["name-text"]) and !empty($_POST["name-text"]) {}
+
+Checkbox polja, takodje se vrsi po atributu name
+Ukoliko nije definisan value, ukoliko je polje cekirano prenosice se "on", a ukoliko nije onda nista
+Ukoliko je definisan value atribut, prenosice se njegova vrednost
+Ukoliko postoji vise checkoboxova, moguce je svima definisati isti name i tako kreirati niz
+
+Primer:
+Ovo je samo ukoliko su cekirani, ukoliko nisu nece se preneti nista
+
+<input type="checkbox" name="1" /> - prenece se "on"
+<input type="checkbox" name="2" value="drugi" /> - prenece se "drugi"
+
+Radio button, vrsi se po atributu name
+Svaki radio button mora imati isti name
+Ako je atribut value definisan prenece se ta vrednost, ukoliko nije prenece se on
+Ukoliko uopste nije cekiran, nece se prenete nista
+PHP dobija od browsera samo ono sto je cekirano, i kod radio buttona se moze SAMO JEDAN cekirati, a ne kao kod checkbox vise njih
+
+Dropdown lista, vrsi se po atributu name taga select
+Ovo vazi za izbor samo jedne od vrednosti, i vraca se samo jedna vrednost
+Ukoliko se koristi opcija multiple u tagu select, prenos se vrsi kroz atribut name, ali mora se u atributu name definisati niz npr. name="days[]" i u php vratice se niz i pristupice se npr. days[0], days[1]
+
+Skrivena polja korisnik obicno ne popunjava, ali su nam dosta bitna i dosta ce se koristiti, a prenose se isto kao i text polja
+
+<input type="hidden" id="id-hidden" name="name-hidden" value="HIDDEN" />
+
+Primeri gde se moze koristiti:
+1.Ukoliko zelimo da saznamo sa koje stranice je korisnik stigao, mozemo to preneti sa poljem hidden
+2.Ukoliko je korisnik gledao proizvode na jednoj stranici, i tu negde cekirao neki proizvod, mi to takodje mozemo preneti kroz hidden, tako sto kroz value prenesemo value="proizvod1"
+Sada na sledecoj stranici cekirao je nesto dodatno, to cemo takodje dodati u hidden
+Na kraju kada dodje do placanja, sve ce se to nalaziti u hidden, sve cemo to preneti, i tako znamo sve proizvode koje je izabrao
+
+----------
+
+-Dohvatanje podataka AJAX-om
+
+Sada takodje imamo formu, sa name i id atributima, razlika je sto nemamo submit, vec imamo button
+Atribut name ce sluziti za php, a atribut id za javascript
+
+Dohvatamo podatke u JS pomocu jquery, kreiramo json fajl i saljemo ka php
+
+$("#taster").on('click', function() {
+	var ime = $("#ime").val();	// dohvatanje podataka iz forme pomocu id
+	var mail = $("#mail").val();
+	$.ajax({
+		url: "obrada.php",	// stranica kojoj se salju podaci JSON-om
+		method: "post",
+		dataType: "json",
+		data: {
+			imeKorisnika: ime,	// kreiranje JSON fajla sa podacima
+			mailKorisnika: mail
+		},
+		success: function(data) {
+			console.log(data.message);	// podaci koje server vraca klijentu
+		}
+	})
+});
+
+U php kod se razlikuje samo po dohvatanju podataka, tj. dohvata se svojstvo json, a ostalo sta cemo mi da radimo je potpuno isto i zavisi od nas
+
+U php se sada podatak dohvata preko $_POST["imeKorisnika"], tj. onog json podatka iz js
+
+$message = "Poruka sa servera";
+
+Na kraju rada, ako je potrebno nesto vratiti klijentu vraca se kroz echo()
+Cesto se vraca velika grupa podataka kao sto je json ili xml fajl
+
+Generisanje json sa podacima sa servera i vracanje json klijentu putem ajaxa kroz svojstvo message
+
+header('Content-Type: application/json');	// header htpp responsa, i definise se koji tip sadrzaja saljemo i u koji format (json, xml, css, pdf...)
+
+echo json_encode(['message' => $message]);	// pomocu echo se korisniku vraca nesto klijentu, a kreiranje json se realizuje funkcijom json_encode, a vraca se asocijativni niz
+
+Koraci su: napraviti asocijativni niz, napraviti json, posalji korisniku
+
+$niz = ['prvi' => 'Odgovor sa servera'];	// pravimo niz
+echo json_encode($niz);
+
+$prom = "";
+$niz = ['prvi' => $prom];	// pravimo niz
+echo json_encode($niz);
+
+$niz = ['prvi' => $prom];
+$json = json_encode($niz);	// pravimo json
+echo $json;			// saljemo json
+
+Sve ove korake naravno mozemo kroz jednu liniju koda:
+echo json_encode(['message' => $message]);
+
+----------
+
+-Rad sa datumom i vremenom
+
+U realnom zivotu, kada god dohvatimo neki podatak, upisemo u bazu, izbrisemo, kada promenimo nesto u bazi, kada se izvrsi neka transakcija, uvek cemo beleziti kada se to desilo
+
+Svaki klijent moze imati razlicito vreme, tj. pristupati ili slati podatke sa razlicitih vremenskih zona
+Zato sve prebacujemo na univerzalno vreme, tj. serversko vreme, koje se takodje razlikuje
+Zato se koriste razne funkcije za rad sa datumom i vremenom, kako bi ispostovali vreme klijenta, ali i da bi se usaglasili sa serverom
+
+Funkcije gmdate(), date(), mktime()
+Svaka funkcija ima svoje argumente, nema ogranicenja sto se tice redosleda, a takodje izmedju argumenata se mogu koristiti i neki karakteri kao sto su / - :
+
+-gmdate()
+
+$datum = gmdate("M d Y");
+
+Mesec:
+M - Jan, Feb
+m - 01, 02, 12
+n - 1, 2, 12
+Dan:
+d - 01, 02, 31
+D - Mon, Tue, Fri
+Godina:
+Y - 2006, 2022
+y - 06, 22
+
+-date()
+
+$datum = date();	// vratice datum sa trenutnim datumom i vremenom
+$datum = date("d m Y");
+
+Mesec:
+F - January, February
+m - 02
+Dan:
+d - 25
+D - Mon, Tue
+Godina:
+Y - 2023
+y - 23
+Sat:
+h - 11
+Minut:
+i - 05, 59
+Sekunda:
+s - 05, 59
+
+-timestamps, najobicniji broj u formi int, uvek ce se upisivati u bazu
+Predstavlja takozvano racunarsko vreme, startno vreme je 1.1.1970 00:00:00 (UTC)
+
+-mktime()
+
+Vraca timestamp, broj u sekundama izmedju UTC i zadatog vremena
+
+mktime(hour, minute, second, month, day, year);
+
+echo mktime(20, 50, 00, 4, 27, 2005);	// 1114649400 - ovoliko je sekundi od 1970 do 2005
+
+Dodatno ukoliko zelimo datum u proslosti:
+
+date("D d m Y, mktime(10, 30, 00, 4, 16, 2018));	// prikazace datum u proslosti, sto funkcija gmdate ne moze, u formatu Ddmy, sa zadatim timestamp, Mon 16 04 2018
+
+Dodatno ukoliko zelimo razliku izmedju dva datuma
+
+$sadasnje = mktime(10, 30, 0, 4, 16, 2018); - kreirace timestamp
+$proslo = mktime(0, 0, 0, 4, 15, 2006); - kreirace timestamp
+$razlikaSekunde = $sadasnje - $proslo;
+$razlikaSati = round($razlikaSekunde / 60 / 60);
+
+Jos neki primeri funkcije date()
+
+echo "Prvi jul, 2000 godine, pada u " .date("I", mktime(0, 0, 0, 7, 1, 2000));	// Prvi jul, 200godine, pada u Saturday
+
+U mktime mozemo upisati i (0, 0, 0, 12, 36, 2001);
+Posto 36 dan ne postoji, ono ce preci u sledecu godinu, i sledeci mesec, 05dan 01mesec 2002
+
+Realan primer u praksi da akcija npr pocinje 01.12.2020 i traje 45 dana
+Teorijski se zavrsava 46.12.2020
+Pomou mktime promenice se i izracunace se dokle akcija traje, a to je 15.01.2021
+Ovako mi ne moramo voditi racuna da li je godina prestupna, do kad traje akcija i slicno
+
+Jos neke funkcije
+getdate();	// kao argument prima timestamp, a vraca asocijativni niz od elemenata sekunde, minuti, sati, mesec, dan, godina...
+
+----------
+
+-HTTP request
+
+HTTP je protokol aplikativnog sloja / 7 sloja OSI modela
+Bazira se na radu transportnog sloja i najcesce koristi TCP / UDP
+TCP/IP je namenjen za prenos podataka na internetu
+
+HTTP radi kao request/response - klijent/server
+
+TCP radi na portu 80 ili 8080
+
+-Karakteristike HTTP:
+
+connectionless - kada se kreira http request prekida se veza sa serverom i ulazi se u stanje cekanja, a kada server zavrsi sa obradom on ponovo uspostavlja konekciju i salje http response
+
+stateless - ne pamte se informacije izmedju razlicitih zahteva, svaki zahtev je sam za sebe, klijent i server zaborave jedan na drugog cim se zahtev realizuje
+
+media independent - bilo koji tip podataka u vidu teksta (html, css, json, xml) se moze slati izmedju klijenta i servera, sve dok i klijent i server mogu da razumeju taj tip podataka
+
+Problem http je sto server svaki put zaboravi na klijenta i obrntuo
+Da bi se to resilo, korsiste se kolacici/cookies ili preko skrivenih polja
+Svaki put preko http requesta/response pored ostalog se prenose i podaci za sledeci zahtev
+
+Postoji klijentski cookie, serverski cookie i http cookie i nemaju dodirnih tacaka
+
+-HTTP zahtev moze biti generisan od strane:
+Web browser - korisnik preko forme, korisnik preko ur, ajax, kod(a tag)
+Robots (zlonamerni, prikuplaju podatke, al inteligencije)
+Postman, Fiddler - simuliraju rad browsera
+Web pretrazivaci (spider)
+
+Ovaj zahtev koristi http protokol i ide do web servera, pa posle do servera baze podataka
+
+-HTTP request:
+metod (get, post)
+destinaciju (URI)
+verziju protokola (HTTP/1.1)
+MIME-type
+klijentske informacije (informacije racunara)
+sadrzaj klijenta
+
+-HTTP response:
+statusni kod (uspeh ili greska)
+verzija protokola
+MIME-type
+meta podatke
+serverske informacije
+sadrzaj koji se salje za prikaz korisniku
+
+-Metode HTTP:
+-ne traze akciju - safe methods
+GET - dohvata web stranicu / resurs
+HEAD - dohvata zaglavlje web stranice
+TRACE - prikazuje sadrzaj vracene poruke
+OPTIONS - sposobnosti/mogucnosti servera
+-salju podatke serveru - nisu safe
+POST - upisuje podatke (insert)
+PUT - menja podatke (update)
+PATCH - delimicno modifikuje web stranicu (update)
+DELETE - brisanje resursa
+
+GET se na primer koristio za slanje podataka, ali se ti podaci nece koristiti za update/insert/delete, vec samo za SELECT upit za bazu
+
+POST smo takodje koristili za slanje, ali on ce se koristiti samo za INSERT upit za bazu
+
+PUT sluzi "teorijski" za menjanje svih podataka, ali se takodje moze menjati i deo podataka
+PATCH sluzi "teorijski" za menjanje deo podataka, ali se takodje mogu menjati i svi podaci
+
+OPTIONS je prerequest metod, a kao odgovor dobijamo mogucnosti servera (options, get, head, post)
+
+URI - uniform resource identifier, tekst koji sluzi za jedinstveno lociranje nekog resursa, objedinjuje URL i URN
+URL - uniform resource locator, jedinstvena lokacija, definise se za potrebe protokola (http, https, ftp)
+URN - uniform resource name (sluzi kao identifikator, ali ne ukljucuje protokol)
+PURL - presistend URL (URN kroz URL)
+
+-HTTP kodovi
+100-199 - informativni kodovi, zahtev se trenutno obradjuje
+200-299 - kodovi za uspeh, server je primio i izvrsio zahtev
+300-399 - kodovi za oznacavanje preusmeravanja, server je primio zahtev i treba da odredi redirekciju na neku URL adresu
+400-499 - kodovi za oznacavanje klijentskih gresaka, zahtev je nekompletan, netacan ili nemoguc
+500-599 - kodovi za oznacavanje serverskih gresaka, zahtev je ispravan, ali server ne moze da ga realizuje
+
+200 - OK - sve u redu
+201 - Success insert - uspesan insert
+204 - Success update/delete - uspesan update/delete
+304 - Not modified - 
+401 - Unauthorized - neautorizovan, verovatno nije prenet cookie
+403 - Forbidden - slicno kao 401
+404 - Not found - trazi se nepostojeci podatak
+422 - No parametars - nema sve parametre ili nisu u odgovarajucem formatu
+500 - Internal server error - upit se nije izvrsio
+503 - Service Unavailable - nemoguc zahtev za izvrsenje
+
+-TCP konekcija
+SYN - SYN ACK
+ACK GET /html - HTML response
+GET /css - CSS response
+close connection
+
+GDPR - zastita podataka o gradjanima, sta sme da se radi na sajtu, a sta ne
+Jedna od stavki GDPR je da sajt mora da ima obavestenje da radi sa cookies i takodje moramo imati saglasnost korisnika koje cookies prihvata
+
+-Tipovi HTTP konekcija
+Close - zatvorena konekcija
+Parallel - ne ceka se response, vec se paralelno salju requestovi
+Keep-alive - depricated / jos uvek moze da se koristi, ali se zvanicno izbacuje
+Persistent -
+Pipelined - 
+
+-Proxy server - ne mozemo da uticemo kao programer, vec to resava neki sistem administrator, a stvarace nam mnoge probleme
+Proxy server se nalazi izmedju klijenta i servera, i ima ulogu zastite servera
+Prakticno komuniciramo sa serverom, ali preko proxy servera
+Proxy server moze da ne prosledi zahtev, moze da modifikuje zatev, moze da zatvori konekciju, a da o tome nista ne znamo
+
+-Unsafe karakteri - postoje simboli koji se ne mogu preneti kroz url adresu, zato se ti karakteri moraju zameniti sa prefiksom % i dve heksadecimalne cifre, ovo vazi za GET metod
+Primer: ! %21, $ %24, % %25
+
+-HTTP vs HTTPS
+http radi na portu 80, https radi na portu 443
+http je stariji
+https koristi kriptovanu konekciju
+https ima za cilj zastitu podataka koji se prenose od klijenta do servera i omogucava autorizaciju i sigurnu transakciju
+
+Ukoliko mi radimo sa https, a neko pokusava da pristupi sa http, izvrsice se redirekcija, poslace se statusni kod iz opsega 300, pa ce ga redirektovati na https i dozvolice se pristup
+
+-Sve je programabilno
+Svaki put kada klijent izvrsi neki request ka serveru, trebamo da klijentu osim koda vratimo i statusni kod
+Pored statusnog koda moguce je proslediti i dodatne poruke
+
+$status = 201; // ukoliko je sve u redu
+$stauts = 404; // ukoliko je lose
+$message = "Nesto nije dobro"; // poruka
+http_response_code($status);
+header('Content-Type: application/json');
+echo json_encode(['message' =< $message]);
+
+-Funkcija ajax() u JS
+Osim success svojstva ima i svojstvo error
+Svojstvo success vraca kod, poruku da je uspesno...
+Svojstvo error ima funkciju koja zahteva 3 parametra
+$.ajax({
+	// ovde idu svojstva url, method, type, data
+	url: "obrada.php",
+	method: "post",
+	type: "json",
+	data: { podatak: podatak},
+	success: function(data) {
+		showData();
+	},
+	error: function(xhr, status, errorMsg) {
+		let odgovor = JSON.parse(xhr.responseText); // Parsiranje JSON
+		let message = "Statusni kod: " + xhr.status + ", poruka koju generise 				server:" + errorMsg + ", nasa poruka sa servera: " + odgovor.message;
+		$("#div").html(message); // prikaz korisniku
+	}
+})
+
+Ono sto ce se na kraju ispisati korisniku:
+Statusni kod: 422, poruka koju generise server: Not found, nasa poruka sa servera: Nesto nije dobro
+
+-Funkcija header() u php sluzi za modifikaciju headera
+
+Moze se koristiti za redirekciju
+Ima dva parametra, jedan za definisanje http statusnog koda, drugi za location
+
+header("HTTP/1.0 404 Not Found");
+header("Location: http://proba.com/");
+
+Moze se koristiti za kreiranje download dialoga
+
+header('Content-Type: application/pdf');	// definisemo content-type da ce format podatka biti pdf
+header('Content-Disposition: attachment; filename="downloaded.pdf"');	// prvi deo definise da fajl ne moze biti otvoren vec da mora biti snimljen i iskocice pop-up za download, drugi deo definise naziv fajla
+readfile('original.pdf');	// pdf source fajl je original.pdf
+
+Moze se koristiti za kontrolu kesiranja
+Kes memorija - neke stvari se cuvaju, da ne bi morao svaki put da salje http request za neki fajl i time ce se ubrzati ucitavanje stranice
+Sta cemo cuvati u kes memoriji zavisi od nas
+U praksi cesto cemo neke slike, ikonice i tako neke fiksne stvari cuvati u kes memoriji, neke akcije koje su na 5 dana stavicemo kesiranje na 5 dana, za neke informacije koje su nam potrebne uvek sveze zabranicemo kesiranje
+
+header('Cache-Control: no-cache, must-revalidate');	// zabranjuje se cuvanje u kesu i mora se ponovo ucitati
+header('Expires: Sat, 26 Jul 1997 00:00:00 GMT');	// definisemo do kada sme da se nesto cuva u kesu, pa da se ponovo obrati serveru, na primer na 5 dana, a ukoliko zelimo da se uvek ucitava novo, ovde cemo staviti datum u proslosti
+
+-Za dobijanje svezih podataka sa servera:
+HARD RELOAD - Shift + F5 ili desni klik na ikonicu refresh pa imamo hard reload/empty cache
+Disable cache - u inspect element u sekciji network imamo disable cache
+Incognito mod
+Isprogramirati kod - pomocu funkcije header zabraniti kesiranje
+
+----------
+
+-Cookies - kolacici
+
+-Sesija predstavlja jedan local scope gde se smestaju svi podaci za jednog korisnika, ali osim toga imacemo i session ID koji ce biti poseban za svakog korisnika
+
+Cookie koji se nalazi u http ce preneti taj session id, ovo ce se desiti ukoliko cookie vec postoji
+Ukoliko ne postoji onda ce se izvrsiti setcookie i pravi se kolacic u web browseru gde ce biti smesten session id
+Sada svakim zahtevom proveravace se cookie, odnosno session id koji se prenosi u njemu
+
+Cookie:
+pravi se bez saglasnosti korisnika
+velicina max 4kb
+moze se definisati ime, datum isteka, ime domena, putanja, sigurnost
+mora imati definisano ime i datum isteka
+
+CrossOrigin polise - za zastitu
+SameSite - deo crossorigin, definise da se samo u okviru istog sajta moze pristupiti, ovo je takodje deo cookie
+
+-Kreiranje cookie - JS
+
+Neka opsta sintaksa:
+document.cookie = "name=value; expires=date; path=path; domain=domain; secure";
+
+name=value - definisemo ime kolacica i njegovu vrednost, npr korisnik: Lazar
+
+expires=date - definise kada kolac istice, mora biti u formatu toGMTString() objekta Date, ako nije definisano kolacic nestaje u trenutku iskljucivanja browsera, ukoliko jeste onda do tog datuma, npr expires=31/12/2023 00:00:00
+
+Ukoliko bi zeleli da izbrisemo cookie, mozemo samo u expires da stavimo datum u proslosti
+
+Mozzila radi u lokalu, dok Google Chrome radi na serveru, sto znaci da ukoliko zelimo da vidimo cookies u Chromu, taj fajl cemo morati pokrenuti preko servera (npr Apache - htdocs)
+
+Svaki browser ima drugacija pravila za cookies, ali ne pravila za kod cookie, vec kako ce se to klijentu prikazati, sta ce mu se prikazati...
+
+----------
+
+-Regularni izrazi
+
+Podaci se prvo trebaju proveriti na klijentskoj strani preko JS
+Tu se vrsi bazna provera, da li su popunjena sva polja, da li je zadovoljena duzina samih polja, da li je zadovoljena forma samog polja (upotreba @ za mail, veliko malo slovo za password...)
+Ukoliko je sve dobro, onda se takvi podaci salju do php
+
+Problem se javlja sto mi na klijentskoj strani mozemo promeniti regularne izraze, sto mozemo pristupiti preko url ili preko nekog softvera (postman)
+Zato je neophodno da se i na serveru izvrsi validacija podataka
+
+Regularni izrazi tj. patterni su isti za sve programske jezike
+Patterne treba provezbati, nisu objasnjeni ovde
+Razliku predstavljaju funkcije koje sluze za regularne izraze
+
+-Funkcije ereg() i preg_match()
+Obe funkcije vracaju true/false
+Imaju dva parametra, prvi je pattern, a drugi je string
+Razlika je samo sto se kod preg_match patern pise izmedju "//", a kod ereg izmedju ""
+
+preg_match("/patern/", $podatak);
+
+ereg("patern", $podatak);
+
+Postoje neke funkcije koje olaksavaju validaciju i obradu podataka
+
+-Funkcija filter()
+Ima dosta izvedenih funkcija
+
+filter_list() - vraca listu filter funkcija
+
+filter_var()
+Filtrira se promenljiva na osnovu nekog pravila koje smo definisali
+Ocekuje sledece parametre: variable(obavezno), filter(opciono)
+
+Postoje filteri za validaciju (unapred definisani regex):
+filter_validate_url
+filter_validate_email
+filter_validate_domain
+filter_validate_int
+
+Primer:
+if(filter_var($email, filter_validate_email)) { // jeste }
+
+Postoje filteri za obradu (sanitize) koje menjaju podatke:
+filter_sanitize_int - uklanja sve karaktere sem onih koji nisu int
+filter_sanitize_string - uklanja sve karaktere sem onih koji nisu string
+filter_sanitize_email - na primer uklanja sve karaktere koji ne sluze za email
+filter_sanitize_url
+
+Preporuka je svakako pisati svoje regularne izraze, a tek kasnije koristiti funkcije koje olaksavaju ovaj posao
+
+----------
+
+-Podsecanje na baze podataka - pregledati slajd
+
+Dosta problema postoji na sam rad sa bazama podataka, ne sa PHP
+Zato treba dobro uvezbati rad sa bazama
+
+-Priprema podataka za bazu
+
+Izrada html forme
+Dohvatanje podataka u JS (preko ID)
+Validacija podataka u JS
+Slanje podataka do PHP
+Validacija podataka u PHP
+
+-Prvi nacin - js
+
+HTML:
+
+<form action="obrada.php" method="GET" onSubmit="return provera();">
+	// input text, radio, select
+	<input type="text" id="ime" name="ime" placeholder="Unesite ime" />
+	<input type="submit" id="taster" name="taster" value="Posalji" />
+</form>
+
+JS:
+var ime = document.querySelector("#ime").value;
+regexIme = /^[A-z] [a-z] {2, 14}$/;
+var nizGresaka = new Array();
+if(!regexIme.test(ime)) { 
+	nizGresaka.push("Problem ime"); 
+	// divIme.innerHTML = "Za korisnika: Ime nije u dobrom formatu. Mora poceti velikim slovom, nakon toga imati sva mala slova, u duzini od 2 do 14 karaktera.";
+	}
+else {
+	// divIme.innerHTML = "";
+	
+}
+if(nizGresaka.length == 0) { return true; } else { return false; }
+
+PHP:
+// dohvatanje i validacija podataka
+// ovde bi se podaci poslali kroz url adresu sa atributom name
+// zato bi se i dohvatali metodom get sa atributom name
+// ostala validacija bila bi ista
+
+-Drugi nacin - ajax
+
+HTML:
+
+<form action="" method="GET">
+	// input text, radio, select
+	<input type="text" id="ime" name="ime" placeholder="Unesite ime" />
+	<input type="button" id="taster" name="taster" value="Posalji" />
+</form>
+
+JS:
+$(document).ready(function() {
+	$("#taster").click(function() {
+		var ime = document.querySelector("#ime").value;
+		regexIme = /^[A-z] [a-z] {2, 14}$/;
+		var nizGresaka = new Array();
+		if(!regexIme.test(ime)) { 
+			nizGresaka.push("Problem ime"); 
+			// divIme.innerHTML = "Za korisnika: Ime nije u dobrom formatu. Mora 			poceti velikim slovom, nakon toga imati sva mala slova, u duzini od 			2 do 14 karaktera.";
+		}
+		else {
+			// divIme.innerHTML = "";	
+		}
+		if(nizGresaka.length == 0) { 
+			$.ajax({
+				url: "obrada.php",
+				method: "POST",
+				dataType: "json",
+				data: {
+					// svi podaci iz forme
+					imeX: ime
+				},
+				success: function(data) {
+					console.log(data);
+				}
+			});
+		}
+		else { console.log("ima gresaka"); }
+	}
+}
+
+PHP:
+// ovde se podaci salju sa ajaxom
+// dohvataju se preko naziva koje smo mi definisali u ajax - data {}
+// ostala validacija je ista
+$ime = $_POST("imeX");
+$regexIme = "/^[A-z] [a-z] {2, 14}$/"
+$greske = array();
+if(!preg_match($regexIme, $ime) {
+	array_push($greske, "Ime je problem");
+}
+if(count($greske)) == 0) {
+	echo ("Sve je dobro, idemo u bazu");
+}
+else {
+	for($i = 0; $i < count($greske); $i++) {
+		echo ($greske[$i]);
+	}
+}
+
+----------
+
+-Rad sa bazom podataka
+
+Kada se zavrsi validacija u PHP ostaje rad sa bazom podataka tj. sa serverom baze podataka
+Serveri baze podataka su MySQL, MsSQL, Oracle, MS Access
+Server baze podataka ima svoju jedinstvenu url/ip adresu
+Server moze imati vise baza podataka
+
+Mi preko servera baze podataka pristupamo tj. "kacimo" se na neku bazu podataka
+Za pristup su potrebni username i password
+
+Kada pristupimo bazi, mozemo slati upite
+PHP ne razume sam upit, za njega je to string
+Baza podataka ce u zavisnosti od upita vratiti neke podatke u vidu objekta
+Php treba da obradi te podatke, da ih pripremi i posalje korisniku
+
+PHP moze raditi sa velikim brojem baza podataka, ali najcesce sa MySQL
+Posto radi sa vise baza podataka, postoje driveri gde su definisana neka opsta pravila
+
+-Opste operacije su CRUD
+
+CRUD - create, read, update, delete
+
+SELECT * FROM tabela
+WHERE kolona1 = "vrednost"
+ORDER BY kolona1, kolona2 ASC;
+
+DELETE FROM tabela
+WHERE id = 1;
+
+INSERT INTO tabela (kolona1, kolona2, kolona3)
+VALUES (vrednost1, vrednost2, vrednost3);
+
+UPDATE tabela
+SET kolona1 = "vrednost"
+WHERE id = 1;
+
+-Rad php sa bazom:
+Koriscenje drivera za tu bazu
+MySQLi prosirenja
+PDO - PHP Data Objects
+
+Mana drivera je sto se stalno moraju azurirati i koristiti odredjeni driver za svaku bazu
+
+Prednost PDO je sto moze raditi sa 12 razlicitih baza
+
+-Pristup bazi podataka
+
+Bazu podataka mozemo zakupiti ili lokalno simulirati pomocu Xampp
+
+Na Xampp je potrebno aktivirati osim Apache i MySql
+
+Pristupamo na xampp root 127.0.0.1 i idemo na php my admin sekciju
+Direktno 127.0.0.1/phpmyadmin/
+Videcemo da nam je username: root i password: "" (nema ga)
+Kada hostujemo obavezno je promeniti username tj. staviti password
+
+Databases - Create database - kreiranje baze upisujemo naziv i biramo utf8_unicode_ci (zbog srpskih slova)
+
+tabelu, biramo naziv
+Ispod popunjavamo tabelu sa kolonama
+
+Kolona ima naziv, tip, ogranicanje (duzina), default(null, timestamp), collation(kog ce tipa biti zapis utf8_encoding_ci), attributes (binary, unassinged), null (yes/no), index(primary, unique, index), A_I (autoincrement)
+
+Export - exportujemo celu bazu podataka
+Import - importujemo celu bazu podataka
+
+-Konekcija sa bazom
+
+Uproscena varijanta:
+
+Konekcija sa mysql bazom
+Putanja je host=localhost
+Ime baze dbname=test
+Parametri za pristup bazi su $user i $pass
+
+$putanja = "localhost";
+$baza = "imeBaze";
+$user = "root";
+$pass = "";
+$konekcija = new PDO('mysql:host=$putanja; dbname=$baza', $user, $pass);
+
+Slozenija ispravnija varijanta
+
+U folderu passwords, u fajlu podaci.ini
+
+const DB_DRIVER = "mysql";
+const DB_HOST = "localhost";
+const DB_NAME = "dbName";
+const DB_LOGIN = "root";
+const DB_PASS = "";
+
+U folderu public, u fajlu konekcija.php
+
+$connection = DB_DRIVER . ':host=' . DB_HOST . '; dbname=' . DB_NAME;
+
+try {
+	// Pravljenje konekcije sa bazom
+	$db = new PDO($connection, DB_LOGIN, DB_PASS);
+	// Handlovanje gresaka
+	$db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	// Rad sa fetch modom, tj objektima
+	$db -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+}
+catch (PDOException $e) {
+	die("Error: " . $e -> getMessage());
+}
+
+Nas sajt se u praksi nalazi u public folderu na hostingu, a public folder se zlonamerno moze preuzeti
+Sledeca modifikacija radi zastite bi bila da sve ove konstante izdvojimo u fajl sa ekstenzijom .ini u folderu password na hostingu
+Zatim u nasem php kodu samo ubacujemo taj fajl sa include("../password/podaci.ini")
+Sada maliciozni korisnik iako zna gde se nalaze nasi osetljivi podaci, nikako ne moze pristupiti folderu password, njemu je dostupan samo public
+
+----------
+
+-Rad sa bazom, CRUD operacije
+
+Rad sa fetchom omogucava da tabelu iz baze predstavi kao asocijativni niz objekta, i index asocijativnog niza je u stvari ime kolone u tabeli
+
+Samu konekciju je dobro izdvojiti u jednom php fajlu
+
+U onom fajlu gde zelimo da radimo sa podacima (index.php), include cemo nas fajl, i u klasicnom if else cemo da proverimo konekciju, i rad sa bazom cemo da vrsimo u if
+
+require_once "konekcija.php";
+if($konekcija) { echo "Uspesna konekcija"; }
+else { echo "Nema konekcije"; }
+
+Rad sa bazom se vrsi u if klauzuli
+
+if($konekcija) {
+	echo "Uspesna konekcija";
+	$konekcija = null;	// na kraju rada potrebno je unistiti konekciju
+}
+
+Kljucni deo rada je realizacija upita
+
+$upit = "select * from tabela";
+$konekcija -> query($upit);
+
+Ukoliko je cilj dohvatanje podataka iz baze
+
+$rezultat = $konekcija -> query($upit);
+
+Pristup kolonama iz tabele
+
+$foreach($rezultat as $red) {
+	echo "Ime je: " . $red['ime'] . ", a prezime je: " . $red['prezime'];
+}
+
+Ukoliko koristimo fetch_obj
+
+$foreach($rezultat as $red) {
+	echo "Ime je: " . $red -> ime . ", a prezime je: " . $red -> prezime;
+}
+
+Ukoliko to zelimo da bolje prikazemo kroz tabelu
+
+echo('<table border="1px">');
+echo('<tr><td>Ime</td><td>Prezime</td></tr>
+foreach($rezultat as $red) {
+	echo('<tr><td>$red -> ime</td></tr>);
+	echo('<tr><td>$red -> prezime</td></tr>);
+}
+
+Ukoliko zelimo kroz select listu, u atribut value taga option ce svakako biti id
+
+echo("<select>");
+foreach($rezultat as $red) {
+	echo("<option value='$red -> id'>$red -> ime $red -> prezime</option>);
+}
+echo("</select>");
+
+Metod query() se najcesce koristi kada se ocekuje rezultat iz baze (select)
+Metod exec() takodje salje upit bazi, ali se najcesce koristi kada se ne ocekuje rezultat (update, insert, delete)
+
+-Upis podataka u tabelu
+
+$ime = "Lazar";
+$prezime = "Jankovic";
+$upit = "insert into tabela (ime, prezime) values('$ime', '$prezime')"
+$konekcija -> query($upit);
+
+-Dohvatanje poslednjeg upisanog ID
+Ovo se radi zato sto se korisnik prvo kreira, username i password
+Sledece hocemo da mozda unese ime, prezime, sliku
+Vec nailazimo na problem kome to trazimo da unese i zato koristimo taj poslednji ID, jer smo njega poslednjeg upisali i njemu trazimo dalje informacije
+
+$poslednjiUpisaniId = $konekcija -> lastInsertId();
+
+-Transakcije
+Predstavlja skup upita, koji su logicki povezani
+Ili ce se izvrsiti ceo skup upita, ili se nece izvrsiti uopste i kod ce se ponistiti
+
+Primer: Kupovina telefona, provera da li postoji taj telefon, da li je korisnik uneo kreditnu karticu, da li ima dovoljno novca, da skinemo novac sa racuna i prebacimo na nas
+Ovo bi se realizovalo preko transakcije
+
+$upit1 = "";
+$upit2 = "";
+$upit3 = "";
+$konekcija -> beginTransaction();
+$konekcija -> query($upit1);
+$konekcija -> query($upit2);
+$konekcija -> query($upit3);
+$konekcija -> commit();
+
+-Prepared statements
+Priprema upita
+
+$upit = $konekcija -> prepare("insert into tabela(ime, prezime) values(:ime, :prezime)");
+$upit -> bindParam(":ime", $ime);
+$upit -> bindParam(":prezime", $prezime);
+$ime = "Lazar";
+$prezime = "Jankovic";
+$upit -> execute();
+$ime = "Mika";
+$prezime = "Mikic";
+$upit -> execute();
+
+-Brisanje podataka
+
+$upit = "delete from tabela WHERE ime = 'Lazar'";
+
+-Azuriranje podataka - update
+
+$upit = "update tabela set prezime = 'Jankovic' where ime = 'Mika'";
+
+Insert, update i delete se mogu raditi obicno preko query(), ali se u praksi rade preko prepared statement i metoda execute()
+
+-Dinamicko kreiranje baze
+
+-Kreiranje baze
+
+$baza = "Baza";
+$upit = "create database if not exists $baza";
+
+-Kreiranje tabele
+Nakon kreiranje baze, ide prvo konekcija sa bazom
+Tek onda kreiranje tabele
+
+$upit = "create table if not exists $tabela" (id int(10) not null auto_increment, ime varchar(25) not null, prezime varchar(25) not null, godina tinyint(2) not null, primary key (id));
+
+-Povecanje sigurnost - upravljacki simboli
+
+Nakon dohvatanja podataka od korisnika
+addslashes() - dodaje \
+
+Pre samog slanja podataka korisnicima
+stripslashes() - uklanja dodate \
+
+----------
+
+username: aaa
+password: bbb ' OR '1=1
+
+Prilikom logovanja unosimo ovaj kod
+Upit ce biti "SELECT * FROM users WHERE username='aaa' AND password='bbb' OR '1=1';
+Ovaj upit ce uvek proci i dobicemo sve korisnike
+Zastita za ovo su regularni izrazi, gde necemo dozvoliti navodnike, funkcija addslashes, kao i kriptovanje sa md5, kao i da izracunamo broj redova koji su vraceni sa funkcijum numberofrows (ako je 1 red vracen, dobro je)
+
+----------
+
+Kljucni zadatak php je sigurnost web sajta, zastita podataka i ogranicavanje pristupa stranicama
+
+Look-up tabela - sa osnovnim podacima (id korisnik, id admin, id prodavac)
+
+Bazu treba raditi tako sto uvek imamo veznu tabelu koja ce povezivati dva razlicita id
+
+Sesija omogucava svim stranicama na sajtu da imaju pristup zajednickom memorijskom prostoru
+Sluzi za privremeno skladistenje podatka
+Sesiju koristimo kada nam treba veca kolicina memorijskog prostora, veca zastita, i moze duze da traje
+
+Na slican nacin rade i serverski kolacici, ali su manje sigurni, i sluzi za neke opste podatke, i za manju kolicinu podataka
+
+----------
+
+-Registracija
+
+Registracija nije samo popunjavanje podataka, osim toga potrebna je i potvrda
+Potvrda se vrsi preko maila
+
+U bazi cemo upisati podatke i cekati na potvrdu maila, i imacemo posebnu kolonu active u tabeli koja ce inicijalno ima vrednost 0, a ako potvrdi mail promenicemo tu vrednost u 1
+
+U mailu se navodi <a> link koji ce voditi ka nasoj stranici koja treba da promeni kolonu active
+Na toj stranici vrsice se update
+
+Jedan od nacina je da se prosledi parametar kroz url adresu koji ima vrednost maila, ali to je lose jer taj parametar maliciozan korisnik moze da promeni i moze uneti neki drugi mail
+
+Zato se u tabeli kreira jos jedna tabela, koja se obicno zove token, gde se generise slucajan veliki random broj od 20 cifara koji ce takodje biti unique i on ce se proslediti kao parametar
+
+Postojace i jedna kolona block, koja ce biti 0, ali 1 ukoliko je korisnik banovan (zabranjen pristup)
+
+-Galerija
+
+Pravimo tabelu u bazi
+Imacemo kolone idSlike, src (cela putanja ili samo ime slike), alt, status (za slike koje zelimo da se prikazu 1, za one koje ne 0)
+
+Imamacemo obican select upit za taj div gde ce biti galerija, dohvatice se slike i kroz for petlju cemo ih ispisati
+
+Dinamicki je olaksano, jer obican covek (admin) bi graficki mogao da promeni sliku u bazi, da je izbrise ili doda novu
+Ukoliko nije dinamicki, za novu sliku bi morao da se pise kod, sto vec mora da uradi programer
+
+Ukoliko zelimo sve slike na jednom mestu u jednoj tabeli, trebace nam i nova tabela koja ce sadrzati kategorije gde ce se te slike koristiti (imena stranica, imena sekcija)
+
+-Dinamicki meni
+
+Expandirajuci i dropdown
+
+Tabela se sastoji od id, ime linka, href atribut
+
+Nastaje problem kada imamo podmeni, zato nam treba nova tabela koja ce imati id roditelja
+Ukoliko nema roditelja imacemo id 0 za roditelja, a ukoliko ima stavicemo id tog roditelja
+
+Sada je potreban jos i php kod
+U upitu selektujemo sve gde ima roditelja (where roditelj = $roditelj)
+U if pitamo da li je rezultat - broj kolona upita > 0 
+Ako jeste otvorice se ul, pa ce se tek ispisati for petlja
+
+Ima jos - pogledati i prekucati kod iz php
+
+-Dinamicka lista
+
+Tabela ce imati id, naziv stavke
+
+Potrebno je fiksno definisanje stavke "izaberite" i definisanje value atributa (koji ce biti u stvari id)
+
+----------
+
+-Baze podataka - pravila
+
+Ne smeju se ponavljati vrednosti u tabelama, vec se treba napraviti nova tabela!
+Dizajn baze ne sme da se menja i novi zapis ne sme da zahteva kreiranje nove tabele!
+
+----------
+
+-Upravljanje vremenskim procesima
+
+Primer:
+Slanje mailova u 23h
+Backup baze svakih 7 dana ujutro u 3h
+Dohvatanje kursne liste svako jutro u 7h
+
+Ovo su neki procesi koji su automatizovani i vrse se u odredjeno vreme
+Ovo je serverski deo i vrsi se najcesce na Linux/Windows operativnim sistemima
+
+CRON - predstavlja proces pomocu kojeg mozemo startovati skriptu u odredjenom vremenu
+
+crontab -e - editovanje
+crontab -l - prikaz crontab fajla
+crontab -r - brisanje crontab fajla
+crontab -v - prikaz vremena zadnje promene cron taba
+
+Ima jos - videti pdf
+
+-Rad sa fajlovima
+
+Ukoliko zelimo da prenesemo fajl od korisnika do servera putem forme, moramo dodati u tag form atribut enctype="multipart/form-data", koristi se uz metod POST
+
+Na serveru postoji folder za privremeno smestanje fajla (tmp folder u root)
+Dohvatanje je sa $_FILES['nameAtribut']
+
+Mogu se dohvatiti i neke informacije
+$fileName = $_FILES['file']['name'];
+$fileSize = $_FILES['file']['size'];
+$fileType = $_FILES['file']['type'];
+
+Osnovna provera bi bila if(isset($_FILES['file']))
+
+-Premestanje lokacije:
+
+$fileName = $_FILES['file']['name'];
+$tmpName = $_FILES['file']['tpm_name']; - putanja do privremene lokacije
+$uploadDir = 'folder/';
+$filePath = $uploadDir . $fileName;
+$result = move_uploaded_file($tmpName, $filePath);
+
+U bazi pravimo tabelu za fajlove, gde cemo imati id, naziv, velicinu, tip, putanju
+
+Mozemo stavljati ogranicenja, npr za tip, za velicinu, jednostavnja provera sa if
+
+Problem nastaje ukoliko korisnici uploaduju fajl sa istim nazivom
+Zato se prvo skladiste jedan deo podataka, pa kada se dobije id (auto-increment), tada cemo za novo ime dodati lastInsertId() + stari naziv fajla
+
+-Dohvatanje fajlova
+
+Mogu se dohvatiti preko <a> linka gde ce href atribut gadjati stranicu koja ce dohvatiti bazu tj. zapis (id)
+Moze se dohvatiti takodje direktno preko <a> taga, gde imamo putanju i naziv fajla
+Slike takodje mozemo direktno dohvatiti, pomocu putanje
+
+Sto se tice rada sa slikama postoji dosta svojstava, moguce su promene velicine slike, crop, dodavanje watermarka, dodavanje raznih filtera... (pdf)
+
+----------
+
+-Organizacija PHP koda u komunikaciji za bazom podataka
+
+Php kod treba sto vise odvajati od html
+
+Kod kojim php komunicira sa bazom treba pisati u odvojenom fajlu u vidu funkcija
+
+Kod pisanja samostalnog php koda koristiti {}, a ukoliko se kobinuje sa html koristiti endif, endforeach
+
+Kreiranje template, obavezno deljenje html koda u delove, pa kasnije ucitavati
+
+Ukoliko se kod ponavlja obavezno kreirati funkciju za to
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
