@@ -124,9 +124,9 @@ function clearFrom(arrayElements, formElement, messageElement, messageText) {
 
 // Function to validate contact data
 function contactValidation() {
-    let name = $('#nameContact');
-    let email = $('#emailContact');
-    let message = $('#messageContact');
+    let name = $('#contactName');
+    let email = $('#contactEmail');
+    let message = $('#contactMessage');
     let nameHelp = $('#contactNameHelp');
     let emailHelp = $('#contactEmailHelp');
     let messageHelp = $('#contactMessageHelp');
@@ -477,7 +477,6 @@ function registerValidation() {
     });
 
     $(document).on('click', '#registerButton', function() {
-        console.log($('input[name="registerGender"]:checked'));
         errorCounter = 0;
         checkRegisterName();
         checkRegisterUsername();
@@ -504,5 +503,176 @@ function registerValidation() {
 
 // Function to validate checkout data
 function checkoutValidation() {
-    
+    let name = $('#checkoutName');
+    let email = $('#checkoutEmail');
+    let phone = $('#checkoutPhone');
+    let country = $('#checkoutCountry');
+    let address = $('#checkoutAddress');
+    let postcode = $('#checkoutPostcode');
+
+    let nameHelp = $('#nameHelp');
+    let emailHelp = $('#emailHelp');
+    let phoneHelp = $('#phoneHelp');
+    let countryHelp = $('#countryHelp');
+    let addressHelp = $('#addressHelp');
+    let postcodeHelp = $('#postcodeHelp');
+
+    let regexName = /^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/;
+    let regexEmail = /^([a-zA-Z0-9._%+-]{1,64})@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$/;
+    let regexPhone = /^\+(?:[0-9].?){6,14}[0-9]$/;
+    let regexAddress = /^[\w\s.,'-]{5,50}$/i;
+    let regexPostcode = /^[a-zA-Z0-9\s-]{3,12}$/;
+
+    let errorCounter = 0;
+
+    if(!regexName.test($(name).val())) {
+        errorCounter++;
+    }
+    if(!regexEmail.test($(email).val())) {
+        errorCounter++;
+    }
+    if(!regexPhone.test($(phone).val())) {
+        errorCounter++;
+    }
+    if($(country).val() == "0") {
+        errorCounter++;
+    }
+    if(!regexAddress.test($(address).val())) {
+        errorCounter++;
+    }
+    if(!regexPostcode.test($(postcode).val())) {
+        errorCounter++;
+    }
+
+    function checkCheckoutName() {
+        if(!regexName.test($(name).val())) {
+            errorCounter++;
+            nameHelp.addClass('text-danger');
+            nameHelp.text('Not good');
+            name.addClass('border-danger');
+        }
+        else {
+            nameHelp.removeClass('text-danger');
+            nameHelp.text('');
+            name.removeClass('border-danger');
+            name.addClass('border-success');
+        }
+    }
+
+    function checkCheckoutEmail() {
+        if(!regexEmail.test($(email).val())) {
+            errorCounter++;
+            emailHelp.addClass('text-danger');
+            emailHelp.text('Not good');
+            email.addClass('border-danger');
+        }
+        else {
+            emailHelp.removeClass('text-danger');
+            emailHelp.text('');
+            email.removeClass('border-danger');
+            email.addClass('border-success');
+        }
+    }
+
+    function checkCheckoutPhone() {
+        if(!regexPhone.test($(phone).val())) {
+            errorCounter++;
+            phoneHelp.addClass('text-danger');
+            phoneHelp.text('Not good');
+            phone.addClass('border-danger');
+        }
+        else {
+            phoneHelp.removeClass('text-danger');
+            phoneHelp.text('');
+            phone.removeClass('border-danger');
+            phone.addClass('border-success');
+        }
+    }
+
+    function checkCheckoutCountry() {
+        if($(country).val() == "0") {
+            errorCounter++;
+            countryHelp.addClass('text-danger');
+            countryHelp.text('Not good');
+            country.addClass('border-danger');
+        }
+        else {
+            countryHelp.removeClass('text-danger');
+            countryHelp.text('');
+            country.removeClass('border-danger');
+            country.addClass('border-success');
+        }
+    }
+
+    function checkCheckoutAddress() {
+        if(!regexAddress.test($(address).val())) {
+            errorCounter++;
+            addressHelp.addClass('text-danger');
+            addressHelp.text('Not good');
+            address.addClass('border-danger');
+        }
+        else {
+            addressHelp.removeClass('text-danger');
+            addressHelp.text('');
+            address.removeClass('border-danger');
+            address.addClass('border-success');
+        }
+    }
+
+    function checkCheckoutPostcode() {
+        if(!regexPostcode.test($(postcode).val())) {
+            errorCounter++;
+            postcodeHelp.addClass('text-danger');
+            postcodeHelp.text('Not good');
+            postcode.addClass('border-danger');
+        }
+        else {
+            postcodeHelp.removeClass('text-danger');
+            postcodeHelp.text('');
+            postcode.removeClass('border-danger');
+            postcode.addClass('border-success');
+        }
+    }
+
+    name.on('focusout', function() {
+        checkCheckoutName();
+    });
+    email.on('focusout', function() {
+        checkCheckoutEmail();
+    });
+    phone.on('focusout', function() {
+        checkCheckoutPhone();
+    });
+    country.on('focusout', function() {
+        checkCheckoutCountry();
+    });
+    address.on('focusout', function() {
+        checkCheckoutAddress();
+    });
+    postcode.on('focusout', function() {
+        checkCheckoutPostcode();
+    });
+
+    $(document).on('click', '#checkoutButton', function() {
+        errorCounter = 0;
+        checkCheckoutName();
+        checkCheckoutEmail();
+        checkCheckoutPhone();
+        checkCheckoutCountry();
+        checkCheckoutAddress();
+        checkCheckoutPostcode();
+
+        if(errorCounter == 0) {
+            let arrayElements = [name, email, phone, country, address, postcode];
+            let formElement = $('#checkoutForm');
+            let messageElement = $('#checkoutInformation');
+            let messageText = 'Your order has been successfully placed. Thank you for shopping with us.';
+            clearFrom(arrayElements, formElement, messageElement, messageText);
+
+            // validation done, continue
+
+        }
+
+        errorCounter = 0;
+    });
 }

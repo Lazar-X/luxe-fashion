@@ -15,5 +15,7 @@ Uradjen responsive meni
 Uradjen brojac za quantity
 Napravljena funkcija za dodavanje klasa active
 Funkcija za password show/hide
+Funkcije za validaciju podataka
+Regularni izrazi pisani tako da zadovoljavaju na globalnom/internacionalnom nivou, ali takodje i dozvoljavaju i utf-8 karaktere
 
 Celokupan rad se moze videti na github

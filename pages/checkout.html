@@ -67,48 +67,49 @@
                     <div class="row">
                         <div class="col-12">
                             <h3 class="font-weight-bold border-bottom mb-3">Billing Details</h3>
-                            <form>
+                            <form id="checkoutForm">
                                 <!-- Full name -->
                                 <div class="form-group">
-                                  <label for="fullname" class="font-weight-bold">Full Name:</label>
-                                  <input type="text" class="form-control" id="fullname" placeholder="Enter full name">
-                                  <small class="form-text text-muted">Your fullname should be in this format</small>
+                                  <label for="checkoutName" class="font-weight-bold">Full Name:</label>
+                                  <input type="text" class="form-control" id="checkoutName" placeholder="Enter full name">
+                                  <small id="nameHelp" class="form-text text-muted">Your fullname should be in this format</small>
                                 </div>
                                 <!-- Email -->
                                 <div class="form-group">
-                                    <label for="email" class="font-weight-bold">Email:</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Enter email">
-                                    <small class="form-text text-muted">Your email should be in this format</small>
+                                    <label for="checkoutEmail" class="font-weight-bold">Email:</label>
+                                    <input type="text" class="form-control" id="checkoutEmail" placeholder="Enter email">
+                                    <small id="emailHelp" class="form-text text-muted">Your email should be in this format</small>
                                 </div>
                                 <!-- Phone number -->
                                 <div class="form-group">
-                                    <label for="phone" class="font-weight-bold">Phone: (optional)</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="Enter phone">
-                                    <small class="form-text text-muted">Your phone should be in this format</small>
+                                    <label for="checkoutPhone" class="font-weight-bold">Phone: (optional)</label>
+                                    <input type="text" class="form-control" id="checkoutPhone" placeholder="Enter phone">
+                                    <small id="phoneHelp" class="form-text text-muted">Your phone should be in this format</small>
                                 </div>
                                 <!-- Country -->
                                 <div class="form-group">
-                                    <label for="sort" class="font-weight-bold">Country</label>
-                                    <select class="form-control" id="sort">
-                                        <option>Serbia</option>
-                                        <option>Bulgaria</option>
-                                        <option>Macedonia</option>
-                                        <option>Germany</option>
-                                        <option>Croatia</option>
+                                    <label for="checkoutCountry" class="font-weight-bold">Country</label>
+                                    <select class="form-control" id="checkoutCountry">
+                                        <option value="0">Select</option>
+                                        <option value="1">Serbia</option>
+                                        <option value="2">Bulgaria</option>
+                                        <option value="3">Macedonia</option>
+                                        <option value="4">Germany</option>
+                                        <option value="5">Croatia</option>
                                     </select>
-                                    <small id="sortHelp" class="form-text text-muted"> If your country is not listed, we are unable to process orders to that location at this time.</small>
+                                    <small id="countryHelp" class="form-text text-muted"> If your country is not listed, we are unable to process orders to that location at this time.</small>
                                 </div>
                                 <!-- Address -->
                                 <div class="form-group">
-                                    <label for="address" class="font-weight-bold">Address:</label>
-                                    <input type="text" class="form-control" id="address" placeholder="Enter address">
-                                    <small class="form-text text-muted">Your address should be in this format</small>
+                                    <label for="checkoutAddress" class="font-weight-bold">Address:</label>
+                                    <input type="text" class="form-control" id="checkoutAddress" placeholder="Enter address">
+                                    <small id="addressHelp" class="form-text text-muted">Your address should be in this format</small>
                                 </div>
                                 <!-- Post Code -->
                                 <div class="form-group">
-                                    <label for="postcode" class="font-weight-bold">PostCode:</label>
-                                    <input type="text" class="form-control" id="postcode" placeholder="Enter postcode">
-                                    <small class="form-text text-muted">Your postcode should be in this format</small>
+                                    <label for="checkoutPostcode" class="font-weight-bold">PostCode:</label>
+                                    <input type="text" class="form-control" id="checkoutPostcode" placeholder="Enter postcode">
+                                    <small id="postcodeHelp" class="form-text text-muted">Your postcode should be in this format</small>
                                 </div>
                             </form>
                         </div>
@@ -121,7 +122,8 @@
                             <h3 class="text-center text-uppercase pb-3 border-bottom">Your Order</h3>
                             <p class="font-weight-bold pt-3">Total: <span id="summary">$399.99</span></p>
                             <a href="cart.html" class="w-100 text-center shop-now-link">Review your cart</a>
-                            <button type="submit" class="btn mt-3 button w-100">Place Order</button>
+                            <button type="button" id="checkoutButton" class="btn mt-3 button w-100">Place Order</button>
+                            <small id="checkoutInformation" class="form-text text-center text-success font-weight-bold"></small>
                         </div>
                     </div>
                 </div>

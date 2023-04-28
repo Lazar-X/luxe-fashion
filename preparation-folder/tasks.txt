@@ -1,9 +1,7 @@
-Prebaciti stranice na php
+Validacija javascriptom gotova, ali potrebno je izvrsiti slanje podataka ajaxu
+Potrebna validacija php
 
-Izvrsiti validaciju podataka javascriptom i php
-Prvo izvrsiti za contact formu
-Potom za login
-Na kraj za register
+Prebaciti stranice na php
 
 Potrebno je napraviti bazu podataka
 
