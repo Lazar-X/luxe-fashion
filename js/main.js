@@ -125,6 +125,20 @@ function contactValidation() {
 
     let errorCounter = 0;
 
+    function initialCheck() {
+        if(!regexName.test($(name).val())) {
+            errorCounter++;
+        }
+        if(!regexEmail.test($(email).val())) {
+            errorCounter++;
+        }
+        if(!regexMessage.test($(message).val())) {
+            errorCounter++;
+        }
+    }
+
+    initialCheck();
+
     function checkContactName() {
         if(!regexName.test($(name).val())) {
             errorCounter++;
@@ -183,7 +197,6 @@ function contactValidation() {
     });
 
     $(document).on('click', '#contactButton', function() {
-        errorCounter = 0;
         checkContactName();
         checkContactEmail();
         checkContactMessage();
@@ -195,7 +208,7 @@ function contactValidation() {
             let messageText = 'Your message has been sent!';
             clearFrom(arrayElements, formElement, messageElement, messageText);
 
-            
+
 
         }
 
