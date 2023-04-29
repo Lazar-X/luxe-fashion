@@ -20,16 +20,17 @@
             }
 
             if($errorCounter != 0) {
-                $response = ['message' => 'There is error on server side with data from client side'];
+                $response = ['message' => '422 greska'];
                 $statusCode = 422;
             }
+
             else {
                 // Upis u bazu
                 // $insert ce da vrati true/false
                 // $insert = $insertInBase($name, $email, $message);
                 $insert = true;
                 if($insert) {
-                    $response = ['message' => 'Everything good, data sent in base'];
+                    $response = ['message' => 'Login successful! Redirecting to index page.'];
                     $statusCode = 201;
                 }
                 else {

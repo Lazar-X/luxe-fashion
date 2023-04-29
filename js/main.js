@@ -2,24 +2,24 @@ window.onload = function() {
     // Global
     toggleMenu();
     // Index
-    if(document.URL.includes('index.html')) {
+    if(document.URL.includes('index.php')) {
 
     }
     // Shop
-    if(document.URL.includes('shop.html')) {
+    if(document.URL.includes('shop.php')) {
         const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
         addActiveClass(sizes, 'active-size');
     }
     // About us
-    if(document.URL.includes('about-us.html')) {
+    if(document.URL.includes('about-us.php')) {
         
     }
     // Contact
-    if(document.URL.includes('contact.html')) {
+    if(document.URL.includes('contact.php')) {
         contactValidation();
     }
     // Single product
-    if(document.URL.includes('single-product.html')) {
+    if(document.URL.includes('single-product.php')) {
         const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
         const colors = document.querySelector("#div-colors").querySelectorAll('label');
         addActiveClass(colors, 'active-color');
@@ -27,20 +27,20 @@ window.onload = function() {
         quantity();
     }
     // Login
-    if(document.URL.includes('login.html')) {
+    if(document.URL.includes('login.php')) {
         loginValidation();
     }
     // Register
-    if(document.URL.includes('register.html')) {
+    if(document.URL.includes('register.php')) {
         showPassword();
         registerValidation();
     }
     // Cart
-    if(document.URL.includes('cart.html')) {
+    if(document.URL.includes('cart.php')) {
         quantity();
     }
     // Checkout
-    if(document.URL.includes('checkout.html')) {
+    if(document.URL.includes('checkout.php')) {
         checkoutValidation();
     }
 }
@@ -133,17 +133,17 @@ function fetchFormData(file, data) {
         success: function(result) {
             console.log(result);
             // $('response').text($(result.message));
-            $('response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message.fadeIn().delay(3000).fadeOut()}</small>`);
+            $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
         },
         error: function(xhr) {
             console.error(xhr);
             if(xhr.status == 422) {
                 // $('response').text($(xhr.responseText));
-                $('response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${result.message}</small>`);
+                $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
             }
             if(xhr.status == 500) {
                 // $('response').text($(xhr.responseText));
-                $('response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${result.message}</small>`);
+                $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
             }
         }
     });
@@ -240,11 +240,7 @@ function contactValidation() {
         if(errorCounter == 0) {
             let arrayElements = [name, email, message];
             let formElement = $('#contactForm');
-            // let messageElement = $('#responseInformation');
-            // let messageText = 'Your message has been sent!';
-            clearFrom(arrayElements, formElement);
-
-            // validation done, continue
+            
             let data = {
                 'name': name.val(),
                 'email': email.val(),
@@ -252,6 +248,8 @@ function contactValidation() {
                 'button': true
             };
             fetchFormData('contactForm', data);
+
+            clearFrom(arrayElements, formElement);
         }
 
         errorCounter = 0;
@@ -323,16 +321,15 @@ function loginValidation() {
         if(errorCounter == 0) {
             let arrayElements = [username, password];
             let formElement = $('#loginForm');
-            // let messageElement = $('#responseInformation');
-            // let messageText = 'Login successful! Redirecting to homepage...';
-            clearFrom(arrayElements, formElement);
-
+            
             let data = {
                 'username': username.val(),
                 'password': password.val(),
                 'button': true
             };
             fetchFormData('loginForm', data);
+
+            clearFrom(arrayElements, formElement);
         }
 
         errorCounter = 0;
@@ -525,9 +522,6 @@ function registerValidation() {
         if(errorCounter == 0) {
             let arrayElements = [name, username, email, password, retypePassword, gender, phone];
             let formElement = $('#registerForm');
-            // let messageElement = $('#responseInformation');
-            // let messageText = 'Your account has been successfully created. Follow the instructions to activate your account. Redirecting to login page...';
-            clearFrom(arrayElements, formElement);
 
             let data = {
                 'name': name.val(),
@@ -540,6 +534,8 @@ function registerValidation() {
                 'button': true
             };
             fetchFormData('registerForm', data);
+
+            clearFrom(arrayElements, formElement);
         }
 
         errorCounter = 0;
@@ -710,10 +706,7 @@ function checkoutValidation() {
         if(errorCounter == 0) {
             let arrayElements = [name, email, phone, country, address, postcode];
             let formElement = $('#checkoutForm');
-            // let messageElement = $('#responseInformation');
-            // let messageText = 'Your order has been successfully placed. Thank you for shopping with us.';
-            clearFrom(arrayElements, formElement);
-
+            
             let data = {
                 'name': name.val(),
                 'email': email.val(),
@@ -724,6 +717,10 @@ function checkoutValidation() {
                 'button': true
             };
             fetchFormData('checkoutForm', data);
+
+            clearFrom(arrayElements, formElement);
+
+            
 
         }
 

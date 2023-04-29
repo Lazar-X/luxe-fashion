@@ -15,49 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <ul class="d-flex justify-content-md-end justify-content-center pt-3">
-                        <li class="ml-3"><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
-                        <li class="ml-3"><a href="register.html"><i class="fa-solid fa-right-to-bracket"></i> Register</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Navigation -->
-    <nav class="py-4">
-        <div class="container">
-            <div class="row align-items-md-center">
-                <div class="col-md-3 col-10">
-                    <a href="index.html"><h1 class="font-weight-bold">Luxe Fashion</h1></a>
-                </div>
-                <div id="menu" class="col-md-9 col-12">
-                    <div class="row">
-                        <div class="col-md-11 col-12">
-                            <ul class="d-flex justify-content-center pt-md-2 flex-md-row flex-column align-items-center">
-                                <li class="ml-3"><a href="index.html">Home</a></li>
-                                <li class="ml-3"><a href="shop.html">Shop</a></li>
-                                <li class="ml-3"><a href="about-us.html">About us</a></li>
-                                <li class="ml-3"><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-1 col-12 d-flex justify-content-center align-items-center">
-                            <a href="cart.html" class="cart-link"><i class="fa-solid fa-cart-shopping"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <a href="#" id="toggle-button">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <?php
+        require_once '../includes/header.php';
+        require_once '../includes/navigation.php';
+    ?>
     <!-- Product section -->
     <div id="single-product" class="py-5">
         <div class="container">
@@ -155,46 +116,10 @@
             </div>
         </div>
     </div>
-    <!-- Footer -->
-    <footer class="pt-5">
-        <div class="container">
-            <div class="row d-flex justify-content-around">
-                <div class="col-md-4 col-12 mb-md-0 mb-3">
-                    <h3 class="mb-4">Luxe Fashion</h3>
-                    <p class="text-md-left text-center">Shop with confidence - easy returns and fast shipping.</p>
-                    <ul class="mt-4 d-flex justify-content-md-start justify-content-center text-center list-social">
-                        <li class="mr-2"><a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-square-instagram"></i></a></li>
-                        <li class="mr-2"><a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
-                        <li class="mr-2"><a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-sm-6 col-12">
-                    <h3 class="mb-4">Information</h3>
-                    <ul>
-                        <li class="mb-2"><a href="index.html">Home</a></li>
-                        <li class="mb-2"><a href="shop.html">Shop</a></li>
-                        <li class="mb-2"><a href="about-us.html">About us</a></li>
-                        <li class="mb-2"><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-sm-6 col-12">
-                    <h3 class="mb-4">Additional Links</h3>
-                    <ul>
-                        <li class="mb-2"><a href="../sitemap.xml" target="_blank">Sitemap</a></li>
-                        <li class="mb-2"><a href="../docs.pdf" target="_blank">Documentation</a></li>
-                        <li class="mb-2"><a href="author.html" target="_blank">Author</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row mt-3 pt-3 border-top">
-                <div class="col-12">
-                    <p class="text-center copyright">© Copyright 2023. Web design and development made by 
-                        <a href="https://github.com/Lazar-X" target="_blank" class="shop-now-link">Lazar Jankovic</a>.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    
+    <?php
+        require_once '../includes/footer.php';
+    ?>
     
     <!-- Help -->
 
