@@ -380,9 +380,12 @@ function registerValidation() {
     if($(gender).length == 0) {
         errorCounter++;
     }
-    if(!regexPhone.test($(phone).val())) {
-        errorCounter++;
+    if($(phone).val() !== '') {
+        if(!regexPhone.test($(phone).val())) {
+            errorCounter++;
+        }
     }
+    
 
     function checkRegisterName() {
         if(!regexName.test($(name).val())) {
@@ -472,17 +475,19 @@ function registerValidation() {
     }
 
     function checkRegisterPhone() {
-        if(!regexPhone.test($(phone).val())) {
-            errorCounter++;
-            phoneHelp.addClass('text-danger');
-            phoneHelp.text('Please enter a valid phone number. Example: +381 555 555');
-            phone.addClass('border-danger');
-        }
-        else {
-            phoneHelp.removeClass('text-danger');
-            phoneHelp.text('');
-            phone.removeClass('border-danger');
-            phone.addClass('border-success');
+        if($(phone).val() !== '') {
+            if(!regexPhone.test($(phone).val())) {
+                errorCounter++;
+                phoneHelp.addClass('text-danger');
+                phoneHelp.text('Please enter a valid phone number. Example: +381 555 555');
+                phone.addClass('border-danger');
+            }
+            else {
+                phoneHelp.removeClass('text-danger');
+                phoneHelp.text('');
+                phone.removeClass('border-danger');
+                phone.addClass('border-success');
+            }
         }
     }
 

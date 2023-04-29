@@ -16,6 +16,12 @@ Uradjen brojac za quantity
 Napravljena funkcija za dodavanje klasa active
 Funkcija za password show/hide
 Funkcije za validaciju podataka
-Regularni izrazi pisani tako da zadovoljavaju na globalnom/internacionalnom nivou, ali takodje i dozvoljavaju i utf-8 karaktere
+Regularni izrazi pisani tako da zadovoljavaju na globalnom/internacionalnom nivou, (ovo jos uvek ne)ali takodje i dozvoljavaju i utf-8 karaktere
+Phone je opcioni, ne mora da se unese, ali ako se unosi mora da zadovolji format
+
+-Php:
+Napravljen fajl za konekciju
+Stranice izdeljene na delove header, nav, footer itd...
+Napravljeni fajlovi za validaciju podataka
 
 Celokupan rad se moze videti na github

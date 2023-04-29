@@ -78,7 +78,7 @@
                         </div>
                         <!-- Phone number -->
                         <div class="form-group">
-                            <label for="registerPhone" class="font-weight-bold">Phone:</label>
+                            <label for="registerPhone" class="font-weight-bold">Phone: (optional)</label>
                             <input type="text" class="form-control" id="registerPhone" placeholder="Enter phone">
                             <small id="phoneHelp" class="form-text">Example: +381 555 555</small>
                         </div>

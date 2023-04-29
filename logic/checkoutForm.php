@@ -1,6 +1,7 @@
 <?php
     header('Content-type: application/json');
     if(isset($_POST['button'])) {
+        require_once '../config/connection.php';
         try {
             $name = $_POST['name'];
             $email = $_POST['email'];

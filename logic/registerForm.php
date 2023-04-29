@@ -1,6 +1,7 @@
 <?php
     header('Content-type: application/json');
     if(isset($_POST['button'])) {
+        // require_once '../config/connection.php';
         try {
             $name = $_POST['name'];
             $username = $_POST['username'];
@@ -8,7 +9,7 @@
             $password = $_POST['password'];
             $retypePassword = $_POST['retypePassword'];
             $gender = $_POST['gender'];
-            $phone = $_POST['phone'];
+            $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 
             // this will be from database
             $arrayGender = ['m', 'f'];
@@ -41,8 +42,10 @@
             if(!in_array($gender, $arrayGender)) {
                 $errorCounter++;
             }
-            if(!preg_match($regexPhone, $phone)) {
-                $errorCounter++;
+            if($phone !== '') {
+                if(!preg_match($regexPhone, $phone)) {
+                    $errorCounter++;
+                }
             }
 
             if($errorCounter != 0) {
