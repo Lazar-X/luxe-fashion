@@ -114,12 +114,39 @@ function showPassword() {
 }
 
 // Function to clear form elements when its done
-function clearFrom(arrayElements, formElement, messageElement, messageText) {
+function clearFrom(arrayElements, formElement) {
     arrayElements.forEach(element => {
         element.removeClass('border-success');
     });
     formElement[0].reset();
-    messageElement.text(messageText).fadeIn().delay(3000).fadeOut();
+    // messageElement.text(messageText).fadeIn().delay(3000).fadeOut();
+    // , messageElement, messageText
+}
+
+// Function to send data with ajax
+function fetchFormData(file, data) {
+    $.ajax({
+        url: '../logic/' + file + '.php',
+        method: 'post',
+        data: data,
+        dataType: 'json',
+        success: function(result) {
+            console.log(result);
+            // $('response').text($(result.message));
+            $('response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message.fadeIn().delay(3000).fadeOut()}</small>`);
+        },
+        error: function(xhr) {
+            console.error(xhr);
+            if(xhr.status == 422) {
+                // $('response').text($(xhr.responseText));
+                $('response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${result.message}</small>`);
+            }
+            if(xhr.status == 500) {
+                // $('response').text($(xhr.responseText));
+                $('response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${result.message}</small>`);
+            }
+        }
+    });
 }
 
 // Function to validate contact data
@@ -127,6 +154,7 @@ function contactValidation() {
     let name = $('#contactName');
     let email = $('#contactEmail');
     let message = $('#contactMessage');
+
     let nameHelp = $('#contactNameHelp');
     let emailHelp = $('#contactEmailHelp');
     let messageHelp = $('#contactMessageHelp');
@@ -212,12 +240,18 @@ function contactValidation() {
         if(errorCounter == 0) {
             let arrayElements = [name, email, message];
             let formElement = $('#contactForm');
-            let messageElement = $('#contactInformation');
-            let messageText = 'Your message has been sent!';
-            clearFrom(arrayElements, formElement, messageElement, messageText);
+            // let messageElement = $('#responseInformation');
+            // let messageText = 'Your message has been sent!';
+            clearFrom(arrayElements, formElement);
 
             // validation done, continue
-
+            let data = {
+                'name': name.val(),
+                'email': email.val(),
+                'message': message.val(),
+                'button': true
+            };
+            fetchFormData('contactForm', data);
         }
 
         errorCounter = 0;
@@ -243,8 +277,6 @@ function loginValidation() {
     if(!regexPassword.test($(password).val())) {
         errorCounter++;
     }
-
-    console.log(errorCounter);
 
     function checkLoginUsername() {
         if(!regexUsername.test($(username).val())) {
@@ -291,12 +323,16 @@ function loginValidation() {
         if(errorCounter == 0) {
             let arrayElements = [username, password];
             let formElement = $('#loginForm');
-            let messageElement = $('#loginInformation');
-            let messageText = 'Login successful! Redirecting to homepage...';
-            clearFrom(arrayElements, formElement, messageElement, messageText);
+            // let messageElement = $('#responseInformation');
+            // let messageText = 'Login successful! Redirecting to homepage...';
+            clearFrom(arrayElements, formElement);
 
-            // validation done, continue
-
+            let data = {
+                'username': username.val(),
+                'password': password.val(),
+                'button': true
+            };
+            fetchFormData('loginForm', data);
         }
 
         errorCounter = 0;
@@ -489,12 +525,21 @@ function registerValidation() {
         if(errorCounter == 0) {
             let arrayElements = [name, username, email, password, retypePassword, gender, phone];
             let formElement = $('#registerForm');
-            let messageElement = $('#registerInformation');
-            let messageText = 'Your account has been successfully created. Follow the instructions to activate your account. Redirecting to login page...';
-            clearFrom(arrayElements, formElement, messageElement, messageText);
+            // let messageElement = $('#responseInformation');
+            // let messageText = 'Your account has been successfully created. Follow the instructions to activate your account. Redirecting to login page...';
+            clearFrom(arrayElements, formElement);
 
-            // validation done, continue
-
+            let data = {
+                'name': name.val(),
+                'username': username.val(),
+                'email': email.val(),
+                'password': password.val(),
+                'retypePassword': retypePassword.val(),
+                'gender': $('input[name="registerGender"]:checked').val(),
+                'phone': phone.val(),
+                'button': true
+            };
+            fetchFormData('registerForm', data);
         }
 
         errorCounter = 0;
@@ -665,11 +710,20 @@ function checkoutValidation() {
         if(errorCounter == 0) {
             let arrayElements = [name, email, phone, country, address, postcode];
             let formElement = $('#checkoutForm');
-            let messageElement = $('#checkoutInformation');
-            let messageText = 'Your order has been successfully placed. Thank you for shopping with us.';
-            clearFrom(arrayElements, formElement, messageElement, messageText);
+            // let messageElement = $('#responseInformation');
+            // let messageText = 'Your order has been successfully placed. Thank you for shopping with us.';
+            clearFrom(arrayElements, formElement);
 
-            // validation done, continue
+            let data = {
+                'name': name.val(),
+                'email': email.val(),
+                'phone': phone.val(),
+                'countryId': country.val(),
+                'address': address.val(),
+                'postcode': postcode.val(),
+                'button': true
+            };
+            fetchFormData('checkoutForm', data);
 
         }
 

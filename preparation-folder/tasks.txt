@@ -1,3 +1,4 @@
+Potrebna je lepa poruka o greskama, uputstvo za korisnika
 Validacija javascriptom gotova, ali potrebno je izvrsiti slanje podataka ajaxu
 Potrebna validacija php
 
