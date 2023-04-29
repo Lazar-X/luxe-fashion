@@ -180,7 +180,7 @@ function contactValidation() {
         if(!regexName.test($(name).val())) {
             errorCounter++;
             nameHelp.addClass('text-danger');
-            nameHelp.text('Not good!');
+            nameHelp.text('Please enter a valid name. Example: Lazar');
             name.addClass('border-danger');
         }
         else {
@@ -195,7 +195,7 @@ function contactValidation() {
         if(!regexEmail.test($(email).val())) {
             errorCounter++;
             emailHelp.addClass('text-danger');
-            emailHelp.text('Not good!');
+            emailHelp.text('Please enter a valid email address. Example: luxefashion@gmail.com');
             email.addClass('border-danger');
         }
         else {
@@ -210,7 +210,7 @@ function contactValidation() {
         if(!regexMessage.test($(message).val())) {
             errorCounter++;
             messageHelp.addClass('text-danger');
-            messageHelp.text('Not good!');
+            messageHelp.text('Please enter a valid message. Between 10 and 50 characters long.');
             message.addClass('border-danger');
         }
         else {
@@ -282,7 +282,7 @@ function loginValidation() {
         if(!regexUsername.test($(username).val())) {
             errorCounter++;
             usernameHelp.addClass('text-danger');
-            usernameHelp.text('Not good');
+            usernameHelp.text('Please enter a valid username.');
             username.addClass('border-danger');
         }
         else {
@@ -297,7 +297,7 @@ function loginValidation() {
         if(!regexPassword.test($(password).val())) {
             errorCounter++;
             passwordHelp.addClass('text-danger');
-            passwordHelp.text('Not good');
+            passwordHelp.text('Please enter a valid password.');
             password.addClass('border-danger');
         }
         else {
@@ -391,7 +391,7 @@ function registerValidation() {
         if(!regexName.test($(name).val())) {
             errorCounter++;
             nameHelp.addClass('text-danger');
-            nameHelp.text('Not good');
+            nameHelp.text('Please enter a valid name. Example: Lazar Jankovic');
             name.addClass('border-danger');
         }
         else {
@@ -406,7 +406,7 @@ function registerValidation() {
         if(!regexUsername.test($(username).val())) {
             errorCounter++;
             usernameHelp.addClass('text-danger');
-            usernameHelp.text('Not good');
+            usernameHelp.text('Please enter a valid username. Example: Lazar');
             username.addClass('border-danger');
         }
         else {
@@ -421,7 +421,7 @@ function registerValidation() {
         if(!regexEmail.test($(email).val())) {
             errorCounter++;
             emailHelp.addClass('text-danger');
-            emailHelp.text('Not good');
+            emailHelp.text('Please enter a valid email address. Example: luxefashion@gmail.com');
             email.addClass('border-danger');
         }
         else {
@@ -436,7 +436,7 @@ function registerValidation() {
         if(!regexPassword.test($(password).val())) {
             errorCounter++;
             passwordHelp.addClass('text-danger');
-            passwordHelp.text('Not good');
+            passwordHelp.text('Please enter a valid password. Example: password1');
             password.addClass('border-danger');
         }
         else {
@@ -451,7 +451,7 @@ function registerValidation() {
         if($(retypePassword).val() !== $(password).val()) {
             errorCounter++;
             retypePasswordHelp.addClass('text-danger');
-            retypePasswordHelp.text('Not good');
+            retypePasswordHelp.text('The password should be exactly the same as the one you entered above.');
             retypePassword.addClass('border-danger');
         }
         else {
@@ -466,7 +466,7 @@ function registerValidation() {
         if($('input[name="registerGender"]:checked').length === 0) {
             errorCounter++;
             genderHelp.addClass('text-danger');
-            genderHelp.text('Not good');
+            genderHelp.text('Please select your gender from the options provided above.');
         }
         else {
             genderHelp.removeClass('text-danger');
@@ -478,7 +478,7 @@ function registerValidation() {
         if(!regexPhone.test($(phone).val())) {
             errorCounter++;
             phoneHelp.addClass('text-danger');
-            phoneHelp.text('Not good');
+            phoneHelp.text('Please enter a valid phone number. Example: +381 555 555');
             phone.addClass('border-danger');
         }
         else {
@@ -593,7 +593,7 @@ function checkoutValidation() {
         if(!regexName.test($(name).val())) {
             errorCounter++;
             nameHelp.addClass('text-danger');
-            nameHelp.text('Not good');
+            nameHelp.text('Please enter a valid name. Example: Lazar Jankovic');
             name.addClass('border-danger');
         }
         else {
@@ -608,7 +608,7 @@ function checkoutValidation() {
         if(!regexEmail.test($(email).val())) {
             errorCounter++;
             emailHelp.addClass('text-danger');
-            emailHelp.text('Not good');
+            emailHelp.text('Please enter a valid email address. Example: luxefashion@gmail.com');
             email.addClass('border-danger');
         }
         else {
@@ -623,7 +623,7 @@ function checkoutValidation() {
         if(!regexPhone.test($(phone).val())) {
             errorCounter++;
             phoneHelp.addClass('text-danger');
-            phoneHelp.text('Not good');
+            phoneHelp.text('Please enter a valid phone number. Example: +381 555 555');
             phone.addClass('border-danger');
         }
         else {
@@ -638,7 +638,7 @@ function checkoutValidation() {
         if($(country).val() == "0") {
             errorCounter++;
             countryHelp.addClass('text-danger');
-            countryHelp.text('Not good');
+            countryHelp.text('Please select your country from the options provided above.');
             country.addClass('border-danger');
         }
         else {
@@ -653,7 +653,7 @@ function checkoutValidation() {
         if(!regexAddress.test($(address).val())) {
             errorCounter++;
             addressHelp.addClass('text-danger');
-            addressHelp.text('Not good');
+            addressHelp.text('Please enter a valid address. Example: Belgrade, Street 22');
             address.addClass('border-danger');
         }
         else {
@@ -668,7 +668,7 @@ function checkoutValidation() {
         if(!regexPostcode.test($(postcode).val())) {
             errorCounter++;
             postcodeHelp.addClass('text-danger');
-            postcodeHelp.text('Not good');
+            postcodeHelp.text('Please enter a valid postcode. Example: 11500');
             postcode.addClass('border-danger');
         }
         else {
