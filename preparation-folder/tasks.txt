@@ -1,13 +1,5 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
-Potrebno je napraviti bazu podataka
-Tabele:
-users
-users_phone
-
-
-Za registraciju potreban aktivacioni link ili na email ili neki specifican kod
-
 Realizovati korisnika i admina
 
 Nakon registracije i logovanja treba da se prikaze neka poruka da je uspesno, kao i redirekt
