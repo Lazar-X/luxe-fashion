@@ -1,0 +1,67 @@
+Naziv baze: luxefashion
+
+Nazive tabela, malim slovom
+Nazive kolona malim slovom, odvojiti donjom crtom
+
+Za id, biramo int, 255, a_i selektujemo
+
+Za tekstualna polja birati varchar, 50 otprilike broj karaktera(uvek veci), encoding utf8_unicode_ci
+
+Za password varchar 50 (32 vraca md5)
+
+Za email varchar 50, ali selektovati UNIQUE
+
+Za datum najcesce biramo timestamp, pa current_timestamp
+
+Ukoliko je polje opciono, kao sto cemo mi za phone
+
+Kreiramo 2 tabele, users i phone
+U tabeli phone cemo imati user_id i biramo INDEX
+
+Posle toga idemo na dizajner, i biramo da je user_id u svojoj primarni, a user_id u tabeli phone spoljni, i stavljamo kaskadno brisanje
+
+
+
+
+Napravljeno:
+-navigation
+navigation_id
+navigation_title
+navigation_href
+
+-contact
+contact_id
+contact_name
+contact_email
+contact_message
+contact_created_at
+
+-users
+user_id
+user_firstname
+user_lastname
+user_username
+user_email
+user_password
+user_verified
+user_verification_code
+user_created_at
+user_updated_at
+gender_id
+role_id
+
+-phones
+phone_id
+phone_number
+user_id
+
+-genders
+gender_id
+gender_name
+
+-roles
+role_id
+role_name
+
+
+

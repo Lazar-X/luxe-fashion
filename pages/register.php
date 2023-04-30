@@ -29,15 +29,21 @@
                     <form id="registerForm">
                         <!-- Full name -->
                         <div class="form-group">
-                          <label for="registerFullname" class="font-weight-bold">Full Name:</label>
-                          <input type="text" class="form-control" id="registerFullname" placeholder="Enter full name">
-                          <small id="nameHelp" class="form-text">Example: Lazar Jankovic</small>
+                          <label for="registerFirstName" class="font-weight-bold">First Name:</label>
+                          <input type="text" class="form-control" id="registerFirstName" placeholder="Enter first name">
+                          <small id="firstNameHelp" class="form-text">Example: Lazar</small>
+                        </div>
+                        <!-- Full name -->
+                        <div class="form-group">
+                          <label for="registerLastName" class="font-weight-bold">Last Name:</label>
+                          <input type="text" class="form-control" id="registerLastName" placeholder="Enter last name">
+                          <small id="lastNameHelp" class="form-text">Example: Jankovic</small>
                         </div>
                         <!-- Username -->
                         <div class="form-group">
                             <label for="registerUsername" class="font-weight-bold">Username:</label>
                             <input type="text" class="form-control" id="registerUsername" placeholder="Enter username">
-                            <small id="usernameHelp" class="form-text">Example: Lazar</small>
+                            <small id="usernameHelp" class="form-text">Example: LazarJ</small>
                         </div>
                         <!-- Email -->
                         <div class="form-group">

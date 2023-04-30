@@ -338,7 +338,8 @@ function loginValidation() {
 
 // Function to validate register data
 function registerValidation() {
-    let name = $('#registerFullname');
+    let firstName = $('#registerFirstName');
+    let lastName = $('#registerLastName');
     let username = $('#registerUsername');
     let email = $('#registerEmail');
     let password = $('#registerPassword');
@@ -346,7 +347,8 @@ function registerValidation() {
     let gender = $('input[name="registerGender"]');
     let phone = $('#registerPhone');
 
-    let nameHelp = $('#nameHelp');
+    let firstNameHelp = $('#firstNameHelp');
+    let lastNameHelp = $('#lastNameHelp');
     let usernameHelp = $('#usernameHelp');
     let emailHelp = $('#emailHelp');
     let passwordHelp= $('#passwordHelp');
@@ -362,7 +364,10 @@ function registerValidation() {
 
     let errorCounter = 0;
 
-    if(!regexName.test($(name).val())) {
+    if(!regexName.test($(firstName).val())) {
+        errorCounter++;
+    }
+    if(!regexName.test($(lastName).val())) {
         errorCounter++;
     }
     if(!regexUsername.test($(username).val())) {
@@ -387,18 +392,33 @@ function registerValidation() {
     }
     
 
-    function checkRegisterName() {
-        if(!regexName.test($(name).val())) {
+    function checkRegisterFirstName() {
+        if(!regexName.test($(firstName).val())) {
             errorCounter++;
-            nameHelp.addClass('text-danger');
-            nameHelp.text('Please enter a valid name. Example: Lazar Jankovic');
-            name.addClass('border-danger');
+            firstNameHelp.addClass('text-danger');
+            firstNameHelp.text('Please enter a valid name. Example: Lazar');
+            firstName.addClass('border-danger');
         }
         else {
-            nameHelp.removeClass('text-danger');
-            nameHelp.text('');
-            name.removeClass('border-danger');
-            name.addClass('border-success');
+            firstNameHelp.removeClass('text-danger');
+            firstNameHelp.text('');
+            firstName.removeClass('border-danger');
+            firstName.addClass('border-success');
+        }
+    }
+
+    function checkRegisterLastName() {
+        if(!regexName.test($(lastName).val())) {
+            errorCounter++;
+            lastNameHelp.addClass('text-danger');
+            lastNameHelp.text('Please enter a valid name. Example: Jankovic');
+            lastName.addClass('border-danger');
+        }
+        else {
+            lastNameHelp.removeClass('text-danger');
+            lastNameHelp.text('');
+            lastName.removeClass('border-danger');
+            lastName.addClass('border-success');
         }
     }
 
@@ -406,7 +426,7 @@ function registerValidation() {
         if(!regexUsername.test($(username).val())) {
             errorCounter++;
             usernameHelp.addClass('text-danger');
-            usernameHelp.text('Please enter a valid username. Example: Lazar');
+            usernameHelp.text('Please enter a valid username. Example: LazarJ');
             username.addClass('border-danger');
         }
         else {
@@ -491,8 +511,11 @@ function registerValidation() {
         }
     }
 
-    name.on('focusout', function() {
-        checkRegisterName();
+    firstName.on('focusout', function() {
+        checkRegisterFirstName();
+    });
+    lastName.on('focusout', function() {
+        checkRegisterLastName();
     });
     username.on('focusout', function() {
         checkRegisterUsername();
@@ -516,7 +539,8 @@ function registerValidation() {
 
     $(document).on('click', '#registerButton', function() {
         errorCounter = 0;
-        checkRegisterName();
+        checkRegisterFirstName();
+        checkRegisterLastName();
         checkRegisterUsername();
         checkRegisterEmail();
         checkRegisterPassword();
@@ -525,11 +549,12 @@ function registerValidation() {
         checkRegisterPhone();
 
         if(errorCounter == 0) {
-            let arrayElements = [name, username, email, password, retypePassword, gender, phone];
+            let arrayElements = [firstName, lastName, username, email, password, retypePassword, gender, phone];
             let formElement = $('#registerForm');
 
             let data = {
-                'name': name.val(),
+                'firstName': firstName.val(),
+                'lastName': lastName.val(),
                 'username': username.val(),
                 'email': email.val(),
                 'password': password.val(),

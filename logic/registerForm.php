@@ -3,7 +3,8 @@
     if(isset($_POST['button'])) {
         // require_once '../config/connection.php';
         try {
-            $name = $_POST['name'];
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
             $username = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -24,7 +25,10 @@
             $response = '';
             $statusCode = '';
 
-            if(!preg_match($regexName, $name)) {
+            if(!preg_match($regexName, $firstName)) {
+                $errorCounter++;
+            }
+            if(!preg_match($regexName, $lastName)) {
                 $errorCounter++;
             }
             if(!preg_match($regexUsername, $username)) {
@@ -56,6 +60,10 @@
                 // Upis u bazu
                 // $insert ce da vrati true/false
                 // $insert = $insertInBase($name, $email, $message);
+                // ovde kod i za verifikaciju
+                $verificationCode = rand(10000, 99999);
+                
+
                 $insert = true;
                 if($insert) {
                     $response = ['message' => 'Everything good, data sent in base'];
