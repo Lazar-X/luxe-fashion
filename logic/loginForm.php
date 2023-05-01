@@ -38,8 +38,8 @@
                     $statusCode = 200;
                 }
                 else {
-                    $response = ['message' => 'Not good, there is error with sending data in base'];
-                    $statusCode = 500;
+                    $response = ['message' => 'Sorry, the username or password you entered is incorrect. Please try again.'];
+                    $statusCode = 422;
                 }
             }
             

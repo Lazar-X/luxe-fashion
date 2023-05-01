@@ -137,6 +137,5 @@
     </div>
     
 <?php
-    require_once '../includes/services.php';
     require_once '../includes/footer.php';
 ?>

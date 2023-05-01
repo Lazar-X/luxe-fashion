@@ -16,6 +16,5 @@
         // ovde else ako uopste nije ulogovan da ga redirektuje
     ?>
 <?php
-    require_once '../includes/services.php';
     require_once '../includes/footer.php';
 ?>
