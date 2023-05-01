@@ -23,7 +23,7 @@
             }
 
             if($errorCounter != 0) {
-                $response = ['message' => 'There is error on server side with data from client side'];
+                $response = ['message' => 'Sorry, there seems to be an issue with your data. Please ensure that all fields are entered correctly and try again.'];
                 $statusCode = 422;
             }
 
@@ -39,7 +39,7 @@
                 }
                 else {
                     $response = ['message' => 'Sorry, the username or password you entered is incorrect. Please try again.'];
-                    $statusCode = 422;
+                    $statusCode = 401;
                 }
             }
             

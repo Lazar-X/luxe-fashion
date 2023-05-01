@@ -135,7 +135,13 @@ function ajaxCallBack(file, method, data, result) {
         dataType: 'json',
         success: result,
         error: function(xhr) {
+            if(xhr.status == 401) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
+            }
             if(xhr.status == 422) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
+            }
+            if(xhr.status == 409) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
             }
             if(xhr.status == 500) {
@@ -246,9 +252,8 @@ function contactValidation() {
 
             ajaxCallBack('contactForm', 'post', data, function(result) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+                clearFrom(arrayElements, formElement);
             });
-
-            clearFrom(arrayElements, formElement);
         }
 
         errorCounter = 0;
@@ -332,9 +337,8 @@ function loginValidation() {
                 window.setTimeout(function() {
                     window.location = 'index.php';
                 }, 3000);
+                clearFrom(arrayElements, formElement);
             });
-
-            clearFrom(arrayElements, formElement);
         }
 
         errorCounter = 0;
@@ -572,9 +576,8 @@ function registerValidation() {
             ajaxCallBack('registerForm', 'post', data, function(result) {
                 $('#verification-code').html(`<small id="responseInformation" class="form-text text-success font-weight-bold"><span class="h4">${result.verificationCode}</span></small>`);
                 $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+                clearFrom(arrayElements, formElement);
             });
-
-            clearFrom(arrayElements, formElement);
         }
 
         errorCounter = 0;
@@ -758,12 +761,8 @@ function checkoutValidation() {
 
             ajaxCallBack('checkoutForm', 'post', data, function(result) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
-            });
-
-            clearFrom(arrayElements, formElement);
-
-            
-
+                clearFrom(arrayElements, formElement);
+            });        
         }
 
         errorCounter = 0;

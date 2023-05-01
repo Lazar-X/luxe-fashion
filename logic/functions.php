@@ -31,6 +31,32 @@
         return $result;
     }
 
+    function userEmailSelect($email) {
+        global $conn;
+
+        $query = 'SELECT * FROM users WHERE user_email = :email';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':email', $email);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function userUsernameSelect($username) {
+        global $conn;
+
+        $query = 'SELECT * FROM users WHERE user_username = :username';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':username', $username);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
     function userSelect($username, $hashedPassword) {
         global $conn;
 
@@ -44,16 +70,5 @@
         $result = $prepare -> fetch();
         return $result;
     }
-
-    // function test($testName) {
-    //     global $conn;
-    //     $query = 'INSERT INTO test(test_name) VALUES(:testName)';
-    //     $prepare = $conn -> prepare($query);
-    //     $prepare -> bindParam(':testName', $testName);
-    //     $result = $prepare -> execute();
-    //     return $result;
-    // }
-
-
 
 ?>
