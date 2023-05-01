@@ -65,6 +65,7 @@
                 $hashedPassword = md5($password);
                 $verificationCode = rand(10000, 99999);
                 $roleId = 1;
+                
                 $userInsert = userInsert($firstName, $lastName, $username, $email, $hashedPassword, $gender, $verificationCode, $roleId);
 
                 if($userInsert) {

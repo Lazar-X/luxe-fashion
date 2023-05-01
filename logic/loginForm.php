@@ -2,6 +2,7 @@
     header('Content-type: application/json');
     if(isset($_POST['button'])) {
         require_once '../config/connection.php';
+        require_once 'functions.php';
         try {
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -21,16 +22,16 @@
             }
 
             if($errorCounter != 0) {
-                $response = ['message' => '422 greska'];
+                $response = ['message' => 'There is error on server side with data from client side'];
                 $statusCode = 422;
             }
 
             else {
-                // Upis u bazu
-                // $insert ce da vrati true/false
-                // $insert = $insertInBase($name, $email, $message);
-                $insert = true;
-                if($insert) {
+                $hashedPassword = md5($password);
+
+                $userSelect = userSelect($username, $hashedPassword);     
+
+                if($userSelect) {
                     $response = ['message' => 'Login successful! Redirecting to index page.'];
                     $statusCode = 201;
                 }

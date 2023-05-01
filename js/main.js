@@ -141,7 +141,6 @@ function fetchFormData(file, data) {
             $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
         },
         error: function(xhr) {
-            console.error(xhr);
             if(xhr.status == 422) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
             }

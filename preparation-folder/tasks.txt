@@ -1,5 +1,9 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
+Za registraciju treba zavrsiti:
+Niz gender i niz role se dobija preko upita
+Treba pitati da li user postoji, i da li su mu email i username unique, i izdati poruku o tome
+
 Realizovati korisnika i admina
 
 Nakon registracije i logovanja treba da se prikaze neka poruka da je uspesno, kao i redirekt
