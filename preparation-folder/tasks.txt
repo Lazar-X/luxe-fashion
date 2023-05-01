@@ -4,6 +4,11 @@ Za registraciju treba zavrsiti:
 Niz gender i niz role se dobija preko upita
 Treba pitati da li user postoji, i da li su mu email i username unique, i izdati poruku o tome
 
+Treba na svim stranicama ubaciti header,nav,footer, kao i session start
+
+Za login:
+Treba realizovati ako je korisnik ulogovan a pristupi stranicama login ili register, da mu se izbaci poruka o tome i link za odjavu
+
 Realizovati korisnika i admina
 
 Nakon registracije i logovanja treba da se prikaze neka poruka da je uspesno, kao i redirekt

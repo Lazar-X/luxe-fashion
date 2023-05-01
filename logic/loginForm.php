@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header('Content-type: application/json');
     if(isset($_POST['button'])) {
         require_once '../config/connection.php';
@@ -29,11 +30,12 @@
             else {
                 $hashedPassword = md5($password);
 
-                $userSelect = userSelect($username, $hashedPassword);     
+                $userObject = userSelect($username, $hashedPassword);  
 
-                if($userSelect) {
-                    $response = ['message' => 'Login successful! Redirecting to index page.'];
-                    $statusCode = 201;
+                if($userObject) {
+                    $_SESSION['user'] = $userObject;
+                    $response = ['message' => 'Login successful! Redirecting to home page...'];
+                    $statusCode = 200;
                 }
                 else {
                     $response = ['message' => 'Not good, there is error with sending data in base'];

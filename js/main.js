@@ -127,19 +127,13 @@ function clearFrom(arrayElements, formElement) {
 }
 
 // Function to send data with ajax
-function fetchFormData(file, data) {
+function ajaxCallBack(file, method, data, result) {
     $.ajax({
         url: '../logic/' + file + '.php',
-        method: 'post',
+        method: method,
         data: data,
         dataType: 'json',
-        success: function(result) {
-            console.log(result);
-            if(file == 'registerForm') {
-                $('#verification-code').html(`<small id="responseInformation" class="form-text text-success font-weight-bold"><span class="h4">${result.verificationCode}</span></small>`);
-            }
-            $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
-        },
+        success: result,
         error: function(xhr) {
             if(xhr.status == 422) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
@@ -249,7 +243,10 @@ function contactValidation() {
                 'message': message.val(),
                 'button': true
             };
-            fetchFormData('contactForm', data);
+
+            ajaxCallBack('contactForm', 'post', data, function(result) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+            });
 
             clearFrom(arrayElements, formElement);
         }
@@ -329,7 +326,13 @@ function loginValidation() {
                 'password': password.val(),
                 'button': true
             };
-            fetchFormData('loginForm', data);
+
+            ajaxCallBack('loginForm', 'post', data, function(result) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+                window.setTimeout(function() {
+                    window.location = 'index.php';
+                }, 3000);
+            });
 
             clearFrom(arrayElements, formElement);
         }
@@ -565,7 +568,11 @@ function registerValidation() {
                 'phone': phone.val(),
                 'button': true
             };
-            fetchFormData('registerForm', data);
+
+            ajaxCallBack('registerForm', 'post', data, function(result) {
+                $('#verification-code').html(`<small id="responseInformation" class="form-text text-success font-weight-bold"><span class="h4">${result.verificationCode}</span></small>`);
+                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+            });
 
             clearFrom(arrayElements, formElement);
         }
@@ -748,7 +755,10 @@ function checkoutValidation() {
                 'postcode': postcode.val(),
                 'button': true
             };
-            fetchFormData('checkoutForm', data);
+
+            ajaxCallBack('checkoutForm', 'post', data, function(result) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+            });
 
             clearFrom(arrayElements, formElement);
 

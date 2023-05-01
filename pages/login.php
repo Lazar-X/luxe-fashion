@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +44,9 @@
                         <button type="button" id="loginButton" class="btn mt-3 button">Login</button>
                         <div id="response">
                             <!-- <small id="contactInformation" class="form-text text-success font-weight-bold"></small> -->
+                        </div>
+                        <div id="result">
+                            
                         </div>
                     </form>
                 </div>
