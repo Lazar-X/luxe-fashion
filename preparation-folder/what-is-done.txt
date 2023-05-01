@@ -27,6 +27,7 @@ Kreiranje baze:
 navigation(nista specijalno), 
 contact(nece zavisiti od usera, svako ko dodje na sajt moze da stupi u kontakt tj. da posalje poruku)
 product(unutar imamo image src, jer za svaki proizvod ima samo jedna slika pa nije trebalo praviti posebnu tabelu, zato nemam galeriju)
+Sto se tice checkout, u realnom zivotu bi postcode i address takodje mogli da stavimo korisniku da update, pa da vucemo iz baze, ali sam hteo neku varijaciju da napravim
 
 
 Celokupan rad se moze videti na github

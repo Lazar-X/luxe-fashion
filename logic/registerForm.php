@@ -1,7 +1,8 @@
 <?php
     header('Content-type: application/json');
     if(isset($_POST['button'])) {
-        // require_once '../config/connection.php';
+        require_once '../config/connection.php';
+        require_once 'functions.php';
         try {
             $firstName = $_POST['firstName'];
             $lastName = $_POST['lastName'];
@@ -13,7 +14,7 @@
             $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 
             // this will be from database
-            $arrayGender = ['m', 'f'];
+            $arrayGender = ['1', '2'];
 
             $regexName = '/^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/';
             $regexUsername = '/^[a-zA-Z0-9]{3,16}$/';
@@ -57,16 +58,23 @@
                 $statusCode = 422;
             }
             else {
-                // Upis u bazu
-                // $insert ce da vrati true/false
-                // $insert = $insertInBase($name, $email, $message);
-                // ovde kod i za verifikaciju
-                $verificationCode = rand(10000, 99999);
-                
+                // ovde prvo provera da li user postoji
+                // sledece provera da li mu je unique email adresa i username
 
-                $insert = true;
-                if($insert) {
-                    $response = ['message' => 'Everything good, data sent in base'];
+                // ako ne postoji upis u bazu
+                $hashedPassword = md5($password);
+                $verificationCode = rand(10000, 99999);
+                $roleId = 1;
+                $userInsert = userInsert($firstName, $lastName, $username, $email, $hashedPassword, $gender, $verificationCode, $roleId);
+
+                if($userInsert) {
+                    if($phone !== '') {
+                        // dobijanje podataka dosta bezbedniji nacin preko email npr ili preko username
+                        $userId = $conn -> lastInsertId();
+                        $phoneInsert = phoneInsert($userId, $phone);
+                    }
+
+                    $response = ['message' => 'Everything good, data sent in base.', 'verificationCode' => 'Your verification code that you will need to input on your next login: ' . $verificationCode];
                     $statusCode = 201;
                 }
                 else {

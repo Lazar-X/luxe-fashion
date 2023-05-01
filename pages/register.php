@@ -27,13 +27,13 @@
                 </div>
                 <div class="col-12">
                     <form id="registerForm">
-                        <!-- Full name -->
+                        <!-- First name -->
                         <div class="form-group">
                           <label for="registerFirstName" class="font-weight-bold">First Name:</label>
                           <input type="text" class="form-control" id="registerFirstName" placeholder="Enter first name">
                           <small id="firstNameHelp" class="form-text">Example: Lazar</small>
                         </div>
-                        <!-- Full name -->
+                        <!-- Last name -->
                         <div class="form-group">
                           <label for="registerLastName" class="font-weight-bold">Last Name:</label>
                           <input type="text" class="form-control" id="registerLastName" placeholder="Enter last name">
@@ -69,13 +69,13 @@
                         <div class="form-group">
                             <label class="font-weight-bold">Gender:</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="registerGender" id="male" value="m">
+                                <input class="form-check-input" type="radio" name="registerGender" id="male" value="1">
                                 <label class="form-check-label" for="male">
                                   Male
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="registerGender" id="female" value="f">
+                                <input class="form-check-input" type="radio" name="registerGender" id="female" value="2">
                                 <label class="form-check-label" for="female">
                                   Female
                                 </label>
@@ -92,6 +92,9 @@
                         <button type="button" id="registerButton" class="btn mt-3 button">Register</button>
                         <div id="response">
                             <!-- <small id="contactInformation" class="form-text text-success font-weight-bold"></small> -->
+                        </div>
+                        <div id="verification-code">
+                            
                         </div>
                     </form>
                 </div>

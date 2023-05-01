@@ -1,9 +1,12 @@
 window.onload = function() {
     // Global
-    toggleMenu();
+    // toggleMenu();
     // Index
     if(document.URL.includes('index.php')) {
 
+    }
+    if(document.URL.includes('test.php')) {
+        testValidation();
     }
     // Shop
     if(document.URL.includes('shop.php')) {
@@ -132,17 +135,17 @@ function fetchFormData(file, data) {
         dataType: 'json',
         success: function(result) {
             console.log(result);
-            // $('response').text($(result.message));
+            if(file == 'registerForm') {
+                $('#verification-code').html(`<small id="responseInformation" class="form-text text-success font-weight-bold"><span class="h4">${result.verificationCode}</span></small>`);
+            }
             $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
         },
         error: function(xhr) {
             console.error(xhr);
             if(xhr.status == 422) {
-                // $('response').text($(xhr.responseText));
                 $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
             }
             if(xhr.status == 500) {
-                // $('response').text($(xhr.responseText));
                 $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
             }
         }
@@ -757,3 +760,21 @@ function checkoutValidation() {
         errorCounter = 0;
     });
 }
+
+// Function for test
+// function testValidation() {
+//     let testName = $('#testName');
+//     $(document).on('click', '#testButton', function() {
+//         console.log(testName);
+//             // let arrayElements = [testName];
+//             // let formElement = $('#loginForm');
+            
+//             let data = {
+//                 'testName': testName.val(),
+//                 'button': true
+//             };
+//             fetchFormData('testForm', data);
+
+//             // clearFrom(arrayElements, formElement);
+//     });
+// }
