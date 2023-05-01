@@ -1,16 +1,9 @@
 <?php
     session_start();
+    require_once '../includes/head.php';
+    require_once '../includes/header.php';
+    require_once '../includes/navigation.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin stranica</title>
-</head>
-<body>
     <?php
         if(isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
@@ -21,5 +14,7 @@
         }
         // ovde else ako uopste nije ulogovan da ga redirektuje
     ?>
-</body>
-</html>
+<?php
+    require_once '../includes/services.php';
+    require_once '../includes/footer.php';
+?>

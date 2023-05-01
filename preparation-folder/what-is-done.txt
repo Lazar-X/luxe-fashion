@@ -21,7 +21,7 @@ Phone je opcioni, ne mora da se unese, ali ako se unosi mora da zadovolji format
 
 -Php:
 Napravljen fajl za konekciju
-Stranice izdeljene na delove header, nav, footer itd...
+Stranice izdeljene na delove header, nav, footer, head(gde se u zavisnosti od stranice ucitava odredjeni meta tagovi) itd...
 Napravljeni fajlovi za validaciju podataka
 Kreiranje baze:
 navigation(nista specijalno), 

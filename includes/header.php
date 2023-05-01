@@ -5,6 +5,14 @@
                 <ul class="d-flex justify-content-md-end justify-content-center pt-3">
                     <?php
                         if(isset($_SESSION['user'])) {
+                            $user = $_SESSION['user'];
+                            
+                            if($user -> role_name == 'admin') {
+                                echo '<li class="ml-3"><a href="admin.php"><i class="fa-solid fa-sliders"></i> Dashboard</a></li>';
+                            }
+                            if($user -> role_name == 'user') {
+                                echo '<li class="ml-3"><a href="user.php"><i class="fa-solid fa-user"></i> Profile</a></li>';
+                            }
                             echo '<li class="ml-3"><a href="../logic/logout.php"><i class="fa-solid fa-right-to-bracket"></i> Logout</a></li>';
                         }
                         else {
