@@ -29,10 +29,12 @@ contact(nece zavisiti od usera, svako ko dodje na sajt moze da stupi u kontakt t
 product(unutar imamo image src, jer za svaki proizvod ima samo jedna slika pa nije trebalo praviti posebnu tabelu, zato nemam galeriju)
 sizes(svaki proizvod ce imati vise velicina)
 colors(prvobitni plan mi je bio da svaki proizvod moze da bude u vise boja, ali nisam imao dovoljno slika kako bi to vizuelno bilo dobro, preko photoshopa to nije izgledalo dobro, pa sam na kraj realizovao da jedan proizvod ima jednu boju)
-Sto se tice checkout, u realnom zivotu bi postcode i address takodje mogli da stavimo korisniku da update, pa da vucemo iz baze, ali sam hteo neku varijaciju da napravim
+Navigacioni meni se stampa dinamicki, na svakom mestu odredjena grupa linkova
 Realizovano logovanje i registracija
 Realizovana verifikacija, prilikom registracije se dobije kod, a prilikom prvog logovanja taj kod treba da upise, inace ne moze da aktivira nalog tj. da se uloguje, nije nesto preveliko ali eto
-Navigacioni meni se stampa dinamicki, na svakom mestu odredjena grupa linkova
+Sto se tice checkout, u realnom zivotu bi postcode i address takodje mogli da stavimo korisniku da update, pa da vucemo iz baze, ali sam hteo neku varijaciju da napravim
+Podaci kod checkout se vuku iz baze iz tabele users, ostalo se popunjava, ako ima phone onda on, ako ne prazan string
+
 
 
 Celokupan rad se moze videti na github

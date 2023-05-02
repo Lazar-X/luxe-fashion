@@ -57,6 +57,19 @@
         return $result;
     }
 
+    function phoneSelect($userId) {
+        global $conn;
+
+        $query = 'SELECT * FROM phones WHERE user_id = :userId';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':userId', $userId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
     function userEmailSelect($email) {
         global $conn;
 
@@ -110,5 +123,17 @@
         $result = $prepare -> fetch();
         return $result;
     }
+
+    function countriesSelect() {
+        global $conn;
+        $query = 'SELECT * FROM countries';
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+    
 
 ?>
