@@ -30,6 +30,8 @@ product(unutar imamo image src, jer za svaki proizvod ima samo jedna slika pa ni
 sizes(svaki proizvod ce imati vise velicina)
 colors(prvobitni plan mi je bio da svaki proizvod moze da bude u vise boja, ali nisam imao dovoljno slika kako bi to vizuelno bilo dobro, preko photoshopa to nije izgledalo dobro, pa sam na kraj realizovao da jedan proizvod ima jednu boju)
 Sto se tice checkout, u realnom zivotu bi postcode i address takodje mogli da stavimo korisniku da update, pa da vucemo iz baze, ali sam hteo neku varijaciju da napravim
+Realizovano logovanje i registracija
+Navigacioni meni se stampa dinamicki, na svakom mestu odredjena grupa linkova
 
 
 Celokupan rad se moze videti na github

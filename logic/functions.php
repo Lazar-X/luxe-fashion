@@ -1,8 +1,11 @@
 <?php
-    function navigationSelect() {
+    function navigationSelect($navigation_group_id) {
         global $conn;
-        $query = 'SELECT * FROM navigation';
+        $query = 'SELECT * FROM navigation WHERE navigation_group_id = :navigation_group_id';
+
         $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':navigation_group_id', $navigation_group_id);
+
         $prepare -> execute();
         $result = $prepare -> fetchAll();
         return $result;

@@ -1,0 +1,8 @@
+Treba proveriti responsive
+Treba proveriti dinamicko ispisivanje menija
+Treba proveriti registraciju
+Treba proveriti login
+Treba proveriti contact
+Treba proveriti responsive
+Treba proveriti responsive
+Treba proveriti responsive

@@ -29,3 +29,4 @@ Treba napisati dokumentaciju
 Ako ostane vremena:
 Napraviti sekciju za proizvod koji je na popustu odredjeno vreme
 Treba da popravimo responsive navigaciju, uppercase, padding (samo dodati padding za navbar u nasem css)
+Mozemo napraviti novu tabelu tako da imamo dve tabele za navigaciju, i npr imacemo navigacionu grupu za social, additional i slicno

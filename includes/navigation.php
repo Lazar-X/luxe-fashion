@@ -11,7 +11,8 @@
                             <?php
                                 require_once '../config/connection.php';
                                 require_once '../logic/functions.php';
-                                $navigation = navigationSelect();
+                                $navigation_group_id = 1;
+                                $navigation = navigationSelect($navigation_group_id);
                                 if($navigation) {
                                     foreach ($navigation as $navItem) {
                                         echo '<li class="ml-3"><a href="'.$navItem -> navigation_href.'">'.$navItem -> navigation_title.'</a></li>';
