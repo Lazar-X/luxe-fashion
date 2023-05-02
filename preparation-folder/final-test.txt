@@ -1,8 +1,9 @@
-Treba proveriti responsive
+Treba proveriti responsive (na drugim uredjajima)
 Treba proveriti dinamicko ispisivanje menija
+Treba proveriti contact
 Treba proveriti registraciju
 Treba proveriti login
-Treba proveriti contact
-Treba proveriti responsive
-Treba proveriti responsive
-Treba proveriti responsive
+Treba proveriti verifikaciju
+Treba proveriti poll
+Treba proveriti 
+Treba proveriti 

@@ -7,7 +7,9 @@
         try {
             $username = $_POST['username'];
             $password = $_POST['password'];
+            $verificationCode = $_POST['verificationCode'];
 
+            $regexCode = '/^\d{5}$/';
             $regexUsername = '/^[a-zA-Z0-9]{3,16}$/';
             $regexPassword = '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/';
 
@@ -15,6 +17,9 @@
             $response = '';
             $statusCode = '';
 
+            if(!preg_match($regexCode, $verificationCode)) {
+                $errorCounter++;
+            }
             if(!preg_match($regexUsername, $username)) {
                 $errorCounter++;
             }
@@ -29,23 +34,20 @@
 
             else {
                 $hashedPassword = md5($password);
-
                 $userObject = userSelect($username, $hashedPassword);
 
-                if($userObject -> user_verified == 0) {
-                    $response = ['message' => 'not verified'];
+                $userVerificationCode = $userObject -> user_verification_code;
+                $userUsername = $userObject -> user_username;
+
+                if($userVerificationCode == $verificationCode) {
+                    verifyUser($username, $userVerificationCode);
+                    $_SESSION['user'] = $userObject;
+                    $response = ['message' => 'Your account has been verified successfully! Redirecting to home page...'];
                     $statusCode = 200;
                 }
                 else {
-                    if($userObject) {
-                        $_SESSION['user'] = $userObject;
-                        $response = ['message' => 'Login successful! Redirecting to home page...'];
-                        $statusCode = 200;
-                    }
-                    else {
-                        $response = ['message' => 'Sorry, the username or password you entered is incorrect. Please try again.'];
-                        $statusCode = 401;
-                    }
+                    $response = ['message' => 'Sorry, the verification code is incorrect. Press Login and try again.'];
+                    $statusCode = 401;
                 }
             }
             

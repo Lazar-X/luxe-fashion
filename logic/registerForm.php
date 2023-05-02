@@ -69,7 +69,6 @@
                     $statusCode = 409;
                 }
                 else {
-                    // ako ne postoji upis u bazu
                     $hashedPassword = md5($password);
                     $verificationCode = rand(10000, 99999);
                     $roleId = 1;

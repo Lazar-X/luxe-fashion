@@ -32,6 +32,7 @@ window.onload = function() {
     // Login
     if(document.URL.includes('login.php')) {
         loginValidation();
+        verificationValidation();
     }
     // Register
     if(document.URL.includes('register.php')) {
@@ -163,7 +164,7 @@ function contactValidation() {
 
     let regexName = /^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/;
     let regexEmail = /^([a-zA-Z0-9._%+-]{1,64})@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$/;
-    let regexMessage = /^[A-Z][\w\s\d.,!?-]{9,49}$/i;
+    let regexMessage = /^[A-Z][\w\s\d.,!?-]{9,149}$/i;
 
     let errorCounter = 0;
 
@@ -212,7 +213,7 @@ function contactValidation() {
         if(!regexMessage.test($(message).val())) {
             errorCounter++;
             messageHelp.addClass('text-danger');
-            messageHelp.text('Please enter a valid message. Between 10 and 50 characters long.');
+            messageHelp.text('Please enter a valid message. Between 10 and 150 characters long.');
             message.addClass('border-danger');
         }
         else {
@@ -333,15 +334,76 @@ function loginValidation() {
             };
 
             ajaxCallBack('loginForm', 'post', data, function(result) {
-                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
-                window.setTimeout(function() {
-                    window.location = 'index.php';
-                }, 3000);
-                clearFrom(arrayElements, formElement);
+                if(result.message == 'not verified') {
+                    $('#response').html(`<div id="verificationForm">
+                    <div class="form-group">
+                    <label for="verificationCode" class="font-weight-bold">Sorry, it looks like you haven't entered your verification code yet. Please enter your code in the designated field to complete the verification process and gain access to your account.</label>
+                    <input type="text" class="form-control" id="verificationCode" placeholder="Enter verification code">
+                    <small id="verificationCodeHelp" class="form-text">Please enter your verification code</small>
+                  </div>
+                  <button type="button" id="verificationButton" class="btn mt-3 button">Verify</button>
+                  </div>`);
+                }
+                else {
+                    $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+                    window.setTimeout(function() {
+                        window.location = 'index.php';
+                    }, 3000);
+                    clearFrom(arrayElements, formElement);
+                }
             });
         }
 
         errorCounter = 0;
+    });
+}
+
+// Function to validate verify data
+function verificationValidation() {
+    $(document).on('click', '#verificationButton', function() {
+        let verificationCode = $('#verificationCode');
+        let verificationCodeHelp = $('#verificationCodeHelp');
+        let username = $('#loginUsername');
+        let password = $('#loginPassword');
+
+        let regexCode = /^\d{5}$/;
+        let regexUsername = /^[a-zA-Z0-9]{3,16}$/;
+        let regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
+
+        errorCounter = 0;
+
+
+        if(!regexUsername.test($(username).val())) {
+            errorCounter++;
+        }
+        if(!regexPassword.test($(password).val())) {
+            errorCounter++;
+        }
+        if(!regexCode.test($(verificationCode).val())) {
+            errorCounter++;
+            $(verificationCodeHelp).addClass('text-danger');
+            $(verificationCodeHelp).text('Please enter a valid verification code.');
+            $(verificationCode).addClass('border-danger');
+        }
+
+        console.log(errorCounter);
+
+        if(errorCounter == 0) {
+            let data = {
+                'username': username.val(),
+                'password': password.val(),
+                'verificationCode': verificationCode.val(),
+                'button': true
+            };
+            console.log(data);
+
+            ajaxCallBack('verificationForm', 'post', data, function(result) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+                window.setTimeout(function() {
+                    window.location = 'index.php';
+                }, 3000);
+            });
+        }
     });
 }
 

@@ -33,17 +33,14 @@
                         </div>
                         <small class="form-text text-muted">Never share your login credentials with anyone.</small>
                         <button type="button" id="loginButton" class="btn mt-3 button">Login</button>
-                        <div id="response">
-                            <!-- <small id="contactInformation" class="form-text text-success font-weight-bold"></small> -->
-                        </div>
-                        <div id="result">
-
-                        </div>
                     </form>
                 </div>
                 <div class="col-12 mt-2">
                     <p>Dont have an account yet? <a href="register.php" class="font-weight-bold">Register now!</a></p>
                     <p>Did you forget your password? <a href="contact.php" class="font-weight-bold">Contact us!</a></p>
+                </div>
+                <div id="response">
+                            <!-- <small id="contactInformation" class="form-text text-success font-weight-bold"></small> -->
                 </div>
             </div>';
                 }

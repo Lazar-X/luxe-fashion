@@ -1,17 +1,19 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
-Navigaciju treba ispisati dinamicki
+
+Treba realizovati checkout formu, ako uopste nije korisnik a hoce da pristupi, onda mu treba zabraniti pristup
+Ako je korisnik onda njegove podatke ispisati u checkout formi, ovo bi trebalo da bude lako, vec imamo funkciju da selektujemo korisnika, samo izvucemo njegove podatke
+
+Treba realizovati poll stranicu
 
 Za registraciju treba zavrsiti:
 Niz gender i niz role se dobija preko upita
 
-Za korisnika napraviti verifikaciju
-
 Realizovati korisnika i admina
-Realizovati verifikacioni broj pri prvom loginu
 
 Napraviti user dashboard
 Da moze da menja podatke
+Da moze da ucestvuje u anketi
 
 Napraviti admin dashboard
 Za admina napraviti dodavanje proizvoda, kategorije, brandove, boje, velicine i sve ostalo sto cemo imati u bazi

@@ -2,6 +2,7 @@
     header('Content-type: application/json');
     if(isset($_POST['button'])) {
         require_once '../config/connection.php';
+        require_once 'functions.php';
         try {
             $name = $_POST['name'];
             $email = $_POST['email'];
@@ -9,7 +10,7 @@
 
             $regexName = '/^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/';
             $regexEmail = '/^([a-zA-Z0-9._%+-]{1,64})@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$/';
-            $regexMessage = '/^[A-Z][\w\s\d.,!?-]{9,49}$/i';
+            $regexMessage = '/^[A-Z][\w\s\d.,!?-]{9,149}$/i';
 
             $errorCounter = 0;
             $response = '';
@@ -30,12 +31,9 @@
                 $statusCode = 422;
             }
             else {
-                // Upis u bazu
-                // $insert ce da vrati true/false
-                // $insert = $insertInBase($name, $email, $message);
-                $insert = true;
-                if($insert) {
-                    $response = ['message' => 'Everything good, data sent in base'];
+                $contactInsert = contactInsert($name, $email, $message);
+                if($contactInsert) {
+                    $response = ['message' => 'Your message has been sent to our administrators and someone will get back to you as soon as possible at the email address you provided.'];
                     $statusCode = 201;
                 }
                 else {

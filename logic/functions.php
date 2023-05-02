@@ -11,6 +11,20 @@
         return $result;
     }
 
+    function contactInsert($name, $email, $message) {
+        global $conn;
+
+        $query = 'INSERT INTO contact(contact_name, contact_email, contact_message, contact_created_at) VALUES(:contactName, :email, :contactMessage, NOW())';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':contactName', $name);
+        $prepare -> bindParam(':email', $email);
+        $prepare -> bindParam(':contactMessage', $message);
+
+        $result = $prepare -> execute();
+        return $result;
+    }
+
     function userInsert($firstName, $lastName, $username, $email, $hashedPassword, $gender, $verificationCode, $roleId) {
         global $conn;
 
@@ -77,6 +91,20 @@
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':username', $username);
         $prepare -> bindParam(':hashedPassword', $hashedPassword);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function verifyUser($username, $verificationCode) {
+        global $conn;
+
+        $query = 'UPDATE users SET user_verified = 1 WHERE user_username = :username AND user_verification_code = :verificationCode';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':username', $username);
+        $prepare -> bindParam(':verificationCode', $verificationCode);
 
         $prepare -> execute();
         $result = $prepare -> fetch();
