@@ -10,7 +10,7 @@
                 if(isset($_SESSION['user'])) {
                     echo '<div style="height: 300px;" class="row d-flex align-items-center">
                         <div class="col-12">
-                            <h3 class="text-danger">Oops, it looks like youre already logged in!</h3>
+                            <h3 class="text-danger">Oops, it looks like you are already logged in!</h3>
                         </div>
                     </div>';
                 }

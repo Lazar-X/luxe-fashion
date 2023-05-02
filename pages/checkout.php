@@ -87,11 +87,13 @@
         </section>';
     }
     else {
-        echo '<div style="height: 300px;" class="row d-flex align-items-center">
-                        <div class="col-12">
-                            <h3 class="text-danger">Oops, it looks like youre not logged in!</h3>
-                        </div>
-                    </div>';
+        echo '<div class=container">
+                <div style="height: 500px; width: 100%;" class="row d-flex align-items-center">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <h3 class="text-danger">Oops, it looks like you are not logged in!</h3>
+                    </div>
+                </div>
+            </div>';
     }
     require_once '../includes/footer.php';
 ?>

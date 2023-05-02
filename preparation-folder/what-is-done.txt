@@ -34,6 +34,7 @@ Realizovano logovanje i registracija
 Realizovana verifikacija, prilikom registracije se dobije kod, a prilikom prvog logovanja taj kod treba da upise, inace ne moze da aktivira nalog tj. da se uloguje, nije nesto preveliko ali eto
 Sto se tice checkout, u realnom zivotu bi postcode i address takodje mogli da stavimo korisniku da update, pa da vucemo iz baze, ali sam hteo neku varijaciju da napravim
 Podaci kod checkout se vuku iz baze iz tabele users, ostalo se popunjava, ako ima phone onda on, ako ne prazan string
+Drzave kod checkout se takodje dobijaju dinamicki iz baze
 
 
 

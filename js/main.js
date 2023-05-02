@@ -337,7 +337,7 @@ function loginValidation() {
                 if(result.message == 'not verified') {
                     $('#response').html(`<div id="verificationForm">
                     <div class="form-group">
-                    <label for="verificationCode" class="font-weight-bold">Sorry, it looks like you haven't entered your verification code yet. Please enter your code in the designated field to complete the verification process and gain access to your account.</label>
+                    <label for="verificationCode" class="font-weight-bold my-2">Sorry, it looks like you haven't entered your verification code yet. Please enter your code in the designated field to complete the verification process and gain access to your account.</label>
                     <input type="text" class="form-control" id="verificationCode" placeholder="Enter verification code">
                     <small id="verificationCodeHelp" class="form-text">Please enter your verification code</small>
                   </div>

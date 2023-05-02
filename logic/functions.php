@@ -135,5 +135,20 @@
         return $result;
     }
     
+    function orderInsert($orderPrice, $orderAddress, $orderPostcode, $countryId, $userId) {
+        global $conn;
+
+        $query = 'INSERT INTO orders(order_price, order_address, order_postcode, order_created_at, country_id, user_id) VALUES(:orderPrice, :orderAddress, :orderPostcode, NOW(), :countryId, :userId)';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':orderPrice', $orderPrice);
+        $prepare -> bindParam(':orderAddress', $orderAddress);
+        $prepare -> bindParam(':orderPostcode', $orderPostcode);
+        $prepare -> bindParam(':countryId', $countryId);
+        $prepare -> bindParam(':userId', $userId);
+
+        $result = $prepare -> execute();
+        return $result;
+    }
 
 ?>

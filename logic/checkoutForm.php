@@ -2,6 +2,7 @@
     header('Content-type: application/json');
     if(isset($_POST['button'])) {
         require_once '../config/connection.php';
+        require_once 'functions.php';
         try {
             $name = $_POST['name'];
             $email = $_POST['email'];
@@ -9,9 +10,13 @@
             $countryId = $_POST['countryId'];
             $address = $_POST['address'];
             $postcode = $_POST['postcode'];
+            $price = '333.92';
 
-            // this will be from database
-            $arrayCountry = [1, 2, 3];
+            $countries = countriesSelect();
+            $countryIds = array();
+            foreach ($countries as $country) {
+                $countryIds[] = $country -> country_id;
+            }
 
             $regexName = '/^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/';
             $regexEmail = '/^([a-zA-Z0-9._%+-]{1,64})@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$/';
@@ -35,7 +40,7 @@
             if(!preg_match($regexAddress, $address)) {
                 $errorCounter++;
             }
-            if(!in_array($countryId, $arrayCountry)) {
+            if(!in_array($countryId, $countryIds)) {
                 $errorCounter++;
             }
             if(!preg_match($regexPostcode, $postcode)) {
@@ -47,12 +52,11 @@
                 $statusCode = 422;
             }
             else {
-                // Upis u bazu
-                // $insert ce da vrati true/false
-                // $insert = $insertInBase($name, $email, $message);
-                $insert = true;
-                if($insert) {
-                    $response = ['message' => 'Success! Your data has been sent to the database.'];
+                $user = userEmailSelect($email);
+                $userId = $user -> user_id;
+                $orderInsert = orderInsert($price, $address, $postcode, $countryId, $userId);
+                if($orderInsert) {
+                    $response = ['message' => 'Your order has been successfully processed and will be shipped to the address you provided.'];
                     $statusCode = 201;
                 }
                 else {

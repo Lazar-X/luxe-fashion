@@ -4,6 +4,10 @@ Treba proveriti contact
 Treba proveriti registraciju
 Treba proveriti login
 Treba proveriti verifikaciju
+Treba proveriti checkout
 Treba proveriti poll
 Treba proveriti 
 Treba proveriti 
+
+Treba proveriti sve navedeno za korisnika
+Treba proveriti sve navedeno za admina
