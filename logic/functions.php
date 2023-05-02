@@ -70,6 +70,17 @@
         return $result;
     }
 
+    function usersSelectAll() {
+        global $conn;
+        $query = 'SELECT * FROM users';
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
     function userEmailSelect($email) {
         global $conn;
 
@@ -146,6 +157,71 @@
         $prepare -> bindParam(':orderPostcode', $orderPostcode);
         $prepare -> bindParam(':countryId', $countryId);
         $prepare -> bindParam(':userId', $userId);
+
+        $result = $prepare -> execute();
+        return $result;
+    }
+
+    function activePollsSelect() {
+        global $conn;
+        $query = 'SELECT * FROM polls WHERE poll_active = 1';
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function pollSelect($pollId) {
+        global $conn;
+
+        $query = 'SELECT * FROM polls WHERE poll_id = :pollId AND poll_active = 1';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':pollId', $pollId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function pollQuestionSelect($pollId) {
+        global $conn;
+
+        $query = 'SELECT * FROM poll_questions WHERE poll_id = :pollId';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':pollId', $pollId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function pollAnswersSelect($pollQuestionId) {
+        global $conn;
+        $query = 'SELECT * FROM poll_answers WHERE question_id = :pollQuestionId';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':pollQuestionId', $pollQuestionId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function insertUserPollAnswer($pollUserId, $pollQuestionId, $pollAnswerId) {
+        global $conn;
+
+        // INSERT INTO `poll_user_answers` (`poll_user_answer_id`, `user_id`, `question_id`, `answer_id`) VALUES (NULL, '28', '1', '1');
+
+        $query = 'INSERT INTO poll_user_answers(user_id, question_id, answer_id) VALUES(:pollUserId, :pollQuestionId, :pollAnswerId)';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':pollUserId', $pollUserId);
+        $prepare -> bindParam(':pollQuestionId', $pollQuestionId);
+        $prepare -> bindParam(':pollAnswerId', $pollAnswerId);
 
         $result = $prepare -> execute();
         return $result;

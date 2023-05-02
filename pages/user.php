@@ -7,7 +7,7 @@
     <?php
         if(isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
-            if($user -> role_name == 'korisnik') {
+            if($user -> role_name == 'user') {
                 echo 'ovo je za korisnika';
             }
             // ovde else ako nije korisnik da ga redirektuje

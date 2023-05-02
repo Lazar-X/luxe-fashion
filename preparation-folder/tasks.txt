@@ -1,13 +1,9 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
 
-Treba realizovati checkout formu, ako uopste nije korisnik a hoce da pristupi, onda mu treba zabraniti pristup
-Ako je korisnik onda njegove podatke ispisati u checkout formi, ovo bi trebalo da bude lako, vec imamo funkciju da selektujemo korisnika, samo izvucemo njegove podatke
+Kod register treba stampati gender iz baze
 
-Treba realizovati poll stranicu
-
-Za registraciju treba zavrsiti:
-Niz gender i niz role se dobija preko upita
+Treba realizovati poll stranicu, ostalo je da se izvrsi upit da li je taj user glassao, ako jeste izdaje se poruka o tome, ako ne prikazuje se anketa
 
 Realizovati korisnika i admina
 

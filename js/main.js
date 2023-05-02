@@ -47,6 +47,10 @@ window.onload = function() {
     if(document.URL.includes('checkout.php')) {
         checkoutValidation();
     }
+    // Vote
+    if(document.URL.includes('poll.php')) {
+        voteValidation();
+    }
 }
 
 // Function for navigation
@@ -828,6 +832,50 @@ function checkoutValidation() {
         }
 
         errorCounter = 0;
+    });
+}
+
+function voteValidation() {
+    $(document).on('click', '#voteButton', function() {
+        let poll = $('input[name="poll"]:checked');
+        let voteHelp = $('#voteHelp');
+        let userId = $('#userId');
+        let questionId = $('#questionId');
+
+        let regexId = /^\d+$/;
+
+        errorCounter = 0;
+        
+        if($(poll).length === 0) {
+            errorCounter++;
+            voteHelp.addClass('text-danger');
+            voteHelp.text('Please select your gender from the options provided above.');
+        }
+        if(!regexId.test($(userId).val())) {
+            voteHelp.addClass('text-danger');
+            voteHelp.text('User ID is not valid.');
+        }
+        if(!regexId.test($(questionId).val())) {
+            voteHelp.addClass('text-danger');
+            voteHelp.text('Question ID is not valid.');
+        }
+
+        if(errorCounter == 0) {
+            let data = {
+                'pollAnswerId': poll.val(),
+                'pollUserId': userId.val(),
+                'pollQuestionId': questionId.val(),
+                'button': true
+            };
+            console.log(data);
+
+            ajaxCallBack('pollForm', 'post', data, function(result) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+                // window.setTimeout(function() {
+                //     window.location = 'index.php';
+                // }, 3000);
+            });
+        }
     });
 }
 

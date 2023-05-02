@@ -35,7 +35,9 @@ Realizovana verifikacija, prilikom registracije se dobije kod, a prilikom prvog 
 Sto se tice checkout, u realnom zivotu bi postcode i address takodje mogli da stavimo korisniku da update, pa da vucemo iz baze, ali sam hteo neku varijaciju da napravim
 Podaci kod checkout se vuku iz baze iz tabele users, ostalo se popunjava, ako ima phone onda on, ako ne prazan string
 Drzave kod checkout se takodje dobijaju dinamicki iz baze
-
+Sto se ankete tice, prvo selektujemo sve ankete, zatim filtriramo samo one koje su aktivne, pa ako postoje, biramo jednu random
+Klikom na anketu prenosi se id ankete preko url adrese, ukoliko se pristupi direktno preko url, stampa mu se poruka i vraca ga nazad
+Glasanjem za anketu skladisti se odgovor
 
 
 Celokupan rad se moze videti na github

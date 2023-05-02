@@ -130,13 +130,16 @@ user_id
 poll_id
 poll_name
 poll_active
-user_id
+
+-poll_user_answers
+poll_user_answers_id
 question_id
 answer_id
 
 -poll_questions
 poll_question_id
 poll_question
+poll_id
 
 -poll_answers
 poll_answer_id
