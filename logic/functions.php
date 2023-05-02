@@ -1,4 +1,13 @@
 <?php
+    function navigationSelect() {
+        global $conn;
+        $query = 'SELECT * FROM navigation';
+        $prepare = $conn -> prepare($query);
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
     function userInsert($firstName, $lastName, $username, $email, $hashedPassword, $gender, $verificationCode, $roleId) {
         global $conn;
 

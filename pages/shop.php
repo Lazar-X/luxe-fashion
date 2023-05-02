@@ -3,6 +3,8 @@
     require_once '../includes/head.php';
     require_once '../includes/header.php';
     require_once '../includes/navigation.php';
+    require_once '../config/connection.php';
+    require_once 'functions.php';
 ?>
     <!-- Shop section -->
     <section id="shop" class="my-5">
@@ -317,6 +319,7 @@
                     <div class="row">
                         <div class="col-12">
                             <!-- products -->
+                            
                             <div class="row">
                                 <!-- Product -->
                                 <div class="col-lg-4 col-sm-6 col-12">

@@ -8,10 +8,19 @@
                 <div class="row">
                     <div class="col-md-11 col-12">
                         <ul class="d-flex justify-content-center pt-md-2 flex-md-row flex-column align-items-center">
-                            <li class="ml-3"><a href="index.php">Home</a></li>
-                            <li class="ml-3"><a href="shop.php">Shop</a></li>
-                            <li class="ml-3"><a href="about-us.php">About us</a></li>
-                            <li class="ml-3"><a href="contact.php">Contact</a></li>
+                            <?php
+                                require_once '../config/connection.php';
+                                require_once '../logic/functions.php';
+                                $navigation = navigationSelect();
+                                if($navigation) {
+                                    foreach ($navigation as $navItem) {
+                                        echo '<li class="ml-3"><a href="'.$navItem -> navigation_href.'">'.$navItem -> navigation_title.'</a></li>';
+                                    }
+                                }
+                                else {
+                                    echo 'Sorry, there are currently no navigation links available.';
+                                }
+                            ?>
                         </ul>
                     </div>
                     <div class="col-md-1 col-12 d-flex justify-content-center align-items-center">

@@ -14,12 +14,19 @@
             </div>
             <div class="col-md-4 col-sm-6 col-12">
                 <h3 class="mb-4">Information</h3>
-                <ul>
-                    <li class="mb-2"><a href="index.php">Home</a></li>
-                    <li class="mb-2"><a href="shop.php">Shop</a></li>
-                    <li class="mb-2"><a href="about-us.php">About us</a></li>
-                    <li class="mb-2"><a href="contact.php">Contact</a></li>
-                </ul>
+                <ul>';
+                    require_once '../config/connection.php';
+                    require_once '../logic/functions.php';
+                    $navigation = navigationSelect();
+                    if($navigation) {
+                        foreach ($navigation as $navItem) {
+                            echo '<li class="mb-2"><a href="'.$navItem -> navigation_href.'">'.$navItem -> navigation_title.'</a></li>';
+                        }
+                    }
+                    else {
+                        echo 'Sorry, there are currently no navigation links available.';
+                    }
+                echo '</ul>
             </div>
             <div class="col-md-4 col-sm-6 col-12">
                 <h3 class="mb-4">Additional Links</h3>

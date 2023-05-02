@@ -20,6 +20,14 @@ U tabeli phone cemo imati user_id i biramo INDEX
 
 Posle toga idemo na dizajner, i biramo da je user_id u svojoj primarni, a user_id u tabeli phone spoljni, i stavljamo kaskadno brisanje
 
+Dress: "Elegant Evening Gown" and "Boho Maxi Dress"
+Hoodie: "Classic Pullover Hoodie", "Sporty Zip-Up Hoodie", "Cozy Oversized Hoodie", and "Colorblock Hoodie"
+Jacket: "Denim Trucker Jacket" and "Puffer Jacket with Faux Fur Hood"
+Jeans: "Skinny High-Waist Jeans" and "Relaxed Straight Leg Jeans"
+Shirt: "Classic Button-Down Shirt", "Oversized Boyfriend Shirt", and "Plaid Flannel Shirt"
+Shorts: "High-Waisted Denim Shorts" and "Athletic Running Shorts"
+Sweatpants: "Cozy Fleece Sweatpants" and "Jogger Sweatpants with Pockets"
+
 
 
 

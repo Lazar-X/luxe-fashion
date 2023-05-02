@@ -1,7 +1,11 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
+Navigaciju treba ispisati dinamicki
+
 Za registraciju treba zavrsiti:
 Niz gender i niz role se dobija preko upita
+
+Za korisnika napraviti verifikaciju
 
 Realizovati korisnika i admina
 Realizovati verifikacioni broj pri prvom loginu

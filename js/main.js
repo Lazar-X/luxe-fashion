@@ -1,6 +1,6 @@
 window.onload = function() {
     // Global
-    // toggleMenu();
+    toggleMenu();
     // Index
     if(document.URL.includes('index.php')) {
 
