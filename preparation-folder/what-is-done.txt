@@ -37,7 +37,7 @@ Podaci kod checkout se vuku iz baze iz tabele users, ostalo se popunjava, ako im
 Drzave kod checkout se takodje dobijaju dinamicki iz baze
 Sto se ankete tice, prvo selektujemo sve ankete, zatim filtriramo samo one koje su aktivne, pa ako postoje, biramo jednu random
 Klikom na anketu prenosi se id ankete preko url adrese, ukoliko se pristupi direktno preko url, stampa mu se poruka i vraca ga nazad
-Glasanjem za anketu skladisti se odgovor
+Glasanjem skladisti se odgovor, i ukoliko je korisnik glasao, zabranjuje mu se da glasa ponovo
 
 
 Celokupan rad se moze videti na github

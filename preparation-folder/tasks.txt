@@ -1,15 +1,5 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
-Za select i delete treba napraviti globalne funkcije
-Za select se prenosi naziv tabele samo
-Za delete se prenozi naziv tabele, naziv kolone, i vrednost te kolone
-
-Prepraviti poll da se svi podaci izvlace iz jedne funkcije
-
-Kod register treba stampati gender iz baze
-
-Treba realizovati poll stranicu, ostalo je da se izvrsi upit da li je taj user glassao, ako jeste izdaje se poruka o tome, ako ne prikazuje se anketa
-
 Realizovati korisnika i admina
 
 Napraviti user dashboard
@@ -22,8 +12,13 @@ Napraviti uvid u korisnike
 Napraviti uvid u anketu
 Napraviti uvid u poruke sa contact stranice
 
+Treba napraviti shops stranicu
+Product se stampa dinamicki
+
+Treba napraviti cart funkcionalnost, ukupnu cenu, kao i delete iz carta
 
 
+Treba sve linkove prebaciti sa .html na .php
 
 Treba napraviti sitemap
 Treba proveriti sve linkove
@@ -32,4 +27,3 @@ Treba napisati dokumentaciju
 Ako ostane vremena:
 Napraviti sekciju za proizvod koji je na popustu odredjeno vreme
 Treba da popravimo responsive navigaciju, uppercase, padding (samo dodati padding za navbar u nasem css)
-Mozemo napraviti novu tabelu tako da imamo dve tabele za navigaciju, i npr imacemo navigacionu grupu za social, additional i slicno

@@ -5,8 +5,8 @@
     require_once '../includes/navigation.php';
     if(isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
-        $userPhone = phoneSelect($user -> user_id);
-        $countries = countriesSelect();
+        $userPhone = tableSelectByColumnValue('phones', 'user_id', $user -> user_id);
+        $countries = tableSelectAll('countries');
         if($userPhone !== false) {
             $number = $userPhone -> phone_number;
         }

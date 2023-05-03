@@ -13,8 +13,11 @@
             $gender = $_POST['gender'];
             $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 
-            // this will be from database
-            $arrayGender = ['1', '2'];
+            $genders = tableSelectAll('genders');
+            $genderIds = array();
+            foreach ($genders as $g) {
+                $genderIds[] = $g -> gender_id;
+            }
 
             $regexName = '/^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/';
             $regexUsername = '/^[a-zA-Z0-9]{3,16}$/';
@@ -44,7 +47,7 @@
             if($retypePassword !== $password) {
                 $errorCounter++;
             }
-            if(!in_array($gender, $arrayGender)) {
+            if(!in_array($gender, $genderIds)) {
                 $errorCounter++;
             }
             if($phone !== '') {
@@ -58,8 +61,8 @@
                 $statusCode = 422;
             }
             else {
-                $userUsername = userUsernameSelect($username);
-                $userEmail = userEmailSelect($email);
+                $userUsername = tableSelectByColumnValue('users', 'user_username', $username);
+                $userEmail = tableSelectByColumnValue('users', 'user_email', $email);
                 if($userUsername) {
                     $response = ['message' => 'User with this username already exists!'];
                     $statusCode = 409;

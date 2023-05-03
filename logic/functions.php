@@ -1,30 +1,44 @@
 <?php
-    function selectTableById($tableName, $columnName, $id) {
+    // fetchAll from table with column value
+    function tableSelectAllByColumnValue($tableName, $columnName, $columnValue) {
         global $conn;
-        $query = 'SELECT * FROM :tableName WHERE :columnName = :id';
+        $query = "SELECT * FROM $tableName WHERE $columnName = :columnValue";
 
         $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':tableName', $tableName);
-        $prepare -> bindParam(':columnName', $columnName);
-        $prepare -> bindParam(':id', $id);
+        $prepare -> bindParam(':columnValue', $columnValue);
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
         return $result;
     }
 
-    function selectTable($tableName) {
+    // fetch from table with column value
+    function tableSelectByColumnValue($tableName, $columnName, $columnValue) {
         global $conn;
-        $query = 'SELECT * FROM :tableName';
+
+        $query = "SELECT * FROM $tableName WHERE $columnName = :columnValue";
 
         $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':tableName', $tableName);
+        $prepare -> bindParam(':columnValue', $columnValue);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    // fetchAll with table name
+    function tableSelectAll($tableName) {
+        global $conn;
+        $query = "SELECT * FROM $tableName";
+
+        $prepare = $conn -> prepare($query);
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
         return $result;
     }
 
+    // navigation select
     function navigationSelect() {
         global $conn;
 
@@ -83,56 +97,6 @@
         return $result;
     }
 
-    function phoneSelect($userId) {
-        global $conn;
-
-        $query = 'SELECT * FROM phones WHERE user_id = :userId';
-
-        $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':userId', $userId);
-
-        $prepare -> execute();
-        $result = $prepare -> fetch();
-        return $result;
-    }
-
-    function usersSelectAll() {
-        global $conn;
-        $query = 'SELECT * FROM users';
-
-        $prepare = $conn -> prepare($query);
-
-        $prepare -> execute();
-        $result = $prepare -> fetchAll();
-        return $result;
-    }
-
-    function userEmailSelect($email) {
-        global $conn;
-
-        $query = 'SELECT * FROM users WHERE user_email = :email';
-
-        $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':email', $email);
-
-        $prepare -> execute();
-        $result = $prepare -> fetch();
-        return $result;
-    }
-
-    function userUsernameSelect($username) {
-        global $conn;
-
-        $query = 'SELECT * FROM users WHERE user_username = :username';
-
-        $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':username', $username);
-
-        $prepare -> execute();
-        $result = $prepare -> fetch();
-        return $result;
-    }
-
     function userSelect($username, $hashedPassword) {
         global $conn;
 
@@ -158,17 +122,6 @@
 
         $prepare -> execute();
         $result = $prepare -> fetch();
-        return $result;
-    }
-
-    function countriesSelect() {
-        global $conn;
-        $query = 'SELECT * FROM countries';
-
-        $prepare = $conn -> prepare($query);
-
-        $prepare -> execute();
-        $result = $prepare -> fetchAll();
         return $result;
     }
     
@@ -199,7 +152,7 @@
         return $result;
     }
 
-    function pollSelect($pollId) {
+    function activePollSelect($pollId) {
         global $conn;
 
         $query = 'SELECT * FROM polls WHERE poll_id = :pollId AND poll_active = 1';
@@ -212,35 +165,22 @@
         return $result;
     }
 
-    function pollQuestionSelect($pollId) {
+    function userVoted($userId, $questionId) {
         global $conn;
 
-        $query = 'SELECT * FROM poll_questions WHERE poll_id = :pollId';
+        $query = 'SELECT * FROM poll_user_answers WHERE user_id = :userId AND question_id = :questionId';
 
         $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':pollId', $pollId);
+        $prepare -> bindParam(':userId', $userId);
+        $prepare -> bindParam(':questionId', $questionId);
 
         $prepare -> execute();
         $result = $prepare -> fetch();
         return $result;
     }
 
-    function pollAnswersSelect($pollQuestionId) {
-        global $conn;
-        $query = 'SELECT * FROM poll_answers WHERE question_id = :pollQuestionId';
-
-        $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':pollQuestionId', $pollQuestionId);
-
-        $prepare -> execute();
-        $result = $prepare -> fetchAll();
-        return $result;
-    }
-
     function insertUserPollAnswer($pollUserId, $pollQuestionId, $pollAnswerId) {
         global $conn;
-
-        // INSERT INTO `poll_user_answers` (`poll_user_answer_id`, `user_id`, `question_id`, `answer_id`) VALUES (NULL, '28', '1', '1');
 
         $query = 'INSERT INTO poll_user_answers(user_id, question_id, answer_id) VALUES(:pollUserId, :pollQuestionId, :pollAnswerId)';
 

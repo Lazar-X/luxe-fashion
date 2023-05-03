@@ -871,9 +871,9 @@ function voteValidation() {
 
             ajaxCallBack('pollForm', 'post', data, function(result) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
-                // window.setTimeout(function() {
-                //     window.location = 'index.php';
-                // }, 3000);
+                window.setTimeout(function() {
+                    window.location = 'index.php';
+                }, 3000);
             });
         }
     });
@@ -893,9 +893,8 @@ function ispisPostova(nizPostova) {
     }
     else {
         html += 'Ovde bukvalno ceo nas product';
-        let rb = 1;
         for(let postObj of nizPostova) {
-
+            html += `<p>${postObj.naziv_posta}</p>`;
         }
     }
 }

@@ -12,7 +12,7 @@
             $postcode = $_POST['postcode'];
             $price = '333.92';
 
-            $countries = countriesSelect();
+            $countries = tableSelectAll('countries');
             $countryIds = array();
             foreach ($countries as $country) {
                 $countryIds[] = $country -> country_id;
@@ -52,7 +52,7 @@
                 $statusCode = 422;
             }
             else {
-                $user = userEmailSelect($email);
+                $user = tableSelectByColumnValue('users', 'user_email', $email);
                 $userId = $user -> user_id;
                 $orderInsert = orderInsert($price, $address, $postcode, $countryId, $userId);
                 if($orderInsert) {

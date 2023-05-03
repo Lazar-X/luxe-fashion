@@ -8,15 +8,23 @@
             $pollUserId = $_POST['pollUserId'];
             $pollQuestionId = $_POST['pollQuestionId'];
 
-            $users = usersSelectAll();
+            $users = tableSelectAll('users');
             $userIds = array();
             foreach ($users as $user) {
                 $userIds[] = $user -> user_id;
             }
 
-            // this will be from database
-            $pollAnswerIds = ['1', '2', '3', '4', '5'];
-            $pollQuestionIds = ['1', '2', '3', '4', '5'];
+            $pollAnswers = tableSelectAll('poll_answers');
+            $pollAnswerIds = array();
+            foreach ($pollAnswers as $pollAnswer) {
+                $pollAnswerIds[] = $pollAnswer -> poll_answer_id;
+            }
+
+            $pollQuestions = tableSelectAll('poll_questions');
+            $pollQuestionIds = array();
+            foreach ($pollQuestions as $pollQuestion) {
+                $pollQuestionIds[] = $pollQuestion -> poll_question_id;
+            }
 
             $errorCounter = 0;
             $response = '';
@@ -38,17 +46,17 @@
             else {
                 $insertUserPollAnswer = insertUserPollAnswer($pollUserId, $pollQuestionId, $pollAnswerId);
                 if($insertUserPollAnswer) {
-                    // uspesno
-                    $response = ['message' => 'Success! Your vote has been sent to the database.'];
+                    $response = ['message' => 'Success! Your vote has been sent to the database. Redirecting to home page...'];
                     $statusCode = 201;
                 }
                 else {
                     $response = ['message' => 'Oops! Something went wrong on our end and we are unable to complete your request at this time. Please try again later or contact our support team for assistance.'];
                     $statusCode = 500;
                 }
+
+                echo json_encode($response);
+                http_response_code($statusCode);
             }
-            echo json_encode($response);
-            http_response_code($statusCode);
         }
         catch (PDOException $ex) {
             http_response_code(500);
