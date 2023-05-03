@@ -1,5 +1,10 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
+Za select i delete treba napraviti globalne funkcije
+Za select se prenosi naziv tabele samo
+Za delete se prenozi naziv tabele, naziv kolone, i vrednost te kolone
+
+Prepraviti poll da se svi podaci izvlace iz jedne funkcije
 
 Kod register treba stampati gender iz baze
 

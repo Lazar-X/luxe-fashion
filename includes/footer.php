@@ -10,15 +10,16 @@
                 <p class="text-md-left text-center">Shop with confidence - easy returns and fast shipping.</p>
                 <ul class="mt-4 d-flex justify-content-md-start justify-content-center text-center list-social">
                     <?php
-                        $navigation_group_id = 2;
-                        $navigation = navigationSelect($navigation_group_id);
+                        $navigation = navigationSelect();
                         if($navigation) {
                             foreach ($navigation as $navItem) {
-                                if($navItem -> navigation_title == 'instagram') {
-                                    echo '<li class="mr-2"><a href="'.$navItem -> navigation_href.'" target="_blank"><i class="fa-brands fa-square-'.$navItem -> navigation_title.'"></i></a></li>';
-                                }
-                                else {
-                                    echo '<li class="mr-2"><a href="'.$navItem -> navigation_href.'" target="_blank"><i class="fa-brands fa-'.$navItem -> navigation_title.'"></i></a></li>';
+                                if($navItem -> navigation_group_name == 'social') {
+                                    if($navItem -> navigation_title == 'instagram') {
+                                        echo '<li class="mr-2"><a href="'.$navItem -> navigation_href.'" target="_blank"><i class="fa-brands fa-square-'.$navItem -> navigation_title.'"></i></a></li>';
+                                    }
+                                    else {
+                                        echo '<li class="mr-2"><a href="'.$navItem -> navigation_href.'" target="_blank"><i class="fa-brands fa-'.$navItem -> navigation_title.'"></i></a></li>';
+                                    }
                                 }
                             }
                         }
@@ -32,11 +33,12 @@
                 <h3 class="mb-4">Information</h3>
                 <ul>
                     <?php
-                        $navigation_group_id = 1;
-                        $navigation = navigationSelect($navigation_group_id);
+                        $navigation = navigationSelect();
                         if($navigation) {
                             foreach ($navigation as $navItem) {
-                                echo '<li class="mb-2"><a href="'.$navItem -> navigation_href.'">'.$navItem -> navigation_title.'</a></li>';
+                                if($navItem -> navigation_group_name == 'navbar') {
+                                    echo '<li class="mb-2"><a href="'.$navItem -> navigation_href.'">'.$navItem -> navigation_title.'</a></li>';
+                                }
                             }
                         }
                         else {
@@ -49,11 +51,12 @@
                 <h3 class="mb-4">Additional Links</h3>
                 <ul>
                     <?php
-                        $navigation_group_id = 3;
-                        $navigation = navigationSelect($navigation_group_id);
+                        $navigation = navigationSelect();
                         if($navigation) {
                             foreach ($navigation as $navItem) {
-                                echo '<li class="mb-2"><a href="../'.$navItem -> navigation_href.'" target="_blank">'.$navItem -> navigation_title.'</a></li>';
+                                if($navItem -> navigation_group_name == 'additional') {
+                                    echo '<li class="mb-2"><a href="../'.$navItem -> navigation_href.'" target="_blank">'.$navItem -> navigation_title.'</a></li>';
+                                }
                             }
                         }
                         else {

@@ -1,10 +1,36 @@
 <?php
-    function navigationSelect($navigation_group_id) {
+    function selectTableById($tableName, $columnName, $id) {
         global $conn;
-        $query = 'SELECT * FROM navigation WHERE navigation_group_id = :navigation_group_id';
+        $query = 'SELECT * FROM :tableName WHERE :columnName = :id';
 
         $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':navigation_group_id', $navigation_group_id);
+        $prepare -> bindParam(':tableName', $tableName);
+        $prepare -> bindParam(':columnName', $columnName);
+        $prepare -> bindParam(':id', $id);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function selectTable($tableName) {
+        global $conn;
+        $query = 'SELECT * FROM :tableName';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':tableName', $tableName);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function navigationSelect() {
+        global $conn;
+
+        $query = 'SELECT * FROM navigation n JOIN navigation_group ng ON n.navigation_group_id = ng.navigation_group_id';
+
+        $prepare = $conn -> prepare($query);
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
@@ -225,6 +251,40 @@
 
         $result = $prepare -> execute();
         return $result;
+    }
+
+    function productiWithCategory() {
+        global $conn;
+    
+        $query = 'SELECT * FROM products p JOIN categories c ON p.category_id = c_category_id';
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function vratiSveProizvodeSaIdKategorijom($idKat) {
+        global $conn;
+    
+        $query = 'SELECT * FROM products p JOIN categories c ON p.category_id = c_category_id WHERE p.category_id = :category_id';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':category_id', $idKat);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function selectProductInformation() {
+//         SELECT p.*, c.color_name, s.size_name, ct.category_name, b.brand_name
+// FROM products p
+// INNER JOIN colors c ON p.color_id = c.color_id
+// INNER JOIN sizes s ON p.size_id = s.size_id
+// INNER JOIN categories ct ON p.category_id = ct.category_id
+// INNER JOIN brands b ON p.brand_id = b.brand_id;
     }
 
 ?>

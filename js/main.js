@@ -879,6 +879,27 @@ function voteValidation() {
     });
 }
 
+function filterCategory() {
+    $(document).on('change', '#kategorijaID', function() {
+        // let idKat = 1;
+    });
+    // ajaxCallBack(ispisPostova)
+}
+
+function ispisPostova(nizPostova) {
+    let html = '';
+    if(nizPostova.length == 0) {
+        html += 'nema proizvoda sa tom kategorijom';
+    }
+    else {
+        html += 'Ovde bukvalno ceo nas product';
+        let rb = 1;
+        for(let postObj of nizPostova) {
+
+        }
+    }
+}
+
 // Function for test
 // function testValidation() {
 //     let testName = $('#testName');

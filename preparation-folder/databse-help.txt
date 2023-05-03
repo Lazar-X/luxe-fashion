@@ -36,6 +36,11 @@ Napravljeno:
 navigation_id
 navigation_title
 navigation_href
+navigation_group_id
+
+-navigation_group
+navigation_group_id
+navigation_group_name
 
 -contact
 contact_id
