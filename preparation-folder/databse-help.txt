@@ -68,13 +68,14 @@ phone_id
 phone_number
 user_id
 
+-roles
+role_id
+role_name
+
 -genders
 gender_id
 gender_name
 
--roles
-role_id
-role_name
 
 -product
 product_id
@@ -86,7 +87,6 @@ category_id
 brand_id
 color_id
 gender_id
-size_id
 
 -categories
 category_id
@@ -104,11 +104,19 @@ color_name
 size_id
 size_name
 
+-product_sizes
+product_size_id
+product_id
+size_id
+
 -rating
 rating_id
-rating_value
+rating_values_id
 product_id
 user_id
+
+-rating_value
+rating_values_id
 
 -prices
 price_id

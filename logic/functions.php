@@ -38,6 +38,18 @@
         return $result;
     }
 
+    // get count table
+    // function tableRowCount($tableName) {
+    //     global $conn;
+    //     $query = "SELECT COUNT(*) FROM $tableName";
+
+    //     $prepare = $conn -> prepare($query);
+
+    //     $prepare -> execute();
+    //     $result = $prepare -> fetchColumn();
+    //     return $result;
+    // }
+
     // navigation select
     function navigationSelect() {
         global $conn;
@@ -190,6 +202,64 @@
         $prepare -> bindParam(':pollAnswerId', $pollAnswerId);
 
         $result = $prepare -> execute();
+        return $result;
+    }
+
+    function selectMinimumPrice() {
+        global $conn;
+
+        $query = "SELECT MIN(price_new) as min_price FROM prices";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function selectMaximumPrice() {
+        global $conn;
+
+        $query = "SELECT MAX(price_new) as max_price FROM prices";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function selectAllProducts() {
+        global $conn;
+
+        $query = 'SELECT * FROM products p
+        JOIN categories c ON p.category_id = c.category_id
+        JOIN brands b ON p.brand_id = b.brand_id
+        JOIN colors col ON p.color_id = col.color_id
+        JOIN genders g ON p.gender_id = g.gender_id
+        -- JOIN product_sizes ps ON p.product_id = ps.product_id
+        -- JOIN sizes s ON ps.size_id = s.size_id
+        -- JOIN ratings r ON p.product_id = r.product_id
+        -- JOIN rating_values rv ON r.rating_values_id = rv.rating_values_id
+        JOIN prices pr ON p.product_id = pr.product_id';
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function averageRatingProduct($productId) {
+        global $conn;
+
+        $query = 'SELECT AVG(rv.rating_values_id) AS average_rating FROM ratings r
+        JOIN rating_values rv ON r.rating_values_id = rv.rating_values_id
+        WHERE r.product_id = :productId';
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':productId', $productId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
         return $result;
     }
 

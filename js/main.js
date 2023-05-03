@@ -12,6 +12,7 @@ window.onload = function() {
     if(document.URL.includes('shop.php')) {
         const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
         addActiveClass(sizes, 'active-size');
+        filterCategory();
     }
     // About us
     if(document.URL.includes('about-us.php')) {
@@ -880,8 +881,8 @@ function voteValidation() {
 }
 
 function filterCategory() {
-    $(document).on('change', '#kategorijaID', function() {
-        // let idKat = 1;
+    $(document).on('change', '#categories', function() {
+        console.log('promena u kategoriji');
     });
     // ajaxCallBack(ispisPostova)
 }

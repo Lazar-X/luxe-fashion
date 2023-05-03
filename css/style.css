@@ -210,7 +210,6 @@ nav a i {
 }
 .product-image {
     height: 250px;
-    background-image: url('../images/products/dress-01-original.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
