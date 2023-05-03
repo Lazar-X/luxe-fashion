@@ -50,7 +50,7 @@
                                 </button>
                             </div>
                             <article class="card-group-item">
-                                <div class="collapse" id="collapseCategories">';
+                                <div class="collapse change-class" id="collapseCategories">';
                                 foreach ($categories as $category) {
                                     echo '<div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input type" id="check-categories-'.$category -> category_id.'" name="categories" value="'.$category -> category_id.'" autocomplete="off">
@@ -72,7 +72,7 @@
                                 </button>
                             </div>
                             <article class="card-group-item">
-                                <div class="collapse" id="collapseBrands">';
+                                <div class="collapse change-class" id="collapseBrands">';
                                 foreach($brands as $brand) {
                                     echo '<div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input type" id="check-brand-'.$brand -> brand_id.'" name="brands" value="'.$brand -> brand_id.'" autocomplete="off">
@@ -215,15 +215,28 @@
                                         <div class="product-text">
                                             <h3 class="my-2">'.$product -> product_name.'</h3>
                                             <p class="stars">';
-                                            $avgRatingProduct = averageRatingProduct($product -> product_id);
-                                            $avgValue = round($avgRatingProduct -> average_rating);
-                                            for($i = 0; $i < $avgValue; $i++) {
-                                                echo '<i class="fa-solid fa-star star-filled"></i> ';
+                                            $avgRatingProduct = averageRatingProduct($product->product_id);
+                                            $avgValue = round($avgRatingProduct->average_rating);
+                                            if($avgValue != 0) {
+                                                for($i = 0; $i < $avgValue; $i++) {
+                                                    echo '<i class="fa-solid fa-star star-filled"></i> ';
+                                                }
+                                            }
+                                            else {
+                                                for($i = 0; $i < 5; $i++) {
+                                                    echo '<i class="fa-solid fa-star"></i> ';
+                                                }
                                             }
                                             echo '
                                             </p>
-                                            <p class="price-text-old">$'.$product -> price_new.'</p>
-                                            <p class="price-text-new">$'.$product -> price_old.'</p>
+                                            ';
+                                            if($product -> price_old != null) {
+                                                echo '<p class="price-text-old mr-2">$'.$product -> price_old.'</p>';
+                                            }
+                                            else {
+                                                echo '<p class="price-text-old"></p>';
+                                            }
+                                            echo '<p class="price-text-new">$'.$product -> price_new.'</p>
                                         </div>
                                     </div>
                                     <!-- Modal Add To Cart -->

@@ -6,30 +6,6 @@
         try {
             $filterType = $_POST['filterType'];
 
-            if($filterType == 'category') {
-                $categoryIds = $_POST['categoryIds'];
-                $categories = tableSelectAll('categories');
-                $categoryIdsBase = array();
-                foreach ($categories as $c) {
-                    $categoryIdsBase[] = $c -> category_id;
-                }
-                $errorCounter = 0;
-                $statusCode = '';
-            
-                foreach ($categoryIds as $categoryId) {
-                    if(!in_array($categoryId, $categoryIdsBase)) {
-                        $errorCounter++;
-                    }
-                }
-                if($errorCounter != 0) {
-                    $statusCode = 422;
-                }
-                else {
-                    (object)$products = productsIdsFilter($categoryIds, 'category_id');
-                    $statusCode = 200;
-                }
-            }
-
             if($filterType == 'brands') {
                 $brandIds = $_POST['brandIds'];
                 $brands = tableSelectAll('brands');
@@ -37,7 +13,6 @@
                 foreach ($brands as $b) {
                     $brandIdsBase[] = $b -> brand_id;
                 }
-
                 $errorCounter = 0;
                 $statusCode = '';
 

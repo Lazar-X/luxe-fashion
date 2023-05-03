@@ -13,6 +13,7 @@ window.onload = function() {
         const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
         addActiveClass(sizes, 'active-size');
         filterCategory();
+        filterBrands();
     }
     // About us
     if(document.URL.includes('about-us.php')) {
@@ -908,6 +909,44 @@ function filterCategory() {
             };
         }
         ajaxCallBack('filterProducts', 'POST', data, function(result) {
+            console.log('brands');
+            console.log(result);
+            let html = showProducts(result[0], result[1], result[2]);
+            $('#productsResult').html(html);
+        });
+    });
+}
+
+function filterBrands() {
+    $(document).on('change', '#collapseBrands', function(result) {
+        console.log('brands');
+        console.log(result);
+        let selectedBrands = [];
+        let allBrands = [];
+        $('input[name="brands"]').each(function(el) {
+            allBrands.push(parseInt($(this).val()));
+        });
+        $('input[name="brands"]:checked').each(function(el) {
+            selectedBrands.push(parseInt($(this).val()));
+        });
+
+        data = {};
+
+        filterType = 'brands';
+
+        if(selectedBrands.length != 0) {
+            data = {
+                'filterType': filterType,
+                'brandIds': selectedBrands
+            };
+        }
+        else {
+            data = {
+                'filterType': filterType,
+                'brandIds': allBrands
+            };
+        }
+        ajaxCallBack('filterProducts', 'POST', data, function(result) {
             let html = showProducts(result[0], result[1], result[2]);
             $('#productsResult').html(html);
         });
@@ -940,15 +979,26 @@ function showProducts(products, ratingValues, productIds) {
                             const productIndex = productIds.indexOf(product.product_id);
                             if(productIndex !== -1) {
                                 const ratingValue = ratingValues[productIndex];
+                                if(ratingValue == 0) {
+                                    for(let i = 0; i < 5; i++) {
+                                        htmlStars += '<i class="fa-solid fa-star"></i> ';
+                                    }
+                                }
                                 for(let j = 0; j < ratingValue; j++) {
-                                    htmlStars += '<i class="fa-solid fa-star star-filled"></i>';
+                                        htmlStars += '<i class="fa-solid fa-star star-filled"></i> ';
                                 }
                             }
                         html += htmlStars;
-                        html+= `
-                        </p>
-                        <p class="price-text-old">$${product.price_new}</p>
-                        <p class="price-text-new">$${product.price_old}</p>
+                        html += `
+                        </p>`;
+                        if(product.price_old != null) {
+                            html += `<p class="price-text-old mr-2">$${product.price_old}</p>`;
+                        }
+                        else {
+                            html += `<p class="price-text-old mr-2"></p>`;
+                        }
+                        html += `
+                        <p class="price-text-new">$${product.price_new}</p>
                     </div>
                 </div>
                 <!-- Modal Add To Cart -->

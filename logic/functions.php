@@ -263,7 +263,7 @@
         return $result;
     }
 
-    function productsCategoryFilter($categoryIds) {
+    function productsIdsFilter($ids, $columnName) {
         global $conn;
 
         $query = "SELECT * FROM products p
@@ -277,7 +277,7 @@
         -- JOIN rating_values rv ON r.rating_values_id = rv.rating_values_id
         JOIN prices pr ON p.product_id = pr.product_id
         -- WHERE p.category_id = :categoryId
-        WHERE p.category_id IN (".implode(",", $categoryIds).")";
+        WHERE p.$columnName IN (".implode(",", $ids).")";
     
         // $query = "SELECT * FROM products p JOIN categories c ON p.category_id = c.category_id WHERE p.category_id = :categoryId";
 

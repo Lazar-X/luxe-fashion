@@ -1,5 +1,11 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
+Treba napraviti shops stranicu
+Product se stampa dinamicki
+Izvrsiti filtriranje za ostale parametre, videti da li sve moze preko jednog filter php
+Problem, ne filtrira se jedno sa drugim vec svako za sebe
+Pogledati kod Mihailo ilic probati nesto slicno
+
 Realizovati korisnika i admina
 
 Napraviti user dashboard
@@ -12,9 +18,7 @@ Napraviti uvid u korisnike
 Napraviti uvid u anketu
 Napraviti uvid u poruke sa contact stranice
 
-Treba napraviti shops stranicu
-Product se stampa dinamicki
-Izvrsiti filtriranje za ostale parametre, videti da li sve moze preko jednog filter php
+
 
 Treba napraviti cart funkcionalnost, ukupnu cenu, kao i delete iz carta
 
