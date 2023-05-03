@@ -54,7 +54,7 @@
     function navigationSelect() {
         global $conn;
 
-        $query = 'SELECT * FROM navigation n JOIN navigation_group ng ON n.navigation_group_id = ng.navigation_group_id';
+        $query = "SELECT * FROM navigation n JOIN navigation_group ng ON n.navigation_group_id = ng.navigation_group_id";
 
         $prepare = $conn -> prepare($query);
 
@@ -66,7 +66,7 @@
     function contactInsert($name, $email, $message) {
         global $conn;
 
-        $query = 'INSERT INTO contact(contact_name, contact_email, contact_message, contact_created_at) VALUES(:contactName, :email, :contactMessage, NOW())';
+        $query = "INSERT INTO contact(contact_name, contact_email, contact_message, contact_created_at) VALUES(:contactName, :email, :contactMessage, NOW())";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':contactName', $name);
@@ -80,7 +80,7 @@
     function userInsert($firstName, $lastName, $username, $email, $hashedPassword, $gender, $verificationCode, $roleId) {
         global $conn;
 
-        $query = 'INSERT INTO users(user_firstname, user_lastname, user_username, user_email, user_password, gender_id, role_id, user_verification_code, user_created_at, user_updated_at) VALUES(:firstName, :lastName, :username, :email, :hashedPassword, :gender, :roleId, :verificationCode, NOW(), NULL)';
+        $query = "INSERT INTO users(user_firstname, user_lastname, user_username, user_email, user_password, gender_id, role_id, user_verification_code, user_created_at, user_updated_at) VALUES(:firstName, :lastName, :username, :email, :hashedPassword, :gender, :roleId, :verificationCode, NOW(), NULL)";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':firstName', $firstName);
@@ -99,7 +99,7 @@
     function phoneInsert($userId, $phone) {
         global $conn;
 
-        $query = 'INSERT INTO phones(user_id, phone_number) VALUES(:userId, :phone)';
+        $query = "INSERT INTO phones(user_id, phone_number) VALUES(:userId, :phone)";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':userId', $userId);
@@ -112,7 +112,7 @@
     function userSelect($username, $hashedPassword) {
         global $conn;
 
-        $query = 'SELECT * FROM users u JOIN roles r ON u.role_id = r.role_id WHERE u.user_username = :username AND u.user_password = :hashedPassword';
+        $query = "SELECT * FROM users u JOIN roles r ON u.role_id = r.role_id WHERE u.user_username = :username AND u.user_password = :hashedPassword";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':username', $username);
@@ -126,7 +126,7 @@
     function verifyUser($username, $verificationCode) {
         global $conn;
 
-        $query = 'UPDATE users SET user_verified = 1 WHERE user_username = :username AND user_verification_code = :verificationCode';
+        $query = "UPDATE users SET user_verified = 1 WHERE user_username = :username AND user_verification_code = :verificationCode";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':username', $username);
@@ -140,7 +140,7 @@
     function orderInsert($orderPrice, $orderAddress, $orderPostcode, $countryId, $userId) {
         global $conn;
 
-        $query = 'INSERT INTO orders(order_price, order_address, order_postcode, order_created_at, country_id, user_id) VALUES(:orderPrice, :orderAddress, :orderPostcode, NOW(), :countryId, :userId)';
+        $query = "INSERT INTO orders(order_price, order_address, order_postcode, order_created_at, country_id, user_id) VALUES(:orderPrice, :orderAddress, :orderPostcode, NOW(), :countryId, :userId)";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':orderPrice', $orderPrice);
@@ -155,7 +155,7 @@
 
     function activePollsSelect() {
         global $conn;
-        $query = 'SELECT * FROM polls WHERE poll_active = 1';
+        $query = "SELECT * FROM polls WHERE poll_active = 1";
 
         $prepare = $conn -> prepare($query);
 
@@ -167,7 +167,7 @@
     function activePollSelect($pollId) {
         global $conn;
 
-        $query = 'SELECT * FROM polls WHERE poll_id = :pollId AND poll_active = 1';
+        $query = "SELECT * FROM polls WHERE poll_id = :pollId AND poll_active = 1";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':pollId', $pollId);
@@ -180,7 +180,7 @@
     function userVoted($userId, $questionId) {
         global $conn;
 
-        $query = 'SELECT * FROM poll_user_answers WHERE user_id = :userId AND question_id = :questionId';
+        $query = "SELECT * FROM poll_user_answers WHERE user_id = :userId AND question_id = :questionId";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':userId', $userId);
@@ -194,7 +194,7 @@
     function insertUserPollAnswer($pollUserId, $pollQuestionId, $pollAnswerId) {
         global $conn;
 
-        $query = 'INSERT INTO poll_user_answers(user_id, question_id, answer_id) VALUES(:pollUserId, :pollQuestionId, :pollAnswerId)';
+        $query = "INSERT INTO poll_user_answers(user_id, question_id, answer_id) VALUES(:pollUserId, :pollQuestionId, :pollAnswerId)";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':pollUserId', $pollUserId);
@@ -230,7 +230,7 @@
     function selectAllProducts() {
         global $conn;
 
-        $query = 'SELECT * FROM products p
+        $query = "SELECT * FROM products p
         JOIN categories c ON p.category_id = c.category_id
         JOIN brands b ON p.brand_id = b.brand_id
         JOIN colors col ON p.color_id = col.color_id
@@ -239,7 +239,7 @@
         -- JOIN sizes s ON ps.size_id = s.size_id
         -- JOIN ratings r ON p.product_id = r.product_id
         -- JOIN rating_values rv ON r.rating_values_id = rv.rating_values_id
-        JOIN prices pr ON p.product_id = pr.product_id';
+        JOIN prices pr ON p.product_id = pr.product_id";
 
         $prepare = $conn -> prepare($query);
 
@@ -263,12 +263,26 @@
         return $result;
     }
 
-    function productiWithCategory() {
+    function productsCategoryFilter($categoryIds) {
         global $conn;
+
+        $query = "SELECT * FROM products p
+        JOIN categories c ON p.category_id = c.category_id
+        JOIN brands b ON p.brand_id = b.brand_id
+        JOIN colors col ON p.color_id = col.color_id
+        JOIN genders g ON p.gender_id = g.gender_id
+        -- JOIN product_sizes ps ON p.product_id = ps.product_id
+        -- JOIN sizes s ON ps.size_id = s.size_id
+        -- JOIN ratings r ON p.product_id = r.product_id
+        -- JOIN rating_values rv ON r.rating_values_id = rv.rating_values_id
+        JOIN prices pr ON p.product_id = pr.product_id
+        -- WHERE p.category_id = :categoryId
+        WHERE p.category_id IN (".implode(",", $categoryIds).")";
     
-        $query = 'SELECT * FROM products p JOIN categories c ON p.category_id = c_category_id';
+        // $query = "SELECT * FROM products p JOIN categories c ON p.category_id = c.category_id WHERE p.category_id = :categoryId";
 
         $prepare = $conn -> prepare($query);
+        // $prepare -> bindParam(':categoryId', $categoryIds);
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
@@ -278,7 +292,7 @@
     function vratiSveProizvodeSaIdKategorijom($idKat) {
         global $conn;
     
-        $query = 'SELECT * FROM products p JOIN categories c ON p.category_id = c_category_id WHERE p.category_id = :category_id';
+        $query = "SELECT * FROM products p JOIN categories c ON p.category_id = c_category_id WHERE p.category_id = :category_id";
 
         $prepare = $conn -> prepare($query);
         $prepare -> bindParam(':category_id', $idKat);

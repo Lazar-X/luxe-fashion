@@ -20,7 +20,7 @@
 <?php
     echo '<div class="py-5">
         <p>Ovde su var dumpovi</p>';
-    var_dump($products);
+    // var_dump($products);
     echo '</div>';
 ?>
     <!-- Shop section -->
@@ -198,7 +198,7 @@
                     <div class="row">
                         <div class="col-12">
                             <!-- products -->
-                            <div class="row">';
+                            <div class="row" id="productsResult">';
                             foreach ($products as $product) {
                                 echo '<!-- Product -->
                                 <div class="col-lg-4 col-sm-6 col-12">

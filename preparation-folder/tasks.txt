@@ -14,6 +14,7 @@ Napraviti uvid u poruke sa contact stranice
 
 Treba napraviti shops stranicu
 Product se stampa dinamicki
+Izvrsiti filtriranje za ostale parametre, videti da li sve moze preko jednog filter php
 
 Treba napraviti cart funkcionalnost, ukupnu cenu, kao i delete iz carta
 

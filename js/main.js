@@ -881,10 +881,102 @@ function voteValidation() {
 }
 
 function filterCategory() {
-    $(document).on('change', '#categories', function() {
-        console.log('promena u kategoriji');
+    $(document).on('change', '#collapseCategories', function() {
+        let selectedCategories = [];
+        let allCategories = [];
+        $('input[name="categories"]').each(function(el) {
+            allCategories.push(parseInt($(this).val()));
+        });
+        $('input[name="categories"]:checked').each(function(el) {
+            selectedCategories.push(parseInt($(this).val()));
+        });
+
+        data = {};
+
+        filterType = 'category';
+
+        if(selectedCategories.length != 0) {
+            data = {
+                'filterType': filterType,
+                'categoryIds': selectedCategories
+            };
+        }
+        else {
+            data = {
+                'filterType': filterType,
+                'categoryIds': allCategories
+            };
+        }
+        ajaxCallBack('filterProducts', 'POST', data, function(result) {
+            let html = showProducts(result[0], result[1], result[2]);
+            $('#productsResult').html(html);
+        });
     });
-    // ajaxCallBack(ispisPostova)
+}
+
+function showProducts(products, ratingValues, productIds) {
+    let html = '';
+    if(products.length == 0) {
+        html += 'No products with that category';
+    }
+    else {
+        for(let product of products) {
+            html += `<!-- Product -->
+            <div class="col-lg-4 col-sm-6 col-12">
+                <div class="product m-1 p-md-3 p-1">
+                    <div style="background-image:url(../images/products/${product.product_image}.png);" class="product-image">
+                        <div class="overlay-product-image">
+                            <div class="product-icons">
+                                <!-- Modal add to cart icon -->
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#add-to-cart" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="single-product.php" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-text">
+                        <h3 class="my-2">${product.product_name}</h3>
+                        <p class="stars">`;
+                            let htmlStars = '';
+                            const productIndex = productIds.indexOf(product.product_id);
+                            if(productIndex !== -1) {
+                                const ratingValue = ratingValues[productIndex];
+                                for(let j = 0; j < ratingValue; j++) {
+                                    htmlStars += '<i class="fa-solid fa-star star-filled"></i>';
+                                }
+                            }
+                        html += htmlStars;
+                        html+= `
+                        </p>
+                        <p class="price-text-old">$${product.price_new}</p>
+                        <p class="price-text-new">$${product.price_old}</p>
+                    </div>
+                </div>
+                <!-- Modal Add To Cart -->
+                <div class="product-add-to-cart">
+                    <div class="modal fade" id="add-to-cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Notification</h5>
+                                    <button type="button" class="close button-close-modal" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Product added to cart successfully!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                                    <a href="cart.html" class="btn go-to-cart">Go To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }
+    }
+    return html;
 }
 
 function ispisPostova(nizPostova) {
