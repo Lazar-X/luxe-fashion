@@ -54,6 +54,11 @@ window.onload = function() {
     if(document.URL.includes('user.php')) {
         updateUserData();
     }
+    // Admin
+    if(document.URL.includes('admin.php')) {
+        insertProduct();
+        insertSizes();
+    }
 }
 
 // Function for navigation
@@ -1247,20 +1252,88 @@ function showProducts(products, ratingValues, productIds) {
     return html;
 }
 
-// Function for test
-// function testValidation() {
-//     let testName = $('#testName');
-//     $(document).on('click', '#testButton', function() {
-//         console.log(testName);
-//             // let arrayElements = [testName];
-//             // let formElement = $('#loginForm');
-            
-//             let data = {
-//                 'testName': testName.val(),
-//                 'button': true
-//             };
-//             fetchFormData('testForm', data);
+function insertProduct() {
+    let productName = $('#productName');
+    let productDescription = $('#productDescription');
+    let productImage = $('#productImage');
+    let productNameHelp = $('#productNameHelp');
+    let productImageHelp = $('#productImageHelp');
+    let productDescriptionHelp = $('#productDescriptionHelp');
 
-//             // clearFrom(arrayElements, formElement);
-//     });
-// }
+    let regexText = /^[a-zA-Z]{1,50}$/;
+    let regexDesc = /^[a-zA-Z0-9\s\.,-]{0,500}$/;
+    $(document).on('click', '#addProductButton', function() {
+        errorCounter = 0;
+        if(!regexText.test($(productName).val())) {
+            errorCounter++;
+            productNameHelp.text('Max length: 50');
+        }
+        if(!regexText.test($(productImage).val())) {
+            errorCounter++;
+            productImageHelp.text('Max length: 50');
+        }
+        if(!regexDesc.test($(productDescription).val())) {
+            errorCounter++;
+            productDescriptionHelp.text('Max length: 500');
+        }
+
+        let categoryId = $('#category')[0].selectedIndex + 1;
+        let brandId = $('#brand')[0].selectedIndex + 1;
+        let colorId = $('#color')[0].selectedIndex + 1;
+        let genderId = $('#gender')[0].selectedIndex + 1;
+
+        if(errorCounter == 0) {
+            let data = {
+                'productName': productName.val(),
+                'productImage': productImage.val(),
+                'productDescription': productDescription.val(),
+                'categoryId': categoryId,
+                'brandId': brandId,
+                'colorId': colorId,
+                'genderId': genderId,
+                'button': true
+            };
+    
+            ajaxCallBack('addProduct', 'post', data, function(result) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+            });
+        }
+        else {
+            console.log(errorCounter);
+        }
+    });
+}
+
+function insertSizes() {
+    $(document).on('click', '#addSizesButton', function() {
+        let productId = $('#product')[0].selectedIndex + 1;
+        let sizeIds = [];
+        let sizesHelp = $('#sizesHelp');
+
+        $('input[name="sizes"]:checked').each(function(el) {
+            sizeIds.push(parseInt($(this).val()));
+        });
+
+        let errorCounter = 0;
+        
+        if(sizeIds.length == 0) {
+            errorCounter++;
+            sizesHelp.addClass('text-danger');
+        }
+
+        if(errorCounter == 0) {
+            let data = {
+                'productId': productId,
+                'sizeIds': sizeIds,
+                'button': true
+            };
+    
+            ajaxCallBack('addSizes', 'post', data, function(result) {
+                $('#responseSizes').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+            });
+        }
+        else {
+            console.log(errorCounter);
+        }
+    });
+}

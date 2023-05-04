@@ -1,18 +1,8 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
-Treba napraviti cart funkcionalnost, ukupnu cenu, kao i delete iz carta
+Treba napraviti cart funkcionalnost, ukupnu cenu, kao i delete iz carta, a napraviti i quantity funkcionalnost, prenosi se vrednost quantity i racunamo ukupnu cenu
 
-Realizovati korisnika i admina
-
-Napraviti user dashboard
-Da moze da menja podatke
-Da moze da ucestvuje u anketi
-
-Napraviti admin dashboard
-Za admina napraviti dodavanje proizvoda, kategorije, brandove, boje, velicine i sve ostalo sto cemo imati u bazi
-Napraviti uvid u korisnike
-Napraviti uvid u anketu
-Napraviti uvid u poruke sa contact stranice
+Za admina napraviti dodavanje proizvoda(ostalo php), dodavanje velicina(php plan je da napravimo foreach i da za svaki size dodajemo)
 
 
 
