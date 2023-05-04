@@ -49,6 +49,7 @@
     //     $result = $prepare -> fetchColumn();
     //     return $result;
     // }
+    
 
     // navigation select
     function navigationSelect() {
@@ -263,7 +264,103 @@
         return $result;
     }
 
-    function productsIdsFilter($ids, $columnName) {
+    function filterProducts($categoryIds, $brandIds) {
+        global $conn;
+
+        $where = "";
+        $queryHelp = "";
+
+        if(!empty($categoryIds)) {
+            $queryHelp = "p.category_id IN (".implode(",", $categoryIds).")";
+        }
+        if(!empty($where)){
+            $where .= " AND $queryHelp";
+        }
+        else {
+            $where .= " WHERE $queryHelp";
+        }
+        if(!empty($brandIds)) {
+            $queryHelp = "p.brand_id IN (".implode(",", $brandIds).")";
+        }
+        if(!empty($where)){
+            $where .= " AND $queryHelp";
+        }
+        else {
+            $where .= " WHERE $queryHelp";
+        }
+
+        $query = "SELECT * FROM products p
+        JOIN categories c ON p.category_id = c.category_id
+        JOIN brands b ON p.brand_id = b.brand_id
+        JOIN colors col ON p.color_id = col.color_id
+        JOIN genders g ON p.gender_id = g.gender_id
+        JOIN prices pr ON p.product_id = pr.product_id $where";
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function getProducts($categoryIds, $brandIds, $colorIds, $search, $max_price, $order){
+        $where = "";
+        if(!empty($category)){
+        $queryString = "c.category_id IN ($category)";
+        if(!empty($where)){
+        $where .= " AND $queryString";
+        }
+        else {
+        $where .= "WHERE $queryString";
+        }
+        }
+        if(!empty($brand)){
+        $queryString = "b.brand_id IN ($brand)";
+        if(!empty($where)){
+        $where .= " AND $queryString";
+        }
+        else {
+        $where .= "WHERE $queryString";
+        }
+        }
+        if(!empty($color)){
+        $queryString = "cls.color_id IN ($color)";
+        if(!empty($where)){
+        $where .= " AND $queryString";
+        }
+        else {
+        $where .= "WHERE $queryString";
+        }
+        }
+        if(!empty($search)){
+        $queryString = "LOWER(product_title) LIKE '%$search%'";
+        if(!empty($where)){
+        $where .= " AND $queryString";
+        }
+        else {
+        $where .= "WHERE $queryString";
+        }
+        }
+        if(!empty($max_price)){
+        $queryString = "product_price < $max_price";
+        if(!empty($where)){
+        $where .= " AND $queryString";
+        }
+        else {
+        $where .= "WHERE $queryString";
+        }
+        }
+        if(!empty($order)){
+        $where .= " ORDER BY $order";
+        }
+        return selectQuery("products p JOIN categories c ON c.category_id = p.catego
+       ry_id JOIN brands b ON b.brand_id = p.brand_id JOIN colors cls ON cls.color_id = p.color
+       _id $where");
+       
+        }
+
+    
+        function productsIdsFilter($ids, $columnName) {
         global $conn;
 
         $query = "SELECT * FROM products p

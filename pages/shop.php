@@ -157,7 +157,7 @@
                                     echo '<div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" id="gender-'.$gender -> gender_id.'" value="'.$gender -> gender_id.'">
                                     <label class="form-check-label" for="gender-'.$gender -> gender_id.'">
-                                        '.$gender -> gender_name.'
+                                        '.ucfirst($gender -> gender_name).'
                                         (<span class="numberProductsGender">20</span>)
                                     </label>
                                 </div>';

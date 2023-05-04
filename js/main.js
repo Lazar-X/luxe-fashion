@@ -12,8 +12,7 @@ window.onload = function() {
     if(document.URL.includes('shop.php')) {
         const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
         addActiveClass(sizes, 'active-size');
-        filterCategory();
-        filterBrands();
+        triggerFilterProducts();
     }
     // About us
     if(document.URL.includes('about-us.php')) {
@@ -881,75 +880,74 @@ function voteValidation() {
     });
 }
 
-function filterCategory() {
-    $(document).on('change', '#collapseCategories', function() {
-        let selectedCategories = [];
-        let allCategories = [];
-        $('input[name="categories"]').each(function(el) {
-            allCategories.push(parseInt($(this).val()));
-        });
-        $('input[name="categories"]:checked').each(function(el) {
-            selectedCategories.push(parseInt($(this).val()));
-        });
+function selectFilterElements() {
+    let selectedCategories = [];
+    let allCategories = [];
+    let selectedBrands = [];
+    let allBrands = [];
+
+    // categories
+    $('input[name="categories"]').each(function(el) {
+        allCategories.push(parseInt($(this).val()));
+    });
+    $('input[name="categories"]:checked').each(function(el) {
+        selectedCategories.push(parseInt($(this).val()));
+    });
+
+    // brands
+    $('input[name="brands"]').each(function(el) {
+        allBrands.push(parseInt($(this).val()));
+    });
+    $('input[name="brands"]:checked').each(function(el) {
+        selectedBrands.push(parseInt($(this).val()));
+    });
+
+    var arr = {
+        selectedCategories: selectedCategories, 
+        allCategories: allCategories, 
+        selectedBrands: selectedBrands, 
+        allBrands: allBrands
+    }
+    return arr;
+}
+
+function filterProducts() {
+    
+        let arr = selectFilterElements();
+        let selectedCategories = arr['selectedCategories'];
+        let allCategories = arr['allCategories'];
+        let selectedBrands = arr['selectedBrands'];
+        let allBrands = arr['allBrands'];
+
+        if(selectedCategories.length == 0) {
+            selectedCategories = allCategories;
+        }
+        if(selectedBrands.length == 0) {
+            selectedBrands = allBrands;
+        }
 
         data = {};
 
-        filterType = 'category';
-
-        if(selectedCategories.length != 0) {
-            data = {
-                'filterType': filterType,
-                'categoryIds': selectedCategories
-            };
-        }
-        else {
-            data = {
-                'filterType': filterType,
-                'categoryIds': allCategories
-            };
-        }
+        data = {
+            'categoryIds': selectedCategories,
+            'brandIds': selectedBrands
+        };
         ajaxCallBack('filterProducts', 'POST', data, function(result) {
-            console.log('brands');
             console.log(result);
             let html = showProducts(result[0], result[1], result[2]);
             $('#productsResult').html(html);
         });
-    });
 }
 
-function filterBrands() {
-    $(document).on('change', '#collapseBrands', function(result) {
-        console.log('brands');
-        console.log(result);
-        let selectedBrands = [];
-        let allBrands = [];
-        $('input[name="brands"]').each(function(el) {
-            allBrands.push(parseInt($(this).val()));
-        });
-        $('input[name="brands"]:checked').each(function(el) {
-            selectedBrands.push(parseInt($(this).val()));
-        });
-
-        data = {};
-
-        filterType = 'brands';
-
-        if(selectedBrands.length != 0) {
-            data = {
-                'filterType': filterType,
-                'brandIds': selectedBrands
-            };
-        }
-        else {
-            data = {
-                'filterType': filterType,
-                'brandIds': allBrands
-            };
-        }
-        ajaxCallBack('filterProducts', 'POST', data, function(result) {
-            let html = showProducts(result[0], result[1], result[2]);
-            $('#productsResult').html(html);
-        });
+function triggerFilterProducts() {
+    console.log('trigger');
+    $(document).on('change', '#collapseCategories', function() {
+        filterProducts();
+        console.log('triger na kat');
+    });
+    $(document).on('change', '#collapseBrands', function() {
+        filterProducts();
+        console.log('triger na brand');
     });
 }
 
@@ -1027,19 +1025,6 @@ function showProducts(products, ratingValues, productIds) {
         }
     }
     return html;
-}
-
-function ispisPostova(nizPostova) {
-    let html = '';
-    if(nizPostova.length == 0) {
-        html += 'nema proizvoda sa tom kategorijom';
-    }
-    else {
-        html += 'Ovde bukvalno ceo nas product';
-        for(let postObj of nizPostova) {
-            html += `<p>${postObj.naziv_posta}</p>`;
-        }
-    }
 }
 
 // Function for test
