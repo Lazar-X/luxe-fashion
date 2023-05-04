@@ -10,8 +10,8 @@ window.onload = function() {
     }
     // Shop
     if(document.URL.includes('shop.php')) {
-        const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
-        addActiveClass(sizes, 'active-size');
+        const colors = document.querySelector('#collapseColors').querySelectorAll('label');
+        toggleActiveClass(colors, 'active-color');
         triggerFilterProducts();
     }
     // About us
@@ -104,6 +104,14 @@ function addActiveClass(elements, className) {
     });
 }
 
+function toggleActiveClass(elements, className) {
+    elements.forEach(element => {
+        element.addEventListener('click', () => {
+            element.classList.toggle(className);
+        });
+    });
+}
+
 // Function to toggle password visibility
 function showPassword() {
     const passwords = document.querySelectorAll(".passwords");
@@ -141,6 +149,7 @@ function ajaxCallBack(file, method, data, result) {
         dataType: 'json',
         success: result,
         error: function(xhr) {
+            console.log(xhr);
             if(xhr.status == 401) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
             }
@@ -885,6 +894,12 @@ function selectFilterElements() {
     let allCategories = [];
     let selectedBrands = [];
     let allBrands = [];
+    let selectedColors = [];
+    let allColors = [];
+    let selectedGender = [];
+    let allGenders = [];
+    let selectedDiscounts = [];
+    let allDiscounts = [];
 
     // categories
     $('input[name="categories"]').each(function(el) {
@@ -902,41 +917,108 @@ function selectFilterElements() {
         selectedBrands.push(parseInt($(this).val()));
     });
 
+    // sizes
+    $('input[name="colors"]').each(function(el) {
+        allColors.push(parseInt($(this).val()));
+    });
+    $('input[name="colors"]:checked').each(function(el) {
+        selectedColors.push(parseInt($(this).val()));
+    });
+
+    // discount
+    $('input[name="discount"]').each(function(el) {
+        allDiscounts.push(0);
+    });
+    $('input[name="discount"]:checked').each(function(el) {
+        selectedDiscounts.push(parseInt($(this).val()));
+    });
+
+    // genders
+    $('input[name="gender"]').each(function(el) {
+        allGenders.push(parseInt($(this).val()));
+    });
+    $('input[name="gender"]:checked').each(function(el) {
+        selectedGender.push(parseInt($(this).val()));
+    });
+
     var arr = {
         selectedCategories: selectedCategories, 
         allCategories: allCategories, 
         selectedBrands: selectedBrands, 
-        allBrands: allBrands
+        allBrands: allBrands,
+        selectedColors: selectedColors,
+        allColors: allColors,
+        selectedGender: selectedGender,
+        allGenders: allGenders,
+        selectedDiscounts: selectedDiscounts,
+        allDiscounts: allDiscounts
     }
     return arr;
 }
 
+function clearFilterElements() {
+    $('input[type=checkbox]').each(function() { 
+        this.checked = false; 
+    });
+    $('#collapseColors').find('label').removeClass('active-color');
+    $('input[type=radio]').each(function() { 
+        this.checked = false; 
+    });
+    $('input[type=text]').each(function() {
+        $(this).val('');
+    });
+    $('#sort').prop('selectedIndex', 0);
+}
+
 function filterProducts() {
+    let arr = selectFilterElements();
+    let selectedCategories = arr['selectedCategories'];
+    let allCategories = arr['allCategories'];
+    let selectedBrands = arr['selectedBrands'];
+    let allBrands = arr['allBrands'];
+    let selectedColors = arr['selectedColors'];
+    let allColors = arr['allColors'];
+    let selectedGenders = arr['selectedGender'];
+    let allGenders = arr['allGenders'];
+    let allDiscounts = arr['allDiscounts'];
+    let selectedDiscounts = arr['selectedDiscounts'];
+
+    if(selectedCategories.length == 0) {
+        selectedCategories = allCategories;
+    }
+    if(selectedBrands.length == 0) {
+        selectedBrands = allBrands;
+    }
+    if(selectedGenders.length == 0) {
+        selectedGenders = allGenders;
+    }
+    if(selectedColors.length == 0) {
+        selectedColors = allColors;
+    }
+    if(selectedDiscounts.length == 0) {
+        selectedDiscounts = allDiscounts;
+    }
+
+    let search = $('#search').val();
+    let sort = $('#sort')[0].selectedIndex;
+
+    data = {};
     
-        let arr = selectFilterElements();
-        let selectedCategories = arr['selectedCategories'];
-        let allCategories = arr['allCategories'];
-        let selectedBrands = arr['selectedBrands'];
-        let allBrands = arr['allBrands'];
-
-        if(selectedCategories.length == 0) {
-            selectedCategories = allCategories;
-        }
-        if(selectedBrands.length == 0) {
-            selectedBrands = allBrands;
-        }
-
-        data = {};
-
-        data = {
+    data = {
             'categoryIds': selectedCategories,
-            'brandIds': selectedBrands
-        };
-        ajaxCallBack('filterProducts', 'POST', data, function(result) {
-            console.log(result);
-            let html = showProducts(result[0], result[1], result[2]);
-            $('#productsResult').html(html);
-        });
+            'brandIds': selectedBrands,
+            'colorIds': selectedColors,
+            'genderIds': selectedGenders,
+            'discountIds': selectedDiscounts,
+            'search': search,
+            'sort': sort
+    };
+
+    ajaxCallBack('filterProducts', 'POST', data, function(result) {
+        console.log(result);
+        let html = showProducts(result[0], result[1], result[2]);
+        $('#productsResult').html(html);
+    });
 }
 
 function triggerFilterProducts() {
@@ -949,12 +1031,62 @@ function triggerFilterProducts() {
         filterProducts();
         console.log('triger na brand');
     });
+    $(document).on('change', '#collapseDiscount', function() {
+        filterProducts();
+        console.log('triger na discount');
+    });
+    $(document).on('change', '#collapseColors', function() {
+        filterProducts();
+        console.log('triger na colors');
+    });
+    $(document).on('change', '#collapseGender', function() {
+        filterProducts();
+        console.log('triger na gender');
+    });
+    $(document).on('change', '#sort', function() {
+        filterProducts();
+        console.log('triger na sort');
+    });
+    $(document).on('input', '#search', function() {
+        filterProducts();
+        console.log('triger na search');
+    });
+    $(document).on('click', '#clear', function() {
+        console.log('kliknuto na clear');
+        clearFilterElements();
+        let arr = selectFilterElements();
+        let allCategories = arr['allCategories'];
+        let allBrands = arr['allBrands'];
+        let allColors = arr['allColors'];
+        let allGenders = arr['allGenders'];
+        let allDiscounts = arr['allDiscounts'];
+        let search = '';
+        let sort = 0;
+
+        data = {
+            'clearButton': true,
+            'categoryIds': allCategories,
+            'brandIds': allBrands,
+            'colorIds': allColors,
+            'genderIds': allGenders,
+            'discountIds': allDiscounts,
+            'search': search,
+            'sort': sort
+        };
+
+        ajaxCallBack('filterProducts', 'POST', data, function(result) {
+            console.log('pozvan ajax');
+            console.log(result);
+            let html = showProducts(result[0], result[1], result[2]);
+            $('#productsResult').html(html);
+        });
+    });
 }
 
 function showProducts(products, ratingValues, productIds) {
     let html = '';
     if(products.length == 0) {
-        html += 'No products with that category';
+        html += '<div class="col-12 d-flex justify-content-center align-items-center py-3"><p>There are no products for the selected criteria.</p></div>';
     }
     else {
         for(let product of products) {

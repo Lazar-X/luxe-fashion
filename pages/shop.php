@@ -12,17 +12,15 @@
     $ratingValues = tableSelectAll('rating_values');
     $prices = tableSelectAll('prices');
     $sizes = tableSelectAll('sizes');
+    $colors = tableSelectAll('colors');
     $genders = tableSelectAll('genders');
     $minPrice = selectMinimumPrice() -> min_price;
     $maxPrice = selectMaximumPrice() -> max_price;
-?>
-
-<?php
     echo '<div class="py-5">
         <p>Ovde su var dumpovi</p>';
-    // var_dump($products);
+        // var_dump($products);
     echo '</div>';
-?>
+    echo '
     <!-- Shop section -->
     <section id="shop" class="my-5">
         <div class="container">
@@ -30,7 +28,9 @@
             <div class="row mb-3 border-bottom">
                 <div class="col-12">
                     <h2>Shop With Us</h2>
-                    <p>Browse from <span id="product-count">25</span> latest products</p>
+                    <p>Browse from <span id="product-count">';
+                    echo count($products);
+                    echo '</span> latest products</p>
                 </div>
             </div>
             <div class="row">
@@ -39,8 +39,7 @@
                     <!-- Filters -->
                     <div class="card card-body">
                         <!-- Filter group -->
-                        <!-- Categories -->
-                        <?php
+                        <!-- Categories -->';
                             $categories = tableSelectAll('categories');
                             echo '<div class="filter-group">
                             <div class="card-header d-flex mb-3 align-items-center justify-content-between">
@@ -56,7 +55,9 @@
                                     <input type="checkbox" class="custom-control-input type" id="check-categories-'.$category -> category_id.'" name="categories" value="'.$category -> category_id.'" autocomplete="off">
                                     <label class="custom-control-label" for="check-categories-'.$category -> category_id.'">
                                         '.ucfirst($category -> category_name).'
-                                        (<span class="numberProductsCategory">20</span>)
+                                        (<span class="numberProductsCategory">';
+                                        echo countProducts('category_id', $category -> category_id);
+                                        echo '</span>)
                                     </label>
                                 </div>';
                                 }
@@ -78,72 +79,57 @@
                                     <input type="checkbox" class="custom-control-input type" id="check-brand-'.$brand -> brand_id.'" name="brands" value="'.$brand -> brand_id.'" autocomplete="off">
                                     <label class="custom-control-label" for="check-brand-'.$brand -> brand_id.'">
                                         '.$brand -> brand_name.'
-                                        (<span class="numberProductsBrand">20</span>)
+                                        (<span class="numberProductsBrand">';
+                                        echo countProducts('brand_id', $brand -> brand_id);
+                                        echo '</span>)
                                     </label>
                                 </div>';
                                 }
                                 echo '</div>
                                 </article>
-                            </div>
-                            <div class="filter-group">
+                            </div>';
+                            echo '<div class="filter-group">
                             <div class="card-header d-flex mb-3 align-items-center justify-content-between">
-                                <h6 class="title">Rating</h6>
-                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseRating" aria-expanded="false" aria-controls="collapseRating">
+                                <h6 class="title">Discount</h6>
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseDiscount" aria-expanded="false" aria-controls="collapseDiscount">
                                     <i class="fa-solid fa-angle-down"></i>
                                 </button>
                             </div>
                             <article class="card-group-item">
-                                <div class="collapse" id="collapseRating">';
-                                foreach ($ratingValues as $ratingValue) {
-                                    echo '<div class="form-check">
-                                    <input class="form-check-input" type="radio" name="rating" id="rating-'.$ratingValue -> rating_values_id.'" value="'.$ratingValue -> rating_values_id.'">
-                                    <label class="form-check-label" for="rating-'.$ratingValue -> rating_values_id.'">';
-                                    for($i = 1; $i <= $ratingValue -> rating_values_id; $i++) {
-                                        echo '<i class="fa-solid fa-star star-filled"></i> ';
-                                    }
-                                        echo '(<span class="numberProductsRating">20</span>)
-                                    </label>
-                                </div>';
-                                }
-                                echo '</div>
-                                </article>
-                            </div>
-                            <div class="filter-group">
-                            <div class="card-header d-flex mb-3 align-items-center justify-content-between">
-                                <h6 class="title">Price</h6>
-                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapsePrice" aria-expanded="false" aria-controls="collapsePrice">
-                                    <i class="fa-solid fa-angle-down"></i>
-                                </button>
-                            </div>
-                            <article class="card-group-item">
-                                <div class="collapse" id="collapsePrice">
-                                    <div class="form-group d-flex justify-content-center">
-                                        <input type="range" id="price" class="form-range" value="'.$maxPrice.'" min="'.$minPrice.'" max="'.$maxPrice.'">
-                                        <output id="output" for="price">300</output>
+                                <div class="collapse" id="collapseDiscount">
+                                    <div class="form-group d-flex">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="discount" id="discount" value="1">
+                                            <label class="form-check-label" for="discount">
+                                                Discount
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </article>
                         </div>
                         <div class="filter-group">
                             <div class="card-header d-flex mb-3 align-items-center justify-content-between">
-                                <h6 class="title">Sizes</h6>
-                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseSizes" aria-expanded="false" aria-controls="collapseSizes">
+                                <h6 class="title">Colors</h6>
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseColors" aria-expanded="false" aria-controls="collapseColors">
                                     <i class="fa-solid fa-angle-down"></i>
                                 </button>
                             </div>
                             <article class="card-group-item">
-                                <div class="collapse" id="collapseSizes">
-                                    <div class="d-flex flex-wrap" id="div-sizes">';
-                                    foreach ($sizes as $size) {
-                                        echo '<div class="custom-control custom-checkbox mb-2">
-                                        <input type="checkbox" class="custom-control-input type" id="check-sizes-'.$size -> size_id.'" name="sizes" value="'.$size -> size_id.'" autocomplete="off">
-                                        <label class="custom-control-label size-label" for="check-sizes-1">'.$size -> size_name.'</label>
-                                    </div>';
-                                    }
-                                    echo '</div>
+                                <div class="product-colors collapse" id="collapseColors">
+                                <div class="d-flex flex-wrap">';
+                                foreach ($colors as $color) {
+                                    echo '<div class="form-group">
+                                    <div class="form-check">
+                                    <input class="form-check-input custom-control-input" type="checkbox" name="colors" id="color-check-'.$color -> color_id.'" value="'.$color -> color_id.'" autocomplete="off">
+                                    <label style="background-color: '.$color -> color_value.'" class="form-check-label size-label" for="color-check-'.$color -> color_id.'"></label>
                                     </div>
-                                </article>
-                            </div>
+                                </div>';
+                                }
+                                    echo '</div>
+                                </div>
+                            </article>
+                        </div>
                             <div class="filter-group">
                             <div class="card-header d-flex mb-3 align-items-center justify-content-between">
                                 <h6 class="title">Gender</h6>
@@ -158,7 +144,9 @@
                                     <input class="form-check-input" type="radio" name="gender" id="gender-'.$gender -> gender_id.'" value="'.$gender -> gender_id.'">
                                     <label class="form-check-label" for="gender-'.$gender -> gender_id.'">
                                         '.ucfirst($gender -> gender_name).'
-                                        (<span class="numberProductsGender">20</span>)
+                                        (<span class="numberProductsGender">';
+                                        echo countProducts('gender_id', $gender -> gender_id);
+                                        echo '</span>)
                                     </label>
                                 </div>';
                                 }
@@ -173,7 +161,7 @@
                     <div class="row">
                         <div class="col-md-6 col-12">
                             <!-- search -->
-                            <div class="form-group">
+                            <div class="form-group" id="searchDiv">
                                 <label for="search" class="font-weight-bold">Search</label>
                                 <input type="text" class="form-control" id="search" aria-describedby="search" placeholder="Enter keywords">
                                 <small id="searchHelp" class="form-text text-muted">Are you looking for a specific item?</small>
@@ -184,11 +172,11 @@
                             <div class="form-group">
                                 <label for="sort" class="font-weight-bold">Sort by</label>
                                 <select class="form-control" id="sort">
-                                    <option>Defaul</option>
-                                    <option>Ascending</option>
-                                    <option>Desc</option>
-                                    <option>Price up</option>
-                                    <option>Price down</option>
+                                    <option value="0">Default</option>
+                                    <option value="1">Asc</option>
+                                    <option value="2">Desc</option>
+                                    <option value="3">Price up</option>
+                                    <option value="4">Price down</option>
                                 </select>
                                 <small id="sortHelp" class="form-text text-muted">Sort by your preferences, shop with ease.</small>
                             </div>

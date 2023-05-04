@@ -6,6 +6,13 @@
         try {
             $categoryIds = $_POST['categoryIds'];
             $brandIds = $_POST['brandIds'];
+            $colorIds = $_POST['colorIds'];
+            $genderIds = $_POST['genderIds'];
+            $discountIds = $_POST['discountIds'];
+            $discountId = array_values($discountIds)[0];
+            $search = $_POST['search'];
+            $sort = $_POST['sort'];
+
             $categories = tableSelectAll('categories');
             $categoryIdsBase = array();
             foreach ($categories as $c) {
@@ -21,11 +28,10 @@
             if($errorCounter != 0) {
                 $statusCode = 422;
             }
-            else {
-                (object)$products = filterProducts($categoryIds, $brandIds);
-                $statusCode = 200;
-            }
-            
+
+            $products = filterProducts($categoryIds, $brandIds, $genderIds, $colorIds, $discountId, $search, $sort);
+            $statusCode = 200;
+
             $averageRatings = array();
             $productIds = array();
             foreach ($products as $product) {

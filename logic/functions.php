@@ -38,19 +38,20 @@
         return $result;
     }
 
-    // get count table
-    // function tableRowCount($tableName) {
-    //     global $conn;
-    //     $query = "SELECT COUNT(*) FROM $tableName";
+    // To count products
+    function countProducts($columnName, $columnValue) {
+        global $conn;
 
-    //     $prepare = $conn -> prepare($query);
+        $query = "SELECT COUNT(*) FROM products WHERE $columnName = :columnValue";
 
-    //     $prepare -> execute();
-    //     $result = $prepare -> fetchColumn();
-    //     return $result;
-    // }
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':columnValue', $columnValue);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchColumn();
+        return $result;
+    }
     
-
     // navigation select
     function navigationSelect() {
         global $conn;
@@ -264,7 +265,7 @@
         return $result;
     }
 
-    function filterProducts($categoryIds, $brandIds) {
+    function filterProducts($categoryIds, $brandIds, $genderIds, $colorIds, $discountId, $search, $sort) {
         global $conn;
 
         $where = "";
@@ -288,13 +289,67 @@
         else {
             $where .= " WHERE $queryHelp";
         }
+        if(!empty($genderIds)) {
+            $queryHelp = "p.gender_id IN (".implode(",", $genderIds).")";
+        }
+        if(!empty($where)){
+            $where .= " AND $queryHelp";
+        }
+        else {
+            $where .= " WHERE $queryHelp";
+        }
+        if(!empty($colorIds)) {
+            $queryHelp = "p.color_id IN (".implode(",", $colorIds).")";
+        }
+        if(!empty($where)){
+            $where .= " AND $queryHelp";
+        }
+        else {
+            $where .= " WHERE $queryHelp";
+        }
+        if($discountId == 1) {
+            $queryHelp = "pr.price_old IS NOT NULL";
+        }
+        if(!empty($where)){
+            $where .= " AND $queryHelp";
+        }
+        else {
+            $where .= " WHERE $queryHelp";
+        }
+        if(!empty($search)) {
+            $queryHelp = "p.product_name LIKE CONCAT ('%', '$search', '%')";
+        }
+        if(!empty($where)){
+            $where .= " AND $queryHelp";
+        }
+        else {
+            $where .= " WHERE $queryHelp";
+        }
+        $orderBy = "";
+        switch ($sort) {
+            case 1:
+                $orderBy = "ORDER BY p.product_name ASC";
+                break;
+            case 2:
+                $orderBy = "ORDER BY p.product_name DESC";
+                break;
+            case 3:
+                $orderBy = "ORDER BY pr.price_new ASC";
+                break;
+            case 4:
+                $orderBy = "ORDER BY pr.price_new DESC";
+                break;
+            default:
+                break;
+        }
 
-        $query = "SELECT * FROM products p
+        $query = "SELECT DISTINCT * FROM products p
         JOIN categories c ON p.category_id = c.category_id
         JOIN brands b ON p.brand_id = b.brand_id
-        JOIN colors col ON p.color_id = col.color_id
         JOIN genders g ON p.gender_id = g.gender_id
-        JOIN prices pr ON p.product_id = pr.product_id $where";
+        JOIN colors col ON p.color_id = col.color_id
+        JOIN prices pr ON p.product_id = pr.product_id
+        $where $orderBy";
 
         $prepare = $conn -> prepare($query);
 
@@ -302,6 +357,8 @@
         $result = $prepare -> fetchAll();
         return $result;
     }
+
+    
 
     function getProducts($categoryIds, $brandIds, $colorIds, $search, $max_price, $order){
         $where = "";
@@ -384,28 +441,6 @@
         $prepare -> execute();
         $result = $prepare -> fetchAll();
         return $result;
-    }
-
-    function vratiSveProizvodeSaIdKategorijom($idKat) {
-        global $conn;
-    
-        $query = "SELECT * FROM products p JOIN categories c ON p.category_id = c_category_id WHERE p.category_id = :category_id";
-
-        $prepare = $conn -> prepare($query);
-        $prepare -> bindParam(':category_id', $idKat);
-
-        $prepare -> execute();
-        $result = $prepare -> fetchAll();
-        return $result;
-    }
-
-    function selectProductInformation() {
-//         SELECT p.*, c.color_name, s.size_name, ct.category_name, b.brand_name
-// FROM products p
-// INNER JOIN colors c ON p.color_id = c.color_id
-// INNER JOIN sizes s ON p.size_id = s.size_id
-// INNER JOIN categories ct ON p.category_id = ct.category_id
-// INNER JOIN brands b ON p.brand_id = b.brand_id;
     }
 
 ?>

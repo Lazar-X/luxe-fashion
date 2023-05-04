@@ -39,5 +39,16 @@ Sto se ankete tice, prvo selektujemo sve ankete, zatim filtriramo samo one koje 
 Klikom na anketu prenosi se id ankete preko url adrese, ukoliko se pristupi direktno preko url, stampa mu se poruka i vraca ga nazad
 Glasanjem skladisti se odgovor, i ukoliko je korisnik glasao, zabranjuje mu se da glasa ponovo
 
+Svi filteri se stampaju dinamicki iz baze
+Uradjeno prikazivanje broja proizvoda po kategoriji, gender, brandu
+Uradjeno filtriranje po kategoriji, brandu, discount, colors, gender
+Uradjeno sortiranje po ceni i nazivu
+Uradjen search
+
+
+
+
+
+
 
 Celokupan rad se moze videti na github
