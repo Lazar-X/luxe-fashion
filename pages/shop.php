@@ -9,17 +9,12 @@
     $products = selectAllProducts();
     $categories = tableSelectAll('categories');
     $brands = tableSelectAll('brands');
-    $ratingValues = tableSelectAll('rating_values');
     $prices = tableSelectAll('prices');
-    $sizes = tableSelectAll('sizes');
     $colors = tableSelectAll('colors');
     $genders = tableSelectAll('genders');
     $minPrice = selectMinimumPrice() -> min_price;
     $maxPrice = selectMaximumPrice() -> max_price;
-    echo '<div class="py-5">
-        <p>Ovde su var dumpovi</p>';
-        // var_dump($products);
-    echo '</div>';
+
     echo '
     <!-- Shop section -->
     <section id="shop" class="my-5">
@@ -196,7 +191,7 @@
                                                 <div class="product-icons">
                                                     <!-- Modal add to cart icon -->
                                                     <a href="javascript:void(0)" data-toggle="modal" data-target="#add-to-cart" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                                                    <a href="single-product.php" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
+                                                    <a href="single-product.php?product_id='.$product -> product_id.'" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
                                                 </div>
                                             </div>
                                         </div>

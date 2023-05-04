@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </div>';
-            header("Refresh:1; url=index.php");
+            header("Refresh:2; url=index.php");
         }
         else {
             $user = $_SESSION['user'];

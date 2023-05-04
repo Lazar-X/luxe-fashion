@@ -26,5 +26,4 @@ Treba proveriti sve linkove
 Treba napisati dokumentaciju
 
 Ako ostane vremena:
-Napraviti sekciju za proizvod koji je na popustu odredjeno vreme
-Treba da popravimo responsive navigaciju, uppercase, padding (samo dodati padding za navbar u nasem css)
+Popraviti orders da dobijemo i listu proizvoda, ili napraviti novu tabelu ili cuvati niz proizvoda iz cart

@@ -125,6 +125,19 @@
         return $result;
     }
 
+    function userUpdateSelect($userId) {
+        global $conn;
+
+        $query = "SELECT * FROM users u JOIN roles r ON u.role_id = r.role_id WHERE u.user_id = :userId";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':userId', $userId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
     function verifyUser($username, $verificationCode) {
         global $conn;
 
@@ -136,6 +149,20 @@
 
         $prepare -> execute();
         $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function updateUser($userId, $firstName, $lastName) {
+        global $conn;
+
+        $query = "UPDATE users SET user_firstname = :firstName, user_lastname = :lastName, user_updated_at = NOW() WHERE user_id = :userId";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':firstName', $firstName);
+        $prepare -> bindParam(':lastName', $lastName);
+        $prepare -> bindParam(':userId', $userId);
+
+        $result = $prepare -> execute();
         return $result;
     }
     
@@ -232,21 +259,38 @@
     function selectAllProducts() {
         global $conn;
 
-        $query = "SELECT * FROM products p
+        $query = "SELECT DISTINCT * FROM products p
         JOIN categories c ON p.category_id = c.category_id
         JOIN brands b ON p.brand_id = b.brand_id
         JOIN colors col ON p.color_id = col.color_id
         JOIN genders g ON p.gender_id = g.gender_id
-        -- JOIN product_sizes ps ON p.product_id = ps.product_id
-        -- JOIN sizes s ON ps.size_id = s.size_id
-        -- JOIN ratings r ON p.product_id = r.product_id
-        -- JOIN rating_values rv ON r.rating_values_id = rv.rating_values_id
         JOIN prices pr ON p.product_id = pr.product_id";
 
         $prepare = $conn -> prepare($query);
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function selectProductById($productId) {
+        global $conn;
+
+        $query = "SELECT * FROM products p
+        JOIN categories c ON p.category_id = c.category_id
+        JOIN brands b ON p.brand_id = b.brand_id
+        JOIN colors col ON p.color_id = col.color_id
+        JOIN genders g ON p.gender_id = g.gender_id
+        JOIN product_sizes ps ON p.product_id = ps.product_id
+        JOIN sizes s ON s.size_id = ps.size_id 
+        JOIN prices pr ON p.product_id = pr.product_id
+        WHERE p.product_id = :productId";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':productId', $productId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
         return $result;
     }
 

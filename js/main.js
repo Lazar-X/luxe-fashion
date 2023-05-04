@@ -25,8 +25,6 @@ window.onload = function() {
     // Single product
     if(document.URL.includes('single-product.php')) {
         const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
-        const colors = document.querySelector("#div-colors").querySelectorAll('label');
-        addActiveClass(colors, 'active-color');
         addActiveClass(sizes, 'active-size');
         quantity();
     }
@@ -51,6 +49,10 @@ window.onload = function() {
     // Vote
     if(document.URL.includes('poll.php')) {
         voteValidation();
+    }
+    // User
+    if(document.URL.includes('user.php')) {
+        updateUserData();
     }
 }
 
@@ -845,6 +847,7 @@ function checkoutValidation() {
     });
 }
 
+// Function to validate vote data
 function voteValidation() {
     $(document).on('click', '#voteButton', function() {
         let poll = $('input[name="poll"]:checked');
@@ -886,6 +889,91 @@ function voteValidation() {
                 }, 3000);
             });
         }
+    });
+}
+
+// Function to update user data
+function updateUserData() {
+    let firstName = $('#updateFirstName');
+    let lastName = $('#updateLastName');
+    let firstNameHelp = $('#updateFirstNameHelp');
+    let lastNameHelp = $('#updateLastNameHelp');
+    let userId = $('#userId');
+    let regexId = /^\d+$/;
+    let regexName = /^[A-Z][a-z]{2,19}( [A-Z][a-z]{2,19})*$/;
+
+    let errorCounter = 0;
+
+    if(!regexName.test($(firstName).val())) {
+        errorCounter++;
+    }
+    if(!regexName.test($(lastName).val())) {
+        errorCounter++;
+    }
+    if(!regexId.test($(userId).val())) {
+        voteHelp.addClass('text-danger');
+        voteHelp.text('User ID is not valid.');
+    }
+    
+    function checkRegisterFirstName() {
+        if(!regexName.test($(firstName).val())) {
+            errorCounter++;
+            firstNameHelp.addClass('text-danger');
+            firstNameHelp.text('Please enter a valid name. Example: Lazar');
+            firstName.addClass('border-danger');
+        }
+        else {
+            firstNameHelp.removeClass('text-danger');
+            firstNameHelp.text('');
+            firstName.removeClass('border-danger');
+            firstName.addClass('border-success');
+        }
+    }
+
+    function checkRegisterLastName() {
+        if(!regexName.test($(lastName).val())) {
+            errorCounter++;
+            lastNameHelp.addClass('text-danger');
+            lastNameHelp.text('Please enter a valid name. Example: Jankovic');
+            lastName.addClass('border-danger');
+        }
+        else {
+            lastNameHelp.removeClass('text-danger');
+            lastNameHelp.text('');
+            lastName.removeClass('border-danger');
+            lastName.addClass('border-success');
+        }
+    }
+
+    firstName.on('focusout', function() {
+        checkRegisterFirstName();
+    });
+    lastName.on('focusout', function() {
+        checkRegisterLastName();
+    });
+
+    $(document).on('click', '#updateUserDataButton', function() {
+        errorCounter = 0;
+        checkRegisterFirstName();
+        checkRegisterLastName();
+
+        if(errorCounter == 0) {
+            let data = {
+                'firstName': firstName.val(),
+                'lastName': lastName.val(),
+                'userId': userId.val(), 
+                'button': true
+            };
+
+            ajaxCallBack('userDataForm', 'post', data, function(result) {
+                $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+                window.setTimeout(function() {
+                    window.location = 'user.php';
+                }, 3000);
+            });
+        }
+
+        errorCounter = 0;
     });
 }
 
@@ -1098,7 +1186,7 @@ function showProducts(products, ratingValues, productIds) {
                             <div class="product-icons">
                                 <!-- Modal add to cart icon -->
                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#add-to-cart" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                                <a href="single-product.php" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
+                                <a href="single-product.php?product_id=${product.product_id}" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
                             </div>
                         </div>
                     </div>

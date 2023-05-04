@@ -45,6 +45,8 @@ Uradjeno filtriranje po kategoriji, brandu, discount, colors, gender
 Uradjeno sortiranje po ceni i nazivu
 Uradjen search
 
+Za korisnika uradjeno da moze da update ime i prezime, updatuje se odmah nakon refresha stranice
+Uradjen mu i uvid u orders
 
 
 

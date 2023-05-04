@@ -381,7 +381,6 @@ footer h3 {
 }
 .single-product-background {
     height: 500px;
-    background-image: url('../images/products/dress-01-original.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
