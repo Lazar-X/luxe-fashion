@@ -3,10 +3,9 @@
     require_once '../includes/head.php';
     require_once '../includes/header.php';
     require_once '../includes/navigation.php';
-    $products = selectAllProducts();
-?>
-    <!-- Hero section -->
-    <section id="hero">
+    $products = productsForIndex();
+
+    echo '<section id="hero">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-12">
@@ -69,136 +68,47 @@
                     <h2>On Discount</h2>
                 </div>
             </div>
-            <div class="row">
-                <?php
+            <div class="row">';
                     foreach ($products as $product) {
                         echo '<div class="col-lg-3 col-sm-6 col-12">
                         <div class="product m-1 p-md-3 p-1">
-                            <div class="product-image">
+                            <div style="background-image:url(../images/products/'.$product -> product_image.'.png);" class="product-image">
                                 <div class="overlay-product-image">
                                     <div class="product-icons">
-                                        <a href="cart.php" data-toggle="tooltip" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                                        <a href="single-product.php" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="single-product.php?product_id='.$product -> product_id.'" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-text">
-                                <h3 class="my-2">Product Name</h3>
-                                <p class="stars">
-                                    <i class="fa-solid fa-star star-filled"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </p>
-                                <p class="price-text-old">$33.69</p>
-                                <p class="price-text-new">$22.99</p>
+                                <h3 class="my-2">'.$product -> product_name.'</h3>
+                                <p class="stars">';
+                                            $avgRatingProduct = averageRatingProduct($product->product_id);
+                                            $avgValue = round($avgRatingProduct->average_rating);
+                                            if($avgValue != 0) {
+                                                for($i = 0; $i < $avgValue; $i++) {
+                                                    echo '<i class="fa-solid fa-star star-filled"></i> ';
+                                                }
+                                            }
+                                            else {
+                                                for($i = 0; $i < 5; $i++) {
+                                                    echo '<i class="fa-solid fa-star"></i> ';
+                                                }
+                                            }
+                                            echo '
+                                            </p>
+                                            ';
+                                            if($product -> price_old != null) {
+                                                echo '<p class="price-text-old mr-2">$'.$product -> price_old.'</p>';
+                                            }
+                                            else {
+                                                echo '<p class="price-text-old"></p>';
+                                            }
+                                            echo '<p class="price-text-new">$'.$product -> price_new.'</p>
                             </div>
                         </div>
                     </div>';
                     }
-                ?>
-                <!-- Product -->
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="product m-1 p-md-3 p-1">
-                        <div class="product-image">
-                            <div class="overlay-product-image">
-                                <div class="product-icons">
-                                    <a href="cart.php" data-toggle="tooltip" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                                    <a href="single-product.php" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-text">
-                            <h3 class="my-2">Product Name</h3>
-                            <p class="stars">
-                                <i class="fa-solid fa-star star-filled"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </p>
-                            <p class="price-text-old">$33.69</p>
-                            <p class="price-text-new">$22.99</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product -->
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="product m-1 p-md-3 p-1">
-                        <div class="product-image">
-                            <div class="overlay-product-image">
-                                <div class="product-icons">
-                                    <a href="cart.php" data-toggle="tooltip" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                                    <a href="single-product.php" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-text">
-                            <h3 class="my-2">Product Name</h3>
-                            <p class="stars">
-                                <i class="fa-solid fa-star star-filled"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </p>
-                            <p class="price-text-old">$33.69</p>
-                            <p class="price-text-new">$22.99</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product -->
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="product m-1 p-md-3 p-1">
-                        <div class="product-image">
-                            <div class="overlay-product-image">
-                                <div class="product-icons">
-                                    <a href="cart.php" data-toggle="tooltip" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                                    <a href="single-product.php" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-text">
-                            <h3 class="my-2">Product Name</h3>
-                            <p class="stars">
-                                <i class="fa-solid fa-star star-filled"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </p>
-                            <p class="price-text-old">$33.69</p>
-                            <p class="price-text-new">$22.99</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product -->
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="product m-1 p-md-3 p-1">
-                        <div class="product-image">
-                            <div class="overlay-product-image">
-                                <div class="product-icons">
-                                    <a href="cart.php" data-toggle="tooltip" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                                    <a href="single-product.php" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-text">
-                            <h3 class="my-2">Product Name</h3>
-                            <p class="stars">
-                                <i class="fa-solid fa-star star-filled"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </p>
-                            <p class="price-text-old">$33.69</p>
-                            <p class="price-text-new">$22.99</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            echo '</div>
         </div>
     </section>
     <!-- About us section -->
@@ -213,9 +123,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>';
 
-<?php
     require_once '../includes/services.php';
     require_once '../includes/footer.php';
 ?>

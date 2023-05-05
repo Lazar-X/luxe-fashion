@@ -2,8 +2,6 @@ http://127.0.0.1/luxe-fashion/pages/index.html
 
 Treba fetchovati sizes za informacije o proizvodu
 
-Na glavnoj stranici fetchovati proizvode sa popustom
-
 Treba napraviti cart funkcionalnost, ukupnu cenu, kao i delete iz carta, a napraviti i quantity funkcionalnost, prenosi se vrednost quantity i racunamo ukupnu cenu
 
 Treba napraviti da korisnik moze da glasa

@@ -52,7 +52,7 @@ Za admina omoguceno dodavanje novog proizvoda, velicine za taj proizvod, cene, i
 Ukoliko se ne doda sve, nece biti prikazano u shop
 Uvid u korisnike i u contact poruke
 
-
+Na glavnoj stranici prikazani proizvodi sa popustom
 
 
 

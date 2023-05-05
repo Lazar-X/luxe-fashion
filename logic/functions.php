@@ -555,4 +555,22 @@
         return $result;
     }
 
+    function productsForIndex() {
+        global $conn;
+
+        $query = "SELECT DISTINCT * FROM products p
+        JOIN categories c ON p.category_id = c.category_id
+        JOIN brands b ON p.brand_id = b.brand_id
+        JOIN colors col ON p.color_id = col.color_id
+        JOIN genders g ON p.gender_id = g.gender_id
+        JOIN prices pr ON p.product_id = pr.product_id
+        WHERE pr.price_old IS NOT NULL ORDER BY p.product_id ASC LIMIT 4";
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
 ?>
