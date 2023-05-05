@@ -46,7 +46,11 @@ Uradjeno sortiranje po ceni i nazivu
 Uradjen search
 
 Za korisnika uradjeno da moze da update ime i prezime, updatuje se odmah nakon refresha stranice
-Uradjen mu i uvid u orders
+Prikazani mu mini orderi
+
+Za admina omoguceno dodavanje novog proizvoda, velicine za taj proizvod, kao i cena
+Ukoliko se ne doda sve, nece biti prikazano u shop
+Uvid u korisnike i u contact poruke
 
 
 

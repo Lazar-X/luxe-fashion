@@ -1306,7 +1306,7 @@ function insertProduct() {
 
 function insertSizes() {
     $(document).on('click', '#addSizesButton', function() {
-        let productId = $('#product')[0].selectedIndex + 1;
+        let productId = $('#product').val();
         let sizeIds = [];
         let sizesHelp = $('#sizesHelp');
 

@@ -259,7 +259,7 @@
     function selectAllProducts() {
         global $conn;
 
-        $query = "SELECT DISTINCT * FROM products p
+        $query = "SELECT * FROM products p
         JOIN categories c ON p.category_id = c.category_id
         JOIN brands b ON p.brand_id = b.brand_id
         JOIN colors col ON p.color_id = col.color_id
@@ -402,7 +402,36 @@
         return $result;
     }
 
-    
+    function productInsert($productName, $productDescription, $productImage, $categoryId, $brandId, $colorId, $genderId) {
+        global $conn;
+
+        $query = "INSERT INTO products (product_name, product_description, product_image, product_created_at, product_updated_at, category_id, brand_id, color_id, gender_id) VALUES (:productName, :productDescription, :productImage, NOW(), NULL, :categoryId, :brandId, :colorId, :genderId)";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':productName', $productName);
+        $prepare -> bindParam(':productDescription', $productDescription);
+        $prepare -> bindParam(':productImage', $productImage);
+        $prepare -> bindParam(':categoryId', $categoryId);
+        $prepare -> bindParam(':brandId', $brandId);
+        $prepare -> bindParam(':colorId', $colorId);
+        $prepare -> bindParam(':genderId', $genderId);
+
+        $result = $prepare -> execute();
+        return $result;
+    }
+
+    function insertSizes($productId, $sizeId) {
+        global $conn;
+
+        $query = "INSERT INTO product_sizes (product_id, size_id) VALUES (:productId, :sizeId)";
+
+        $prepare = $conn->prepare($query);
+        $prepare -> bindParam(':productId', $productId);
+        $prepare -> bindParam(':sizeId', $sizeId);
+
+        $result = $prepare->execute();
+        return $result;
+    }
 
     function getProducts($categoryIds, $brandIds, $colorIds, $search, $max_price, $order){
         $where = "";

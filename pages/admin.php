@@ -97,7 +97,7 @@
                                 <label for="product" class="font-weight-bold">Select Product</label>
                                 <select class="form-control" id="product">';
                                 foreach ($products as $product) {
-                                    echo '<option value="'.$product -> product_id.'">'.$product -> product_name.'</option>';
+                                    echo '<option value="'.$product -> product_id.'">'.$product -> product_id.' '.$product -> product_name.'</option>';
                                 }
                                 echo '</select>
                             </div>

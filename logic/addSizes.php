@@ -19,9 +19,12 @@
                 $statusCode = 422;
             }
             else {
-                $sizesInsert = true;
-                if($sizesInsert) {
-                    $response = ['message' => 'Success! Product has been added to the database.'];
+                foreach ($sizeIds as $sizeId) {
+                    $sizeInsert = insertSizes($productId, $sizeId);
+                }
+                $sizeInserts = true;
+                if($sizeInserts) {
+                    $response = ['message' => 'Success! Sizes has been added to the database.'];
                     $statusCode = 201;
                 }
                 else {

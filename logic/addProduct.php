@@ -34,14 +34,26 @@
                 $statusCode = 422;
             }
             else {
-                $productInsert = true;
-                if($productInsert) {
-                    $response = ['message' => 'Success! Product has been added to the database.'];
-                    $statusCode = 201;
+                $productNameBase = tableSelectByColumnValue('products', 'product_name', $productName);
+                $productImageBase = tableSelectByColumnValue('products', 'product_image', $productImage);
+                if($productNameBase) {
+                    $response = ['message' => 'Product with this name already exists!'];
+                    $statusCode = 409;
+                }
+                else if($productImageBase) {
+                    $response = ['message' => 'Product with this image already exists!'];
+                    $statusCode = 409;
                 }
                 else {
-                    $response = ['message' => 'Oops! Something went wrong on our end and we are unable to complete your request at this time. Please try again later or contact our support team for assistance.'];
-                    $statusCode = 500;
+                    $productInsert = productInsert($productName, $productDescription, $productImage, $categoryId, $brandId, $colorId, $genderId);
+                    if($productInsert) {
+                        $response = ['message' => 'Success! Product has been added to the database.'];
+                        $statusCode = 201;
+                    }
+                    else {
+                        $response = ['message' => 'Oops! Something went wrong on our end and we are unable to complete your request at this time. Please try again later or contact our support team for assistance.'];
+                        $statusCode = 500;
+                    }
                 }
             }
             

@@ -15,6 +15,10 @@
     $minPrice = selectMinimumPrice() -> min_price;
     $maxPrice = selectMaximumPrice() -> max_price;
 
+    echo '<div class="py-5">';
+    var_dump($products);
+    echo '</div>';
+
     echo '
     <!-- Shop section -->
     <section id="shop" class="my-5">

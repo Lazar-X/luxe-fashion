@@ -1,10 +1,10 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
+Za admina napraviti dodavanje proizvoda(ostalo php), dodavanje velicina(php plan je da napravimo foreach i da za svaki size dodajemo), dodavanje cena(nista nije uradjeno, obavezno)
+
+Treba fetchovati sizes za informacije o proizvodu
+
 Treba napraviti cart funkcionalnost, ukupnu cenu, kao i delete iz carta, a napraviti i quantity funkcionalnost, prenosi se vrednost quantity i racunamo ukupnu cenu
-
-Za admina napraviti dodavanje proizvoda(ostalo php), dodavanje velicina(php plan je da napravimo foreach i da za svaki size dodajemo)
-
-
 
 
 
