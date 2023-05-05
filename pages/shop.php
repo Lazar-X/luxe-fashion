@@ -194,7 +194,6 @@
                                             <div class="overlay-product-image">
                                                 <div class="product-icons">
                                                     <!-- Modal add to cart icon -->
-                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#add-to-cart" title="Add To Cart"><i class="fa-solid fa-cart-shopping"></i></a>
                                                     <a href="single-product.php?product_id='.$product -> product_id.'" data-toggle="tooltip" title="View Product"><i class="fa-solid fa-eye"></i></a>
                                                 </div>
                                             </div>
@@ -224,28 +223,6 @@
                                                 echo '<p class="price-text-old"></p>';
                                             }
                                             echo '<p class="price-text-new">$'.$product -> price_new.'</p>
-                                        </div>
-                                    </div>
-                                    <!-- Modal Add To Cart -->
-                                    <div class="product-add-to-cart">
-                                        <div class="modal fade" id="add-to-cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Notification</h5>
-                                                        <button type="button" class="close button-close-modal" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Product added to cart successfully!
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn" data-dismiss="modal">Close</button>
-                                                        <a href="cart.html" class="btn go-to-cart">Go To Cart</a>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>';

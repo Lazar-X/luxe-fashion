@@ -573,4 +573,20 @@
         return $result;
     }
 
+    function selectSizesForProduct($productId) {
+        global $conn;
+
+        $query = "SELECT DISTINCT ps.product_size_id, ps.product_id, ps.size_id, s.size_name
+        FROM product_sizes ps
+        INNER JOIN sizes s ON ps.size_id = s.size_id
+        WHERE ps.product_id = :productId";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':productId', $productId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
 ?>

@@ -110,7 +110,10 @@ function quantity() {
 function addActiveClass(elements, className) {
     elements.forEach(element => {
         element.addEventListener('click', () => {
-            element.classList.toggle(className);
+            elements.forEach(otherElement => {
+                otherElement.classList.remove(className);
+            });
+            element.classList.add(className);
         });
     });
 }
@@ -1281,10 +1284,10 @@ function insertProduct() {
             productDescriptionHelp.text('Max length: 500');
         }
 
-        let categoryId = $('#category')[0].selectedIndex + 1;
-        let brandId = $('#brand')[0].selectedIndex + 1;
-        let colorId = $('#color')[0].selectedIndex + 1;
-        let genderId = $('#gender')[0].selectedIndex + 1;
+        let categoryId = $('#category').val();
+        let brandId = $('#brand').val();
+        let colorId = $('#color').val();
+        let genderId = $('#gender').val();
 
         if(errorCounter == 0) {
             let data = {
@@ -1394,5 +1397,35 @@ function deleteProduct() {
 }
 
 function addToCart() {
+    $(document).on('click', '#addToCartButton', function() {
+        let productId = $('#productId').val();
+        let quantity = $('#quantity').val();
+        let size = $('input[name=sizes]:checked').val();
 
+        let errorCounter = 0;
+
+        if(typeof size === 'undefined') {
+            errorCounter++;
+            $('#sizeHelp').text('You need to select size!');
+        }
+
+        if(errorCounter == 0) {
+            let data = {
+                'productId': productId,
+                'quantity': quantity,
+                'size': size,
+                'button': true
+            };
+
+            ajaxCallBack('addToCart', 'post', data, function(result) {
+                console.log('pozvao se');
+                // $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+                $('#add-to-cart').modal("show");
+            });
+        }
+
+        else {
+            console.log(errorCounter);
+        }
+    });  
 }

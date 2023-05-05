@@ -88,10 +88,6 @@ brand_id
 color_id
 gender_id
 
--colors
-color_id
-color_name
-
 -sizes
 size_id
 size_name
@@ -100,6 +96,12 @@ size_name
 product_size_id
 product_id
 size_id
+
+-colors
+color_id
+color_name
+
+
 
 -rating
 rating_id

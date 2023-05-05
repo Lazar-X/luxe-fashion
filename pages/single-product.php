@@ -18,9 +18,10 @@
             $user = $_SESSION['user'];
             $productId = $_GET['product_id'];
             $product = selectProductById($productId);
+            $sizesForProduct = selectSizesForProduct($productId);
             echo '<div class="py-5">
                 <p>ovde dump</p>';
-                var_dump($product);
+                // var_dump($sizesForProduct);
             echo '</div>';
 
             echo '<!-- Product section -->
@@ -56,20 +57,14 @@
                             </div>
                             <!-- Product sizes -->
                             <div class="product-sizes d-flex align-items-center mb-2" id="div-sizes">
-                                <h3>Sizes:</h3>
-                                <div class="custom-control custom-checkbox mb-2">
-                                    <input type="checkbox" class="custom-control-input type" id="check-sizes-1" name="sizes" value="1" autocomplete="off">
-                                    <label class="custom-control-label size-label" for="check-sizes-1">S</label>
-                                </div>
-                                <div class="custom-control custom-checkbox mb-2">
-                                    <input type="checkbox" class="custom-control-input type" id="check-sizes-2" name="sizes" value="2" autocomplete="off">
-                                    <label class="custom-control-label size-label" for="check-sizes-2">M</label>
-                                </div>
-                                <div class="custom-control custom-checkbox mb-2">
-                                    <input type="checkbox" class="custom-control-input type" id="check-sizes-3" name="sizes" value="3" autocomplete="off">
-                                    <label class="custom-control-label size-label" for="check-sizes-3">L</label>
-                                </div>
-                            </div>
+                                <h3>Sizes:</h3>';
+                                foreach ($sizesForProduct as $size) {
+                                    echo '<div class="custom-control custom-checkbox mb-2">
+                                    <input type="radio" class="custom-control-input type" id="check-sizes-'.$size -> product_size_id.'" name="sizes" value="'.$size -> size_id.'" autocomplete="off">
+                                    <label class="custom-control-label size-label" for="check-sizes-'.$size -> product_size_id.'">'.$size -> size_name.'</label>
+                                </div>';
+                                }
+                            echo ' <small class="form-text text-danger font-weight-bold ml-2" id="sizeHelp"></small></div>
                             <!-- Product colors -->
                             <div class="product-colors d-flex align-items-center mb-2" id="div-colors">
                                 <h3>Color:</h3>
@@ -82,14 +77,15 @@
                             <div class="product-quantity d-flex align-items-center mb-2">
                                 <h3>Quantity:</h3>
                                 <span class="button-operator ml-2 button-operator-minus">-</span>
-                                <input type="text" class="button-quantity button-operator-result" value="1" />
+                                <input type="text" class="button-quantity button-operator-result" id="quantity" value="1" />
                                 <span class="button-operator button-operator-plus">+</span>
                                 <small class="form-text text-muted ml-2 quantity-help"></small>
                             </div>
+                            <input type="hidden" id="productId" value="'.$productId.'">
                             <!-- Product Add to Cart -->
                             <div class="product-add-to-cart">
                                 <!-- Adding product to Cart Modal with Button -->
-                                <button type="button" class="btn" data-toggle="modal" data-target="#add-to-cart">
+                                <button type="button" id="addToCartButton" class="btn" data-target="#add-to-cart">
                                     Add To Cart
                                 </button>
                                 <!-- Modal -->
@@ -107,7 +103,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn" data-dismiss="modal">Close</button>
-                                                <a href="cart.html" class="btn go-to-cart">Go To Cart</a>
+                                                <a href="cart.php" class="btn go-to-cart">Go To Cart</a>
                                             </div>
                                         </div>
                                     </div>

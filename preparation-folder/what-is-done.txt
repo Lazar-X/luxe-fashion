@@ -16,8 +16,8 @@ Uradjen brojac za quantity
 Napravljena funkcija za dodavanje klasa active
 Funkcija za password show/hide
 Funkcije za validaciju podataka
-Regularni izrazi pisani tako da zadovoljavaju na globalnom/internacionalnom nivou, (ovo jos uvek ne)ali takodje i dozvoljavaju i utf-8 karaktere
-Phone je opcioni, ne mora da se unese, ali ako se unosi mora da zadovolji format
+Regularni izrazi pisani tako da zadovoljavaju na globalnom/internacionalnom nivou, (ovo jos uvek ne)
+AjaxCallback i sve ostale funkcije za komunikaciju sa php
 
 -Php:
 Napravljen fajl za konekciju
@@ -53,6 +53,8 @@ Ukoliko se ne doda sve, nece biti prikazano u shop
 Uvid u korisnike i u contact poruke
 
 Na glavnoj stranici prikazani proizvodi sa popustom
+
+Za add to cart prvo sam zeleo da se odmah moze dodati u korpu, ali ipak sam odlucio da prvo mora da se pogleda proizvod i izabere velicina
 
 
 
