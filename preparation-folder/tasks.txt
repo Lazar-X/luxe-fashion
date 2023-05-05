@@ -1,5 +1,7 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
+Treba popraviti za single-product, da obican korisnik moze da gleda, ali samo da ne moze da doda u korpu
+
 Napravio sam dodavanje proizvoda u korpu sa klijentske strane, treba php
 Treba napraviti listanje cartova, quantity da se prenese, cena za proizvod da se ispise, da se izracuna ukupna cena, da se omoguci brisanje iz carta
 
