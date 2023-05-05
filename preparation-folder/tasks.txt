@@ -16,3 +16,5 @@ Treba napisati dokumentaciju
 
 Ako ostane vremena:
 Popraviti orders da dobijemo i listu proizvoda, ili napraviti novu tabelu ili cuvati niz proizvoda iz cart
+
+Git test !!!
