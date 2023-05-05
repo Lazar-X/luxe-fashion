@@ -118,6 +118,62 @@
                         </form>
                     </div>
                 </div>
+                <div class="row my-3 mt-5">
+                    <div class="col-12">
+                        <h3 class="font-weight-bold">Add prices for product</h3>
+                    </div>
+                </div>
+                <div class="row shadow p-3">
+                        <div class="col-12">
+                            <form id="pricesForm">
+                            <div class="form-group">
+                                <label for="product" class="font-weight-bold">Select Product</label>
+                                <select class="form-control" id="productPriceId">';
+                                foreach ($products as $product) {
+                                    echo '<option value="'.$product -> product_id.'">'.$product -> product_id.' '.$product -> product_name.'</option>';
+                                }
+                                echo '</select>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPriceNew" class="font-weight-bold">Product New Price:</label>
+                                <input type="text" class="form-control" id="productPriceNew" placeholder="Enter product new price">
+                                <small id="productPriceNewHelp" class="form-text">Example: 20.99</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPriceOld" class="font-weight-bold">Product Old Price:</label>
+                                <input type="text" class="form-control" id="productPriceOld" placeholder="Enter product old price">
+                                <small id="productPriceOldHelp" class="form-text">Example: 34.99</small>
+                            </div>
+                            <button type="button" id="addPricesButton" class="btn mt-3 button">Add prices</button>
+                            <div id="responsePrices">
+                                <!-- <small id="contactInformation" class="form-text text-success font-weight-bold"></small> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row my-3 mt-5">
+                    <div class="col-12">
+                        <h3 class="font-weight-bold">Delete product</h3>
+                    </div>
+                </div>
+                <div class="row shadow p-3">
+                        <div class="col-12">
+                            <form id="deleteProductForm">
+                            <div class="form-group">
+                                <label for="product" class="font-weight-bold">Select Product</label>
+                                <select class="form-control" id="productDeleteId">';
+                                foreach ($products as $product) {
+                                    echo '<option value="'.$product -> product_id.'">'.$product -> product_id.' '.$product -> product_name.'</option>';
+                                }
+                                echo '</select>
+                            </div>
+                            <button type="button" id="deleteProductButton" class="btn mt-3 button">Delete Product</button>
+                            <div id="responseDelete">
+                                <!-- <small id="contactInformation" class="form-text text-success font-weight-bold"></small> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <div class="container">
                 <div class="row my-3 d-flex flex-column">
                     <div class="row">

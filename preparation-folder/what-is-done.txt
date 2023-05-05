@@ -48,7 +48,7 @@ Uradjen search
 Za korisnika uradjeno da moze da update ime i prezime, updatuje se odmah nakon refresha stranice
 Prikazani mu mini orderi
 
-Za admina omoguceno dodavanje novog proizvoda, velicine za taj proizvod, kao i cena
+Za admina omoguceno dodavanje novog proizvoda, velicine za taj proizvod, cene, i omoguceno brisanje proizvoda
 Ukoliko se ne doda sve, nece biti prikazano u shop
 Uvid u korisnike i u contact poruke
 

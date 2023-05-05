@@ -13,6 +13,7 @@ window.onload = function() {
         const colors = document.querySelector('#collapseColors').querySelectorAll('label');
         toggleActiveClass(colors, 'active-color');
         triggerFilterProducts();
+        addToCart();
     }
     // About us
     if(document.URL.includes('about-us.php')) {
@@ -27,6 +28,7 @@ window.onload = function() {
         const sizes = document.querySelector("#div-sizes").querySelectorAll('label');
         addActiveClass(sizes, 'active-size');
         quantity();
+        addToCart();
     }
     // Login
     if(document.URL.includes('login.php')) {
@@ -58,6 +60,8 @@ window.onload = function() {
     if(document.URL.includes('admin.php')) {
         insertProduct();
         insertSizes();
+        insertPrices();
+        deleteProduct();
     }
 }
 
@@ -1336,4 +1340,59 @@ function insertSizes() {
             console.log(errorCounter);
         }
     });
+}
+
+function insertPrices() {
+    $(document).on('click', '#addPricesButton', function() {
+        let productId = $('#productPriceId').val();
+        let productPriceNew = $('#productPriceNew');
+        let productPriceNewHelp = $('#productPriceNewHelp');
+        let productPriceOld = $('#productPriceOld');
+
+        let regexPrice = /^\d+(?:\.\d{1,2})?$/;
+
+        let errorCounter = 0;
+
+        console.log(productId);
+
+        if(!regexPrice.test($(productPriceNew).val())) {
+            errorCounter++;
+            productPriceNewHelp.text('Example: 30.99');
+            productPriceNewHelp.addClass('text-danger');
+        }
+
+        if(errorCounter == 0) {
+            let data = {
+                'productId': productId,
+                'productPriceNew': productPriceNew.val(),
+                'productPriceOld': productPriceOld.val(),
+                'button': true
+            };
+
+            ajaxCallBack('addPrices', 'post', data, function(result) {
+                $('#responsePrices').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+            });
+        }
+        else {
+            console.log(errorCounter);
+        }
+    });
+}
+
+function deleteProduct() {
+    $(document).on('click', '#deleteProductButton', function() {
+        let productId = $('#productDeleteId').val();
+        let data = {
+            'productId': productId,
+            'button': true
+        };
+
+        ajaxCallBack('deleteProduct', 'post', data, function(result) {
+            $('#responseDelete').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+        });
+    });
+}
+
+function addToCart() {
+
 }

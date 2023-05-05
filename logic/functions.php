@@ -38,6 +38,18 @@
         return $result;
     }
 
+    // Delete row from table
+    function deleteRow($tableName, $columnName, $columnValue) {
+        global $conn;
+        $query = "DELETE FROM $tableName WHERE $columnName = :columnValue";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':columnValue', $columnValue);
+
+        $result = $prepare -> execute();
+        return $result;
+    }
+
     // To count products
     function countProducts($columnName, $columnValue) {
         global $conn;
@@ -259,7 +271,7 @@
     function selectAllProducts() {
         global $conn;
 
-        $query = "SELECT * FROM products p
+        $query = "SELECT DISTINCT * FROM products p
         JOIN categories c ON p.category_id = c.category_id
         JOIN brands b ON p.brand_id = b.brand_id
         JOIN colors col ON p.color_id = col.color_id
@@ -513,6 +525,33 @@
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function priceInsertNew($productId, $priceNew) {
+        global $conn;
+
+        $query = "INSERT INTO prices (product_id, price_new) VALUES (:productId, :priceNew)";
+        
+        $prepare = $conn->prepare($query);
+        $prepare -> bindParam(':productId', $productId);
+        $prepare -> bindParam(':priceNew', $priceNew);
+
+        $result = $prepare->execute();
+        return $result;
+    }
+
+    function priceInsertOld($productId, $priceNew, $priceOld) {
+        global $conn;
+        
+        $query = "INSERT INTO prices (product_id, price_new, price_old) VALUES (:productId, :priceNew, :priceOld)";
+        
+        $prepare = $conn->prepare($query);
+        $prepare -> bindParam(':productId', $productId);
+        $prepare -> bindParam(':priceNew', $priceNew);
+        $prepare -> bindParam(':priceOld', $priceOld);
+
+        $result = $prepare->execute();
         return $result;
     }
 
