@@ -1,4 +1,5 @@
-<div id="services">
+<?php
+    echo '<div id="services">
     <div class="container">
         <div class="row py-5">
             <div class="col-md-3 col-6">
@@ -27,4 +28,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>';
+?>
