@@ -654,10 +654,9 @@
         if($result) {
             $query = "SELECT SUM(c.cart_quantity * p.price_new) AS summary FROM carts c 
             JOIN prices p ON c.product_id = p.product_id 
-            WHERE c.user_id = :userId AND c.product_id = :productId";
+            WHERE c.user_id = :userId";
             $prepare = $conn->prepare($query);
             $prepare -> bindParam(':userId', $userId);
-            $prepare -> bindParam(':productId', $productId);
             $result = $prepare->execute();
             $result = $prepare->fetchColumn();
             return $result;
