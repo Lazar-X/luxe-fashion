@@ -640,4 +640,28 @@
         return $result;
     }
 
+    function updateQuantity($quantity, $productId, $userId, $price) {
+        global $conn;
+
+        $query = "UPDATE carts SET cart_quantity = :quantity WHERE user_id = :userId AND product_id = :productId";
+        $prepare = $conn->prepare($query);
+        $prepare -> bindParam(':quantity', $quantity);
+        $prepare -> bindParam(':productId', $productId);
+        $prepare -> bindParam(':userId', $userId);
+
+        $result = $prepare->execute();
+
+        if($result) {
+            $query = "SELECT SUM(c.cart_quantity * p.price_new) AS summary FROM carts c 
+            JOIN prices p ON c.product_id = p.product_id 
+            WHERE c.user_id = :userId AND c.product_id = :productId";
+            $prepare = $conn->prepare($query);
+            $prepare -> bindParam(':userId', $userId);
+            $prepare -> bindParam(':productId', $productId);
+            $result = $prepare->execute();
+            $result = $prepare->fetchColumn();
+            return $result;
+        }
+    }
+
 ?>

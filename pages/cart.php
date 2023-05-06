@@ -4,6 +4,7 @@
     require_once '../includes/header.php';
     require_once '../includes/navigation.php';
     if(isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
         $productsFromCart = selectProductsFromCart();
         $numberOfProductsInCart = countProductsFromCart();
         echo var_dump($productsFromCart);
@@ -49,7 +50,9 @@
                             <div class="col-lg-4 col-12">
                                 <div class="product-quantity d-flex align-items-center mb-2">
                                     <span class="button-operator ml-2 button-operator-minus">-</span>
-                                    <input type="text" class="button-quantity button-operator-result" value="'.$product -> cart_quantity.'" />
+                                    <input type="text" class="button-quantity button-operator-result" id="quantity" value="'.$product -> cart_quantity.'" readonly />
+                                    <input type="hidden" id="userId" value="'.$user -> user_id.'">
+                                    <input type="hidden" id="productId" value="'.$product -> product_id.'">
                                     <span class="button-operator button-operator-plus">+</span>
                                     <small class="form-text text-muted ml-2 quantity-help"></small>
                                 </div>

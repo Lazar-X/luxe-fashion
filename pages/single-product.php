@@ -75,7 +75,7 @@
                         <div class="product-quantity d-flex align-items-center mb-2">
                             <h3>Quantity:</h3>
                             <span class="button-operator ml-2 button-operator-minus">-</span>
-                            <input type="text" class="button-quantity button-operator-result" id="quantity" value="1" />
+                            <input type="text" class="button-quantity button-operator-result" id="quantity" value="1" readonly />
                             <span class="button-operator button-operator-plus">+</span>
                             <small class="form-text text-muted ml-2 quantity-help"></small>
                         </div>

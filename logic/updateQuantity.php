@@ -7,6 +7,7 @@
             $userId = $_POST['userId'];
             $productId = $_POST['productId'];
             $quantity = $_POST['quantity'];
+            $price = $_POST['price'];
 
             $errorCounter = 0;
             $response = '';
@@ -14,19 +15,13 @@
 
             $productInCart = productInCart($productId, $userId);
             if($productInCart) {
-                $response = ['message' => 'Product already in cart!'];
-                $statusCode = 409;
+                $updateQuantity = updateQuantity($quantity, $productId, $userId, $price);
+                $response = $updateQuantity;
+                $statusCode = 201;
             }
             else {
-                $addProductToCart = addToCart($quantity, $productId, $userId);
-                if($addProductToCart) {
-                    $response = ['message' => 'Success! Product has been added to the cart.'];
-                    $statusCode = 201;
-                }
-                else {
-                    $response = ['message' => 'Oops! Something went wrong on our end and we are unable to complete your request at this time. Please try again later or contact our support team for assistance.'];
-                    $statusCode = 500;
-                }
+                $response = ['message' => 'Product already in cart!'];
+                $statusCode = 409;
             }
             
             echo json_encode($response);

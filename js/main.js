@@ -44,6 +44,7 @@ window.onload = function() {
     // Cart
     if(document.URL.includes('cart.php')) {
         quantity();
+        updateQuantity();
     }
     // Checkout
     if(document.URL.includes('checkout.php')) {
@@ -1432,7 +1433,6 @@ function addToCart() {
 
             ajaxCallBack('addToCart', 'post', data, function(result) {
                 console.log('pozvao se');
-                // $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
                 $('#add-to-cart').modal("show");
             });
         }
@@ -1441,4 +1441,52 @@ function addToCart() {
             console.log(errorCounter);
         }
     });  
+}
+
+// Function to update quantity
+function updateQuantity() {
+    const buttonResult = document.querySelectorAll(".button-operator-result");
+    const buttonPlus = document.querySelectorAll(".button-operator-plus");
+    const buttonMinus = document.querySelectorAll(".button-operator-minus");
+    const prices = document.querySelectorAll(".price-text-new");
+    let userId = $('#userId').val();
+    let productId = $('#productId').val();
+    for (let i = 0; i < buttonPlus.length; i++) {
+        let newQuantity = parseInt(buttonResult[i].value);
+        buttonPlus[i].addEventListener("click", () => {
+            if(newQuantity < 10) {
+                newQuantity++;
+                buttonResult[i].value = newQuantity;
+                let data = {
+                    'userId': userId,
+                    'productId': productId,
+                    'quantity': buttonResult[i].value,
+                    'price': prices[i].textContent,
+                    'button': true
+                };
+    
+                ajaxCallBack('updateQuantity', 'post', data, function(result) {
+                    $('#summary').text(result);
+                });
+            }
+        });
+
+        buttonMinus[i].addEventListener("click", () => {
+            if(newQuantity > 1) {
+                newQuantity--;
+                buttonResult[i].value = newQuantity;
+                let data = {
+                    'userId': userId,
+                    'productId': productId,
+                    'quantity': buttonResult[i].value,
+                    'price': prices[i].textContent,
+                    'button': true
+                };
+    
+                ajaxCallBack('updateQuantity', 'post', data, function(result) {
+                    $('#summary').text(result);
+                });
+            }
+        });
+    }
 }
