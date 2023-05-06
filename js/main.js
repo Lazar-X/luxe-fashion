@@ -1,6 +1,7 @@
 window.onload = function() {
     // Global
     toggleMenu();
+
     // Index
     if(document.URL.includes('index.php')) {
 
@@ -682,6 +683,8 @@ function checkoutValidation() {
     let country = $('#checkoutCountry');
     let address = $('#checkoutAddress');
     let postcode = $('#checkoutPostcode');
+    let price = $('#summary');
+    let userId = $('#userId');
 
     let nameHelp = $('#nameHelp');
     let emailHelp = $('#emailHelp');
@@ -846,6 +849,8 @@ function checkoutValidation() {
                 'countryId': country.val(),
                 'address': address.val(),
                 'postcode': postcode.val(),
+                'price': price.text(),
+                'userId': userId.val(),
                 'button': true
             };
 
@@ -1398,6 +1403,7 @@ function deleteProduct() {
 
 function addToCart() {
     $(document).on('click', '#addToCartButton', function() {
+        let userId = $('#userId').val();
         let productId = $('#productId').val();
         let quantity = $('#quantity').val();
         let size = $('input[name=sizes]:checked').val();
@@ -1408,9 +1414,16 @@ function addToCart() {
             errorCounter++;
             $('#sizeHelp').text('You need to select size!');
         }
+        if(typeof userId === 'undefined') {
+            errorCounter++;
+            $('#addToCartHelp').text('You need to be logged in!');
+        }
+
+        console.log(userId);
 
         if(errorCounter == 0) {
             let data = {
+                'userId': userId,
                 'productId': productId,
                 'quantity': quantity,
                 'size': size,

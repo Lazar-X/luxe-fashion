@@ -589,4 +589,55 @@
         return $result;
     }
 
+    function addToCart($quantity, $productId, $userId) {
+        global $conn;
+        $query = "INSERT INTO carts (cart_quantity, product_id, user_id) VALUES (:quantity, :productId, :userId)";
+        $prepare = $conn->prepare($query);
+        $prepare -> bindParam(':quantity', $quantity);
+        $prepare -> bindParam(':productId', $productId);
+        $prepare -> bindParam(':userId', $userId);
+
+        $result = $prepare->execute();
+        return $result;
+    }
+
+    function productInCart($productId, $userId) {
+        global $conn;
+        $query = "SELECT * FROM carts WHERE product_id = :productId AND user_id = :userId";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':productId', $productId);
+        $prepare -> bindParam(':userId', $userId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function selectProductsFromCart() {
+        global $conn;
+
+        $query = "SELECT DISTINCT * FROM products p
+        JOIN carts c ON p.product_id = c.product_id
+        JOIN prices pr ON p.product_id = pr.product_id";
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
+    function countProductsFromCart() {
+        global $conn;
+
+        $query = "SELECT COUNT(*) FROM carts";
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchColumn();
+        return $result;
+    }
+
 ?>

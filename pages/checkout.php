@@ -4,7 +4,19 @@
     require_once '../includes/header.php';
     require_once '../includes/navigation.php';
     if(isset($_SESSION['user'])) {
+        if (!isset($_GET['summary'])) {
+            echo '<div class=container">
+                <div style="height: 500px; width: 100%;" class="row d-flex align-items-center">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <h3 class="text-danger">You are not allowed to access this page directly. Please click on a checkout from cart to continue.</h3>
+                    </div>
+                </div>
+            </div>';
+            header("Refresh:2; url=cart.php");
+        }
+        else {
         $user = $_SESSION['user'];
+        $summary = $_GET['summary'];
         $userPhone = tableSelectByColumnValue('phones', 'user_id', $user -> user_id);
         $countries = tableSelectAll('countries');
         if($userPhone !== false) {
@@ -64,6 +76,7 @@
                                         <input type="text" class="form-control" id="checkoutPostcode" placeholder="Enter postcode">
                                         <small id="postcodeHelp" class="form-text">Example: 11500</small>
                                     </div>
+                                    <input type="hidden" id="userId" value="'.$user -> user_id.'">
                                 </form>
                             </div>
                         </div>
@@ -73,8 +86,8 @@
                         <div class="row">
                             <div class="col-12 border shadow p-3">
                                 <h3 class="text-center text-uppercase pb-3 border-bottom">Your Order</h3>
-                                <p class="font-weight-bold pt-3">Total: <span id="summary">$399.99</span></p>
-                                <a href="cart.html" class="w-100 text-center shop-now-link">Review your cart</a>
+                                <p class="font-weight-bold pt-3">Total: <span id="summary">'.$summary.'</span></p>
+                                <a href="cart.php" class="w-100 text-center shop-now-link">Review your cart</a>
                                 <button type="button" id="checkoutButton" class="btn mt-3 button w-100">Place Order</button>
                                 <div id="response">
                                     <!-- <small id="contactInformation" class="form-text text-success font-weight-bold"></small> -->
@@ -86,6 +99,7 @@
             </div>
         </section>';
     }
+        }
     else {
         echo '<div class=container">
                 <div style="height: 500px; width: 100%;" class="row d-flex align-items-center">

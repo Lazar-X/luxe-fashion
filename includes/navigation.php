@@ -1,3 +1,24 @@
+<style>
+    <?php
+        require_once '../config/connection.php';
+        require_once '../logic/functions.php';
+        if(isset($_SESSION['user'])) {
+            $numItems = countProductsFromCart();
+            echo '.cart-link::before {
+                content: "'.$numItems.'";
+            }';
+        }
+        else {
+            echo '.cart-link::before {
+                content: "";
+                display: none;
+            }.cart-link::after {
+                content: "";
+                display: none;
+            }';
+        }
+    ?>
+</style>
 <nav class="py-4">
     <div class="container">
         <div class="row align-items-md-center">

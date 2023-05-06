@@ -10,7 +10,8 @@
             $countryId = $_POST['countryId'];
             $address = $_POST['address'];
             $postcode = $_POST['postcode'];
-            $price = '333.92';
+            $price = $_POST['price'];
+            $userId = $_POST['userId'];
 
             $countries = tableSelectAll('countries');
             $countryIds = array();
@@ -46,8 +47,11 @@
             if(!preg_match($regexPostcode, $postcode)) {
                 $errorCounter++;
             }
-            
-            if($errorCounter != 0) {
+            if($price == 0) {
+                $response = ['message' => 'Sorry, but it looks like you have no products in cart.'];
+                $statusCode = 422;
+            }
+            else if($errorCounter != 0) {
                 $response = ['message' => 'Sorry, there seems to be an issue with your data. Please ensure that all fields are entered correctly and try again.'];
                 $statusCode = 422;
             }
@@ -56,6 +60,7 @@
                 $userId = $user -> user_id;
                 $orderInsert = orderInsert($price, $address, $postcode, $countryId, $userId);
                 if($orderInsert) {
+                    $deleteProducts = deleteRow('carts', 'user_id', $userId);
                     $response = ['message' => 'Your order has been successfully processed and will be shipped to the address you provided.'];
                     $statusCode = 201;
                 }

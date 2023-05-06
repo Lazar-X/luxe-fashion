@@ -4,6 +4,7 @@
         require_once '../config/connection.php';
         require_once 'functions.php';
         try {
+            $userId = $_POST['userId'];
             $productId = $_POST['productId'];
             $quantity = $_POST['quantity'];
             $size = $_POST['size'];
@@ -12,14 +13,13 @@
             $response = '';
             $statusCode = '';
 
-            // da li se proizvod nalazi u korpi
-            $productInCart = false;
+            $productInCart = productInCart($productId, $userId);
             if($productInCart) {
                 $response = ['message' => 'Product already in cart!'];
                 $statusCode = 409;
             }
             else {
-                $addProductToCart = true;
+                $addProductToCart = addToCart($quantity, $productId, $userId);
                 if($addProductToCart) {
                     $response = ['message' => 'Success! Product has been added to the cart.'];
                     $statusCode = 201;
