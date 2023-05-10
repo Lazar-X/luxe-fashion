@@ -2,6 +2,8 @@ http://127.0.0.1/luxe-fashion/pages/index.html
 
 Uraditi stranicenje
 
+Treba izbrisati sve nepotrebne komentare, vardumpove, consolelog i slicno
+
 Treba napraviti sitemap
 Treba proveriti sve linkove
 Treba napisati dokumentaciju
