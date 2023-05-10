@@ -614,26 +614,28 @@
         return $result;
     }
 
-    function selectProductsFromCart() {
+    function selectProductsFromCart($userId) {
         global $conn;
 
         $query = "SELECT DISTINCT * FROM products p
         JOIN carts c ON p.product_id = c.product_id
-        JOIN prices pr ON p.product_id = pr.product_id";
+        JOIN prices pr ON p.product_id = pr.product_id WHERE user_id = :userId";
 
         $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':userId', $userId);
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
         return $result;
     }
 
-    function countProductsFromCart() {
+    function countProductsFromCart($userId) {
         global $conn;
 
-        $query = "SELECT COUNT(*) FROM carts";
+        $query = "SELECT COUNT(*) FROM carts WHERE user_id = :userId";
 
         $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':userId', $userId);
 
         $prepare -> execute();
         $result = $prepare -> fetchColumn();
@@ -650,6 +652,28 @@
         $prepare -> bindParam(':userId', $userId);
 
         $result = $prepare->execute();
+
+        if($result) {
+            $query = "SELECT SUM(c.cart_quantity * p.price_new) AS summary FROM carts c 
+            JOIN prices p ON c.product_id = p.product_id 
+            WHERE c.user_id = :userId";
+            $prepare = $conn->prepare($query);
+            $prepare -> bindParam(':userId', $userId);
+            $result = $prepare->execute();
+            $result = $prepare->fetchColumn();
+            return $result;
+        }
+    }
+
+    function deleteFromCart($userId, $productId) {
+        global $conn;
+        $query = "DELETE FROM carts WHERE user_id = :userId AND product_id = :productId";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':userId', $userId);
+        $prepare -> bindParam(':productId', $productId);
+
+        $result = $prepare -> execute();
 
         if($result) {
             $query = "SELECT SUM(c.cart_quantity * p.price_new) AS summary FROM carts c 

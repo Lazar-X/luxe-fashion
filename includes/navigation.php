@@ -3,7 +3,8 @@
         require_once '../config/connection.php';
         require_once '../logic/functions.php';
         if(isset($_SESSION['user'])) {
-            $numItems = countProductsFromCart();
+            $user = $_SESSION['user'];
+            $numItems = countProductsFromCart($user -> user_id);
             echo '.cart-link::before {
                 content: "'.$numItems.'";
             }';

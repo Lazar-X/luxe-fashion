@@ -45,6 +45,7 @@ window.onload = function() {
     if(document.URL.includes('cart.php')) {
         quantity();
         updateQuantity();
+        deleteFromCart();
     }
     // Checkout
     if(document.URL.includes('checkout.php')) {
@@ -1489,4 +1490,74 @@ function updateQuantity() {
             }
         });
     }
+}
+
+function deleteFromCart() {
+    console.log('pozvata funkcija');
+    const deleteButtons = document.querySelectorAll('.cart-button-delete');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            let userId = $('#userId').val();
+            let productId = $('#productId').val();
+    
+            console.log('kliknuto');
+    
+            let data = {
+                'userId': userId,
+                'productId': productId,
+                'button': true
+            };
+    
+            ajaxCallBack('deleteFromCart', 'post', data, function(result) {
+                let html = displayProductsInCart(result[0]);
+                $('#displayProducts').html(html);
+                $('#summary').text(result[1]);
+            });
+        });
+    });
+}
+
+function displayProductsInCart(products) {
+    let html = '';
+    if(products.length == 0) {
+        html += '<div class="col-12 d-flex justify-content-center align-items-center py-3"><p>There are no products in cart.</p></div>';
+    }
+    else {
+        for(let product of products) {
+            html += `<!-- Single Product in Cart -->
+            <div class="col-12 row d-flex align-items-center justify-content-center border-bottom single-product-cart py-2">
+                <!-- Single Product Image -->
+                <div class="col-lg-1 col-12">
+                    <div style="background-image: url(../images/products/${product.product_image}.png);" class="cart-background-image">
+                    </div>
+                </div>
+                <!-- Single Product Name -->
+                <div class="col-lg-4 col-12">
+                    <h3>${product.product_name}</h3>
+                </div>
+                <!-- Single Product Quantity -->
+                <div class="col-lg-4 col-12">
+                    <div class="product-quantity d-flex align-items-center mb-2">
+                        <span class="button-operator ml-2 button-operator-minus">-</span>
+                        <input type="text" class="button-quantity button-operator-result" id="quantity" value="${product.cart_quantity}" readonly />
+                        <input type="hidden" id="userId" value="${product.user_id}">
+                        <input type="hidden" id="productId" value="${product.product_id}">
+                        <span class="button-operator button-operator-plus">+</span>
+                        <small class="form-text text-muted ml-2 quantity-help"></small>
+                    </div>
+                </div>
+                <!-- Single Product Price -->
+                <div class="col-lg-2 col-12">
+                    <p class="price-text-new">${product.price_new}</p>
+                </div>
+                <!-- Single Product Delete -->
+                <div class="col-lg-1 col-12">
+                    <button class="cart-button-delete">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>`;
+        }
+    }
+    return html;
 }

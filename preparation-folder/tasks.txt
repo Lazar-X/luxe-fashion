@@ -1,10 +1,12 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
-Da se omoguci brisanje iz carta naravno, odmah na refresh se fetchuju podaci tj. refresjuje se cart bez refresh stranice
+Treba napraviti da korisnik moze da glasa - ratings, ispod proizvoda (ovo ce biti insert?)
 
-Treba napraviti da korisnik moze da glasa - ratings, ispod proizvoda
+Treba napraviti adminu mogucnost upload fajlova, konkretno slike sa .png formatom
 
 Treba sve linkove prebaciti sa .html na .php
+
+Uraditi stranicenje
 
 Treba napraviti sitemap
 Treba proveriti sve linkove
@@ -14,20 +16,3 @@ Ako ostane vremena:
 Popraviti orders da dobijemo i listu proizvoda, ili napraviti novu tabelu ili cuvati niz proizvoda iz cart
 
 Git test !!!
-
-echo '<script>
-                                let newQuantity = 0;
-                                const buttonPlus = document.querySelectorAll(".button-operator-plus");
-                                const buttonMinus = document.querySelectorAll(".button-operator-minus");
-                                const buttonResult = document.querySelectorAll(".button-operator-result");
-                                for (let i = 0; i < buttonPlus.length; i++) {
-                                    buttonPlus[i].addEventListener("click", () => {
-                                        newQuantity = parseInt(buttonResult[i].value) + 1;
-                                        console.log(newQuantity);
-                                    });
-                                    buttonMinus[i].addEventListener("click", () => {
-                                        newQuantity = parseInt(buttonResult[i].value) - 1;
-                                        console.log(newQuantity);
-                                    });
-                                }
-                                </script>';

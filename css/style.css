@@ -125,6 +125,7 @@ nav a i {
 #toggle-button {
     width: 35px;
     height: 26px;
+    /* display: none; */
     position: absolute;
     top: 30%;
     right: 3%;

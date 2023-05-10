@@ -5,8 +5,8 @@
     require_once '../includes/navigation.php';
     if(isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
-        $productsFromCart = selectProductsFromCart();
-        $numberOfProductsInCart = countProductsFromCart();
+        $productsFromCart = selectProductsFromCart($user -> user_id);
+        $numberOfProductsInCart = countProductsFromCart($user -> user_id);
         echo var_dump($productsFromCart);
         echo '<!-- Cart -->
         <div id="cart-section" class="padding-150">
@@ -34,6 +34,7 @@
                             <h3>Remove</h3>
                         </div>
                     </div>';
+                    echo '<div id="displayProducts">';
                     foreach($productsFromCart as $product) {
                         echo '<!-- Single Product in Cart -->
                         <div class="col-12 row d-flex align-items-center justify-content-center border-bottom single-product-cart py-2">
@@ -69,7 +70,7 @@
                             </div>
                         </div>';
                     }
-                    echo '
+                    echo '</div>
                     <!-- Single Product Footer -->
                     <div class="col-12 row mt-3 d-flex align-items-center">
                         <div class="col-md-10 col-12 mb-md-0 mb-2">
