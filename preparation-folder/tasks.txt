@@ -1,7 +1,5 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
-Treba napraviti da korisnik moze da glasa - ratings, ispod proizvoda (ovo ce biti insert?)
-
 Treba napraviti adminu mogucnost upload fajlova, konkretno slike sa .png formatom
 
 Treba sve linkove prebaciti sa .html na .php

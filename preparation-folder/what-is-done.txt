@@ -65,5 +65,7 @@ Proizvodi se mogu uklanjati iz korpe
 
 Ukoliko je korisnik ulogovan, prikazace mu se broj proizvoda u korpi (na ikonicu), ukoliko nije onda nece
 
+Moguce je oceniti proizvod, naravno samo jednom, ukoliko je vec glasano izdaje se poruka o tome
+
 
 Celokupan rad se moze videti na github

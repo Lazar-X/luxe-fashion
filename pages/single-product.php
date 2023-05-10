@@ -117,6 +117,26 @@
                 </div>
             </div>
         </div>';
+        echo '<div class="container my-3 py-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="ratings" class="font-weight-bold">Rate this product:</label>
+                                    <select class="form-control" id="ratings">';
+                                    $ratingValues = tableSelectAll('rating_values');
+                                    foreach ($ratingValues as $rv) {
+                                        echo '<option value="'.$rv -> rating_values_id.'">'.$rv -> rating_values_id.'</option>';
+                                    }
+                                    echo '</select>
+                                    <small class="form-text text-danger ml-2" id="rateProductHelp"></small>
+                                </div>
+                                <button type="button" id="rateProductButton" class="btn mt-3 button">Rate product</button>
+                                <div id="responseRate">
+                                    <!-- <small id="contactInformation" class="form-text text-success font-weight-bold"></small> -->
+                                </div>
+                            </div>
+                        </div>
+        </div>';
     }
     require_once '../includes/footer.php';
 ?>

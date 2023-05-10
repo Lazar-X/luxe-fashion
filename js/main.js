@@ -30,6 +30,7 @@ window.onload = function() {
         addActiveClass(sizes, 'active-size');
         quantity();
         addToCart();
+        rateProduct();
     }
     // Login
     if(document.URL.includes('login.php')) {
@@ -172,6 +173,9 @@ function ajaxCallBack(file, method, data, result) {
             }
             if(xhr.status == 422) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
+            }
+            if(xhr.status == 403) {
+                $('#responseRate').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
             }
             if(xhr.status == 409) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-danger font-weight-bold">${xhr.responseJSON.message}</small>`);
@@ -1560,4 +1564,36 @@ function displayProductsInCart(products) {
         }
     }
     return html;
+}
+
+function rateProduct() {
+    $(document).on('click', '#rateProductButton', function() {
+        let userId = $('#userId').val();
+        let productId = $('#productId').val();
+        let rating = $('#ratings').val();
+
+        let errorCounter = 0;
+
+        if(typeof userId === 'undefined') {
+            errorCounter++;
+            $('#rateProductHelp').text('You need to be logged in!');
+        }
+
+        if(errorCounter == 0) {
+            let data = {
+                'userId': userId,
+                'productId': productId,
+                'rating': rating,
+                'button': true
+            };
+
+            ajaxCallBack('rateProduct', 'post', data, function(result) {
+                $('#responseRate').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
+            });
+        }
+
+        else {
+            console.log(errorCounter);
+        }
+    });  
 }

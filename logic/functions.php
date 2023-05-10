@@ -687,4 +687,31 @@
         }
     }
 
+    function productVoted($userId, $productId) {
+        global $conn;
+
+        $query = "SELECT * FROM ratings WHERE user_id = :userId AND product_id = :productId";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':userId', $userId);
+        $prepare -> bindParam(':productId', $productId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetch();
+        return $result;
+    }
+
+    function insertRating($rating, $productId, $userId) {
+        global $conn;
+        $query = "INSERT INTO ratings (rating_values_id, product_id, user_id) VALUES (:rating, :productId, :userId)";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':rating', $rating);
+        $prepare -> bindParam(':productId', $productId);
+        $prepare -> bindParam(':userId', $userId);
+
+        $result = $prepare -> execute();
+        return $result;
+    }
+
 ?>
