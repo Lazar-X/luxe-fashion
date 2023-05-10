@@ -1,7 +1,5 @@
 http://127.0.0.1/luxe-fashion/pages/index.html
 
-Treba napraviti adminu mogucnost upload fajlova, konkretno slike sa .png formatom
-
 Uraditi stranicenje
 
 Treba napraviti sitemap

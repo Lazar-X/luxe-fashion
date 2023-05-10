@@ -174,6 +174,40 @@
                         </form>
                     </div>
                 </div>
+                <div class="row my-3 mt-5">
+                    <div class="col-12">
+                        <h3 class="font-weight-bold">Upload image:</h3>
+                    </div>
+                </div>
+                <div class="row shadow p-3">
+                        <div class="col-12">
+                            <form id="uploadForm" action="../logic/uploadImage.php" enctype="multipart/form-data" method="post">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Choose png image:</label>
+                                <input class="form-control" type="file" id="formFile" name="formFile" />
+                            </div>
+                            <button type="submit" id="uploadButton" name="uploadButton" class="btn mt-3 button">Upload</button>
+                            <div id="responseUpload">';
+                                if(isset($_SESSION['error-size'])) {
+                                    echo '<small id="errorSize" class="form-text text-danger font-weight-bold">'.$_SESSION['error-size'].'</small>';
+                                    unset($_SESSION['error-size']);
+                                }
+                                if(isset($_SESSION['error'])) {
+                                    echo '<small id="errorSize" class="form-text text-danger font-weight-bold">'.$_SESSION['error'].'</small>';
+                                    unset($_SESSION['error']);
+                                }
+                                if(isset($_SESSION['error-upload'])) {
+                                    echo '<small id="errorSize" class="form-text text-danger font-weight-bold">'.$_SESSION['error-upload'].'</small>';
+                                    unset($_SESSION['error-upload']);
+                                }
+                                if(isset($_SESSION['success'])) {
+                                    echo '<small id="errorSize" class="form-text text-success font-weight-bold">'.$_SESSION['success'].'</small>';
+                                    unset($_SESSION['success']);
+                                }
+                            echo '</div>
+                        </form>
+                    </div>
+                </div>
                 <div class="container">
                 <div class="row my-3 d-flex flex-column">
                     <div class="row">
@@ -209,7 +243,7 @@
                 <div class="row my-3 d-flex flex-column">
                     <div class="row">
                         <div class="col-12">
-                            <h3 class="font-weight-bold">Users:</h3>
+                            <h3 class="font-weight-bold">Contact messages:</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -217,10 +251,10 @@
                                 <h4>First name:</h4>
                         </div>
                         <div class="col-md-4 col-12">
-                                <h4>Username:</h4>
+                                <h4>Email::</h4>
                         </div>
                         <div class="col-md-4 col-12">
-                                <h4>Email:</h4>
+                                <h4>Message:</h4>
                         </div>
                     </div>';
                     foreach ($messages as $message) {
