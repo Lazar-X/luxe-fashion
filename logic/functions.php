@@ -246,6 +246,22 @@
         return $result;
     }
 
+    function userVotedForQuestion($questionId) {
+        global $conn;
+
+        $query = "SELECT answer_id, COUNT(*) as vote_count
+        FROM poll_user_answers
+        WHERE question_id = :questionId
+        GROUP BY answer_id";
+
+        $prepare = $conn -> prepare($query);
+        $prepare -> bindParam(':questionId', $questionId);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchAll();
+        return $result;
+    }
+
     function selectMinimumPrice() {
         global $conn;
 

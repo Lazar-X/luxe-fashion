@@ -1,0 +1,14 @@
+http://127.0.0.1/luxe-fashion/pages/index.html
+
+Treba izbrisati sve nepotrebne komentare, vardumpove, consolelog i slicno
+
+Treba sprovesti testove!
+
+Treba napraviti sitemap
+Treba napisati dokumentaciju
+
+Ako ostane vremena:
+Popraviti orders da dobijemo i listu proizvoda, ili napraviti novu tabelu ili cuvati niz proizvoda iz cart
+Obezbediti uvid u anketu
+
+Git test !!!
