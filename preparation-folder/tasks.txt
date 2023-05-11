@@ -5,10 +5,25 @@ Treba izbrisati sve nepotrebne komentare, vardumpove, consolelog i slicno
 Treba sprovesti testove!
 
 Treba napraviti sitemap
+
 Treba napisati dokumentaciju
+Index
+About
+Author
+Contact
+
+Shop
+Singleproduct
+Cart
+Checkout
+
+Login
+Register
+User
+Admin
+Poll
 
 Ako ostane vremena:
 Popraviti orders da dobijemo i listu proizvoda, ili napraviti novu tabelu ili cuvati niz proizvoda iz cart
-Obezbediti uvid u anketu
 
 Git test !!!

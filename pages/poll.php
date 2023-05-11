@@ -84,6 +84,9 @@
                         <div class="col-12">
                             <h3>Question: '.$pollQuestion -> poll_question.'</h3>
                         </div>
+                        <div class="col-12">
+                            <h3 class="border-bottom">Answers - User voted</h3>
+                        </div>
                         <div class="col-12">';
                         foreach ($pollAnswers as $answer) {
                             echo '<h3>'.$answer -> poll_answer.' - ';
