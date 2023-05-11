@@ -86,7 +86,7 @@
                             echo '</span></h3>
                         </div>
                         <div class="col-md-2 col-12">
-                            <a href="checkout.php?summary='.$summary.'" class="font-weight-bold shop-now-link">Checkout</a>
+                            <a href="checkout.php?summary='.$summary.'" id="checkout-link" class="font-weight-bold shop-now-link">Checkout</a>
                         </div>
                     </div>
                 </div>

@@ -1472,6 +1472,7 @@ function updateQuantity() {
     
                 ajaxCallBack('updateQuantity', 'post', data, function(result) {
                     $('#summary').text(result);
+                    $('#checkout-link').attr('href', 'checkout.php?summary=' + result);
                 });
             }
         });
@@ -1490,6 +1491,7 @@ function updateQuantity() {
     
                 ajaxCallBack('updateQuantity', 'post', data, function(result) {
                     $('#summary').text(result);
+                    $('#checkout-link').attr('href', 'checkout.php?summary=' + result);
                 });
             }
         });
@@ -1497,26 +1499,23 @@ function updateQuantity() {
 }
 
 function deleteFromCart() {
-    console.log('pozvata funkcija');
-    const deleteButtons = document.querySelectorAll('.cart-button-delete');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            let userId = $('#userId').val();
-            let productId = $('#productId').val();
-    
-            console.log('kliknuto');
-    
-            let data = {
-                'userId': userId,
-                'productId': productId,
-                'button': true
-            };
-    
-            ajaxCallBack('deleteFromCart', 'post', data, function(result) {
-                let html = displayProductsInCart(result[0]);
-                $('#displayProducts').html(html);
-                $('#summary').text(result[1]);
-            });
+    $(document).on('click', '.cart-button-delete', function() {
+        let userId = $('#userId').val();
+        let productId = $('#productId').val();
+
+        let data = {
+            'userId': userId,
+            'productId': productId,
+            'button': true
+        };
+
+        ajaxCallBack('deleteFromCart', 'post', data, function(result) {
+            let html = displayProductsInCart(result[0]);
+            $('#displayProducts').html(html);
+            $('#summary').text(result[1]);
+            console.log('pozvaj ajax');
+            $('#product-count-cart').text(result[0].length);
+            $('#checkout-link').attr('href', 'checkout.php?summary=' + result[1]);
         });
     });
 }

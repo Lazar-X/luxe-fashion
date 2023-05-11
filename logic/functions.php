@@ -676,7 +676,7 @@
         $result = $prepare -> execute();
 
         if($result) {
-            $query = "SELECT SUM(c.cart_quantity * p.price_new) AS summary FROM carts c 
+            $query = "SELECT COALESCE(SUM(c.cart_quantity * p.price_new), 0) AS summary FROM carts c 
             JOIN prices p ON c.product_id = p.product_id 
             WHERE c.user_id = :userId";
             $prepare = $conn->prepare($query);
