@@ -15,6 +15,7 @@ window.onload = function() {
         toggleActiveClass(colors, 'active-color');
         triggerFilterProducts();
         addToCart();
+        pagination();
     }
     // About us
     if(document.URL.includes('about-us.php')) {
@@ -1595,4 +1596,28 @@ function rateProduct() {
             console.log(errorCounter);
         }
     });  
+}
+
+function pagination() {
+    $(document).on('click', '.pagination-list a', function(e) {
+		e.preventDefault();
+		let limit = $(this).data('limit');
+		let data = {
+			limit: limit
+		}
+		ajaxCallBack("pagination", "post", data, function(result) {
+			console.log(result);
+			let html = showProducts(result[0], result[1], result[2]);
+            $('#productsResult').html(html);
+			pageNumber(result[3]);
+		});
+	});
+}
+
+function pageNumber(pageNumber) {
+	html = "";
+	for(let i = 0; i < pageNumber; i++) {
+        html += `<li><a href="#" class="p-3 mr-1" data-limit="${i}">${i+1}</a></li>`;
+	}
+	$("#pagination").html(html);
 }

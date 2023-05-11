@@ -19,7 +19,7 @@
                 $categoryIdsBase[] = $c -> category_id;
             }
             $errorCounter = 0;
-            $statusCode = '';   
+            $statusCode = '';
             foreach ($categoryIds as $categoryId) {
                 if(!in_array($categoryId, $categoryIdsBase)) {
                     $errorCounter++;

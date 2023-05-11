@@ -14,9 +14,10 @@
     $genders = tableSelectAll('genders');
     $minPrice = selectMinimumPrice() -> min_price;
     $maxPrice = selectMaximumPrice() -> max_price;
+    $pageNumber = pageNumber();
 
     echo '<div class="py-5">';
-    var_dump($products);
+    var_dump($pageNumber);
     echo '</div>';
 
     echo '
@@ -234,10 +235,12 @@
                     <!-- Pagination -->
                     <div class="row mt-3">
                         <div class="col-12 d-flex justify-content-center">
-                            <ul class="d-flex pagination-list">
-                                <li><a href="" class="p-3 pagination-active-link mr-1">1</a></li>
-                                <li><a href="" class="p-3 mr-1">2</a></li>
-                                <li><a href="" class="p-3 mr-1">3</a></li>
+                            <ul class="d-flex pagination-list" id="pagination">
+                                <?php
+                                    for($i = 0; $i < $pageNumber; $i++) {
+                                        echo '<li><a href="#" class="p-3 mr-1" data-limit="'.$i.'">'.($i+1).'</a></li>';
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>

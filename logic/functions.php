@@ -268,7 +268,7 @@
         return $result;
     }
 
-    function selectAllProducts() {
+    function selectAllProducts($limit = 0) {
         global $conn;
 
         $query = "SELECT DISTINCT * FROM products p
@@ -276,13 +276,29 @@
         JOIN brands b ON p.brand_id = b.brand_id
         JOIN colors col ON p.color_id = col.color_id
         JOIN genders g ON p.gender_id = g.gender_id
-        JOIN prices pr ON p.product_id = pr.product_id";
+        JOIN prices pr ON p.product_id = pr.product_id
+        LIMIT :limit, 9";
 
         $prepare = $conn -> prepare($query);
+        $limit = ((int) $limit * 9);
+        $prepare -> bindParam(':limit', $limit, PDO::PARAM_INT);
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
         return $result;
+    }
+
+    function productsNumber() {
+        global $conn;
+        $query = "SELECT COUNT(*) AS productNumber FROM products";
+        $result = $conn -> query($query) -> fetch();
+        return $result;
+    }
+
+    function pageNumber() {
+        $productNumber = productsNumber();
+        $pageNumber = ceil($productNumber -> productNumber / 9);
+        return $pageNumber;
     }
 
     function selectProductById($productId) {
@@ -321,7 +337,7 @@
         return $result;
     }
 
-    function filterProducts($categoryIds, $brandIds, $genderIds, $colorIds, $discountId, $search, $sort) {
+    function filterProducts($categoryIds, $brandIds, $genderIds, $colorIds, $discountId, $search, $sort, $limit = 0) {
         global $conn;
 
         $where = "";
@@ -405,9 +421,12 @@
         JOIN genders g ON p.gender_id = g.gender_id
         JOIN colors col ON p.color_id = col.color_id
         JOIN prices pr ON p.product_id = pr.product_id
-        $where $orderBy";
+        $where $orderBy
+        LIMIT :limit, 9";
 
         $prepare = $conn -> prepare($query);
+        $limit = ((int) $limit * 9);
+        $prepare -> bindParam(':limit', $limit, PDO::PARAM_INT);
 
         $prepare -> execute();
         $result = $prepare -> fetchAll();
