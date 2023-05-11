@@ -55,7 +55,12 @@
                         if($navigation) {
                             foreach ($navigation as $navItem) {
                                 if($navItem -> navigation_group_name == 'additional') {
-                                    echo '<li class="mb-2"><a href="../'.$navItem -> navigation_href.'" target="_blank">'.$navItem -> navigation_title.'</a></li>';
+                                    if($navItem -> navigation_title == 'Author') {
+                                        echo '<li class="mb-2"><a href="'.$navItem -> navigation_href.'" target="_blank">'.$navItem -> navigation_title.'</a></li>';
+                                    }
+                                    else {
+                                        echo '<li class="mb-2"><a href="../'.$navItem -> navigation_href.'" target="_blank">'.$navItem -> navigation_title.'</a></li>';
+                                    }
                                 }
                             }
                         }

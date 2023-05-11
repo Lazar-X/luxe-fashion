@@ -1,6 +1,0 @@
-Prvo startujemo xampp-control, pokrenemo apache i mysql
-U folderu htdocs se nalaze sve nase web strane i tu pravimo nas folder npr testphp
-U visual studio code nalazimo taj folder, otvaramo ga. Unutar tog foldera pravimo fajl index.php
-Sada u browseru kucamo lokalnu adresu do te stranice
-Prvo se kuca 127.0.0.1/ pa zatim putanja u odnosu na htdocs folder(bez htdocs)
-Primer: http://127.0.0.1/testphp/test1/index.php
