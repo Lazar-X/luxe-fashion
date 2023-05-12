@@ -154,8 +154,6 @@ function clearFrom(arrayElements, formElement) {
         element.removeClass('border-success');
     });
     formElement[0].reset();
-    // messageElement.text(messageText).fadeIn().delay(3000).fadeOut();
-    // , messageElement, messageText
 }
 
 // Function to send data with ajax
