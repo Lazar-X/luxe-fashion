@@ -15,10 +15,7 @@
     $minPrice = selectMinimumPrice() -> min_price;
     $maxPrice = selectMaximumPrice() -> max_price;
     $pageNumber = pageNumber();
-
-    echo '<div class="py-5">';
-    var_dump($pageNumber);
-    echo '</div>';
+    $countProductsNumber = countTable('products');
 
     echo '
     <!-- Shop section -->
@@ -29,7 +26,7 @@
                 <div class="col-12">
                     <h2>Shop With Us</h2>
                     <p>Browse from <span id="product-count">';
-                    echo count($products);
+                    echo $countProductsNumber;
                     echo '</span> latest products</p>
                 </div>
             </div>

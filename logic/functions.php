@@ -50,6 +50,18 @@
         return $result;
     }
 
+    function countTable($tableName) {
+        global $conn;
+
+        $query = "SELECT COUNT(*) FROM $tableName";
+
+        $prepare = $conn -> prepare($query);
+
+        $prepare -> execute();
+        $result = $prepare -> fetchColumn();
+        return $result;
+    }
+
     // To count products
     function countProducts($columnName, $columnValue) {
         global $conn;

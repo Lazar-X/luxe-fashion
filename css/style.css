@@ -19,15 +19,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-/* ::-webkit-scrollbar {
-	width: 20px;
-}
-::-webkit-scrollbar-track {
-	background: var(--color-white);
-}
-::-webkit-scrollbar-thumb {
-	background: var(--color-pink);
-} */
 body {
     font-family: var(--font-text);
     color: var(--black);

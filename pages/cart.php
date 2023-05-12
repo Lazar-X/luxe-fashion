@@ -7,7 +7,6 @@
         $user = $_SESSION['user'];
         $productsFromCart = selectProductsFromCart($user -> user_id);
         $numberOfProductsInCart = countProductsFromCart($user -> user_id);
-        echo var_dump($productsFromCart);
         echo '<!-- Cart -->
         <div id="cart-section" class="padding-150">
             <div class="container d-flex justify-content-center align-items-center">

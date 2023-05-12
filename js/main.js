@@ -135,7 +135,6 @@ function toggleActiveClass(elements, className) {
 function showPassword() {
     const passwords = document.querySelectorAll(".passwords");
     const iconPassword = document.querySelectorAll('.show-password');
-    console.log(iconPassword, passwords);
     for(let i = 0; i < iconPassword.length; i++) {
         iconPassword[i].addEventListener('click', () => {
             if (passwords[i].type === "password") {
@@ -422,8 +421,6 @@ function verificationValidation() {
             $(verificationCode).addClass('border-danger');
         }
 
-        console.log(errorCounter);
-
         if(errorCounter == 0) {
             let data = {
                 'username': username.val(),
@@ -431,7 +428,6 @@ function verificationValidation() {
                 'verificationCode': verificationCode.val(),
                 'button': true
             };
-            console.log(data);
 
             ajaxCallBack('verificationForm', 'post', data, function(result) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
@@ -904,7 +900,6 @@ function voteValidation() {
                 'pollQuestionId': questionId.val(),
                 'button': true
             };
-            console.log(data);
 
             ajaxCallBack('pollForm', 'post', data, function(result) {
                 $('#response').html(`<small id="responseInformation" class="form-text text-success font-weight-bold">${result.message}</small>`).fadeIn().delay(3000).fadeOut();
@@ -1127,44 +1122,34 @@ function filterProducts() {
     };
 
     ajaxCallBack('filterProducts', 'POST', data, function(result) {
-        console.log(result);
         let html = showProducts(result[0], result[1], result[2]);
         $('#productsResult').html(html);
     });
 }
 
 function triggerFilterProducts() {
-    console.log('trigger');
     $(document).on('change', '#collapseCategories', function() {
         filterProducts();
-        console.log('triger na kat');
     });
     $(document).on('change', '#collapseBrands', function() {
         filterProducts();
-        console.log('triger na brand');
     });
     $(document).on('change', '#collapseDiscount', function() {
         filterProducts();
-        console.log('triger na discount');
     });
     $(document).on('change', '#collapseColors', function() {
         filterProducts();
-        console.log('triger na colors');
     });
     $(document).on('change', '#collapseGender', function() {
         filterProducts();
-        console.log('triger na gender');
     });
     $(document).on('change', '#sort', function() {
         filterProducts();
-        console.log('triger na sort');
     });
     $(document).on('input', '#search', function() {
         filterProducts();
-        console.log('triger na search');
     });
     $(document).on('click', '#clear', function() {
-        console.log('kliknuto na clear');
         clearFilterElements();
         let arr = selectFilterElements();
         let allCategories = arr['allCategories'];
@@ -1187,8 +1172,6 @@ function triggerFilterProducts() {
         };
 
         ajaxCallBack('filterProducts', 'POST', data, function(result) {
-            console.log('pozvan ajax');
-            console.log(result);
             let html = showProducts(result[0], result[1], result[2]);
             $('#productsResult').html(html);
         });
@@ -1368,8 +1351,6 @@ function insertPrices() {
 
         let errorCounter = 0;
 
-        console.log(productId);
-
         if(!regexPrice.test($(productPriceNew).val())) {
             errorCounter++;
             productPriceNewHelp.text('Example: 30.99');
@@ -1426,8 +1407,6 @@ function addToCart() {
             $('#addToCartHelp').text('You need to be logged in!');
         }
 
-        console.log(userId);
-
         if(errorCounter == 0) {
             let data = {
                 'userId': userId,
@@ -1438,7 +1417,6 @@ function addToCart() {
             };
 
             ajaxCallBack('addToCart', 'post', data, function(result) {
-                console.log('pozvao se');
                 $('#add-to-cart').modal("show");
             });
         }
@@ -1514,7 +1492,6 @@ function deleteFromCart() {
             let html = displayProductsInCart(result[0]);
             $('#displayProducts').html(html);
             $('#summary').text(result[1]);
-            console.log('pozvaj ajax');
             $('#product-count-cart').text(result[0].length);
             $('#checkout-link').attr('href', 'checkout.php?summary=' + result[1]);
         });
@@ -1606,7 +1583,6 @@ function pagination() {
 			limit: limit
 		}
 		ajaxCallBack("pagination", "post", data, function(result) {
-			console.log(result);
 			let html = showProducts(result[0], result[1], result[2]);
             $('#productsResult').html(html);
 			pageNumber(result[3]);

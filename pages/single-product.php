@@ -17,11 +17,6 @@
         $productId = $_GET['product_id'];
         $product = selectProductById($productId);
         $sizesForProduct = selectSizesForProduct($productId);
-        echo '<div class="py-5">
-            <p>ovde dump</p>';
-            // var_dump($sizesForProduct);
-        echo '</div>';
-
         echo '<!-- Product section -->
         <div id="single-product" class="py-5">
             <div class="container">
